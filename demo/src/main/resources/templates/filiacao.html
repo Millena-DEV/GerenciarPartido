@@ -1,0 +1,934 @@
+
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<link th:href="@{/css/reset.css}">
+<link th:href="@{/css/bootstrap.min.css}">
+<link th:href="@{css/bootstrap-select.min.css}">
+<link th:href="@{css/open-iconic-bootstrap.min.css}">
+<link th:href="@{css/simplePagination.css}">
+<link th:href="@{css/custom.css}">
+<link th:href="@{css/c3.min.css}">
+<script th:href="@{js/jquery.js}"></script>
+<script th:href="@{js/bootstrap.bundle.min.js}"></script>
+<script th:href="@{js/bootstrap-select.min.js}"></script>
+<script th:href="@{js/jquery.mask.min.js}"></script>
+<script th:href="@{js/jquery.simplePagination.js}"></script>
+<script th:href="@{js/custom.js}"></script>
+<script th:href="@{js/plugins/c3/d3.min.js}"></script>
+<script th:href="@{js/plugins/c3/c3.min.js}"></script>
+<link rel="icon" th:href="@{/img/ub.jfif}" />
+<title>União Brasil</title>
+<link rel="icon" th:href="@{img/ub.jfif}" >
+<script th:src="@{/js/plugin/webfont/webfont.min.js}"></script>
+<!-- Link para o Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+ <!-- CSS Files -->
+ <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+ <link rel="stylesheet" th:href="@{/css/plugins.min.css}" />
+<link rel="stylesheet" href="/css/kaiadmin.min.css" />
+<link rel="stylesheet" th:href="@{/css/demo.css}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- jQuery (necessário para o jQuery Mask) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- jQuery Mask Plugin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+
+<style>
+.custom-file-input ~ .custom-file-label::after {
+    display: none;
+}
+
+.btn-upload {
+    background-color: #428BCA;
+    border-color: #428BCA;;
+    color: white;
+}
+
+.btn-upload:hover {
+    background-color: #31b0d5;
+    border-color: #269abc;
+}
+
+.section-divider {
+    margin: 20px 0; /* Espaçamento acima e abaixo da linha */
+    border-top: 1px solid #dee2e6; /* Cor e espessura da linha */
+}
+
+.modal.fade .modal-dialog {
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.modal.fade.show .modal-dialog {
+    transform: translateY(0);
+    opacity: 1;
+}
+</style>
+ </head>
+
+      
+ <body>  
+                <div class="container mt-5">
+                    <a th:href="@{/filiados}" class="btn btn-primary" style="margin-top: 5px">Voltar</a>
+                    <div class="card">
+                        <div class="home card-header">
+                            <h1 style="font-size:20px; text-align: center;">Ficha de Filiação</h1>
+                            <h6 style="margin-top: 20px">
+                                Acesse nosso Site para ficar por dentro de todas as informações <a href="https://uniaobrasil.org.br/">clicando aqui </a>
+                            </h6>
+                        </div>
+                        <form th:action="@{/salvarFiliadoComDocumentos}" method="post" enctype="multipart/form-data">
+                        <div class="card-body">
+                            <!-- Dados Pessoais -->
+                            <h1 style="color: #428BCA;">Dados Pessoais</h1>
+                            <div class="row">
+                            <!-- Nome Completo -->
+                            <div class="col-md-4 col-lg-3">
+                                <div class="form-group">
+                                <label for="nome">Nome Completo:</label>
+                                <input maxlength="250" type="text" class="form-control" id="nome" name="nome"  required>
+                                </div>
+                            </div>
+
+                            <!-- Nome do Pai -->
+                            <div class="col-md-4 col-lg-3">
+                                <div class="form-group">
+                                <label for="nomePai">Nome do Pai:</label>
+                                <input maxlength="250" type="text" class="form-control" id="nomePai" name="nomePai" required>
+                                </div>
+                            </div>
+                    
+                            <!-- Nome da Mãe -->
+                            <div class="col-md-4 col-lg-3">
+                                <div class="form-group">
+                                <label for="nomeMae">Nome da Mãe:</label>
+                                <input maxlength="250" type="text" class="form-control" id="nomeMae" name="nomeMae"   required>
+                                </div>
+                            </div>
+
+                           <!-- Genero -->
+                            <div class="col-md-2 col-lg-2">
+                                <label for="genero" class="form-label">Gênero</label>
+                                <select id="genero" name="genero" class="form-control">
+                                    <option value="">Selecione o Gênero</option>
+                                    <option value="FEMININO" th:selected="${genero == 'FEMININO'}">FEMININO</option>
+                                    <option value="MASCULINO" th:selected="${genero == 'MASCULINO'}">MASCULINO</option>
+                                </select>
+                            </div>
+                            
+                            <!-- CPF -->
+                            <div class="col-md-2 col-lg-2">
+                                <div class="form-group">
+                                <label for="cpf">CPF:</label>
+                                <input type="text" class="form-control" oninput="formatCPF(this)" onblur="checkCPF(this)" id="cpf" name="cpf"  required>
+                                <span id="cpf-error">CPF inválido!</span>
+                                </div>
+                            </div>
+                              <!-- Título de Eleitor -->
+                              <div class="col-md-2 col-lg-2">
+                                <div class="form-group">
+                                <label for="Titulo">Título de Eleitor:</label>
+                                <input type="text" oninput="formatTitulo(this)" onblur="checkTitulo(this)" class="form-control" id="Titulo" name="titulo"  required>
+                                <span id="titulo-error">Título de Eleitor inválido!</span>
+                                </div>
+                            </div>
+                            <!-- Data de Nascimento -->
+                            <div class="col-md-2 col-lg-2">
+                                <div class="form-group">
+                                <label for="datanascimento">Data de Nascimento:</label>
+                                <input type="date" name="dataNascimento" class="form-control" placeholder="dd/MM/yyyy"  required>
+                                </div>
+                            </div>
+                
+                          
+                            <!-- zona -->
+                            <div class="col-md-2 col-lg-2">
+                                <div class="form-group">
+                                <label for="zona">Zona:</label>
+                                <input type="text" class="form-control" id="zona" name="zona"  required>
+                                </div>
+                            </div>
+                        <!-- secao -->
+                            <div class="col-md-2 col-lg-2">
+                                <div class="form-group">
+                                <label for="secao">Seção:</label>
+                                <input type="text" class="form-control" id="secao" name="secao" required>
+                                </div>
+                            </div>
+                      
+                            <!-- UF -->
+                            <div class="col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label for="uf">Data Filiação:</label>
+                                <input type="date" class="form-control" id="zona" name="dataFiliacao" placeholder="Data igual da ficha" required>
+                            </div>
+                            </div> <!-- End row -->
+                    
+                            <hr>
+                    
+                    <!-- Endereço -->
+                    <h1 style="color: #428BCA;">Endereço</h1>
+                    <div class="row">
+                        <!-- tipo_logradouro -->
+                         <div class="col-md-2 col-lg-2">
+                            <label for="genero" class="form-label">Tipo Logradouro</label>
+                            <select id="genero" name="genero" class="form-control">
+                                <option value="">Selecione o Logradouro</option>
+                                <option value="Aeroporto" th:selected="${tipo_logradouro == 'Aeroporto'}">Aeroporto</option>
+                                <option value="Alameda" th:selected="${tipo_logradouro == 'Alameda'}">Alameda</option>
+                                <option value="Área" th:selected="${tipo_logradouro == 'Área'}">Área</option>  
+                                <option value="Avenida" th:selected="${tipo_logradouro == 'Avenida'}">Avenida</option> 
+                                <option value="Campo" th:selected="${tipo_logradouro == 'Campo'}">Campo</option>
+                                <option value="Chácara" th:selected="${tipo_logradouro == 'Chácara'}">Chácara</option>
+                                <option value="Colônia" th:selected="${tipo_logradouro == 'Colônia'}">Colônia</option>
+                                <option value="Condomínio" th:selected="${tipo_logradouro == 'Condomínio'}">Condomínio</option>
+                                <option value="Conjunto" th:selected="${tipo_logradouro == 'Conjunto'}">Conjunto</option>
+                                <option value="Distrito" th:selected="${tipo_logradouro == 'Distrito'}">Distrito</option>
+                                <option value="Esplanada" th:selected="${tipo_logradouro == 'Esplanada'}">Esplanada</option>
+                                <option value="Estação" th:selected="${tipo_logradouro == 'Estação'}">Estação</option>
+                                <option value="Estrada" th:selected="${tipo_logradouro == 'Estrada'}">Estrada</option>
+                                <option value="Favela" th:selected="${tipo_logradouro == 'Favela'}">Favela</option>
+                                <option value="Fazenda" th:selected="${tipo_logradouro == 'Fazenda'}">Fazenda</option>
+                                <option value="Feira" th:selected="${tipo_logradouro == 'Feira'}">Feira</option>
+                                <option value="Jardim" th:selected="${tipo_logradouro == 'Jardim'}">Jardim</option>
+                                <option value="Ladeira" th:selected="${tipo_logradouro == 'Ladeira'}">Ladeira</option>
+                                <option value="Lago" th:selected="${tipo_logradouro == 'Lago'}">Lago</option>
+                                <option value="Lagoa" th:selected="${tipo_logradouro == 'Lagoa'}">Lagoa</option>
+                                <option value="Largo" th:selected="${tipo_logradouro == 'Largo'}">Largo</option>
+                                <option value="Loteamento" th:selected="${tipo_logradouro == 'Loteamento'}">Loteamento</option>
+                                <option value="Morro" th:selected="${tipo_logradouro == 'Morro'}">Morro</option>
+                                <option value="Núcleo" th:selected="${tipo_logradouro == 'Núcleo'}">Núcleo</option>
+                                <option value="Parque" th:selected="${tipo_logradouro == 'Parque'}">Parque</option>
+                                <option value="Passarela" th:selected="${tipo_logradouro == 'Passarela'}">Passarela</option>
+                                <option value="Pátio" th:selected="${tipo_logradouro == 'Pátio'}">Pátio</option>
+                                <option value="Praça" th:selected="${tipo_logradouro == 'Praça'}">Praça</option>
+                                <option value="Quadra" th:selected="${tipo_logradouro == 'Quadra'}">Quadra</option>
+                                <option value="Recanto" th:selected="${tipo_logradouro == 'Recanto'}">Recanto</option>
+                                <option value="Residencial" th:selected="${tipo_logradouro == 'Residencial'}">Residencial</option>
+                                <option value="Rodovia" th:selected="${tipo_logradouro == 'Rodovia'}">Rodovia</option>
+                                <option value="Rua" th:selected="${tipo_logradouro == 'Rua'}">Rua</option>
+                                <option value="Setor" th:selected="${tipo_logradouro == 'Setor'}">Setor</option>
+                                <option value="Sítio" th:selected="${tipo_logradouro == 'Sítio'}">Sítio</option>
+                                <option value="Travessa" th:selected="${tipo_logradouro == 'Travessa'}">Travessa</option>
+                                <option value="Trecho" th:selected="${tipo_logradouro == 'Trecho'}">Trecho</option>
+                                <option value="Trevo" th:selected="${tipo_logradouro == 'Trevo'}">Trevo</option>
+                                <option value="Vale" th:selected="${tipo_logradouro == 'Vale'}">Vale</option>
+                                <option value="Vereda" th:selected="${tipo_logradouro == 'Vereda'}">Vereda</option>
+                                <option value="Via" th:selected="${tipo_logradouro == 'Via'}">Via</option>
+                                <option value="Viaduto" th:selected="${tipo_logradouro == 'Viaduto'}">Viaduto</option>
+                                <option value="Viela" th:selected="${tipo_logradouro == 'Viela'}">Viela</option>
+                                <option value="Vila" th:selected="${tipo_logradouro == 'Vila'}">Vila</option>
+                            </select>
+                        </div>
+                       
+                            <div class="col-md-2 col-lg-4">
+                                <div class="form-group">
+                                <label for="logradouro">Logradouro:</label>
+                                <input type="text" class="form-control" id="logradouro" name="logradouro" required>
+                                </div>
+                            </div>
+                            <!-- Número -->
+                            <div class="col-md-2 col-lg-2">
+                                <div class="form-group">
+                                <label for="numero">Número:</label>
+                                <input maxlength="8" type="text" class="form-control" id="numero" name="numero" required>
+                                </div>
+                            </div>
+                    
+                            <!-- Complemento -->
+                            <div class="col-md-6 col-lg-3">
+                                <div class="form-group">
+                                <label for="complemento">Complemento:</label>
+                                <input maxlength="100" type="text" class="form-control" id="complemento" name="complemento" required>
+                                </div>
+                            </div>
+                            <!-- Bairro -->
+                            <div class="col-md-4 col-lg-3">
+                                <div class="form-group">
+                                <label for="bairro">Bairro:</label>
+                                <input type="text" class="form-control" id="bairro" name="bairro" required>
+                                </div>
+                            </div>
+                        
+
+                            <!-- cep -->
+                            <div class="col-md-2 col-lg-2">
+                                <div class="form-group">
+                                <label for="cep">CEP:</label>
+                                <input type="text" id="cep" class="form-control" placeholder="Digite o CEP" required>
+                                </div>
+                            </div>
+                            <!-- UF -->
+                                <div class="col-md-2 mb-3">
+                                    <label for="uf" class="form-label">UF</label>
+                                    <select id="uf" name="uf" class="form-control">
+                                        <option value="">Selecione a UF</option>
+                                        <option value="AC" th:selected="${uf == 'AC'}">AC</option>
+                                        <option value="AL" th:selected="${uf == 'AL'}">AL</option>
+                                        <option value="AM" th:selected="${uf == 'AM'}">AM</option>
+                                        <option value="AP" th:selected="${uf == 'AP'}">AP</option>
+                                        <option value="BA" th:selected="${uf == 'BA'}">BA</option>
+                                        <option value="CE" th:selected="${uf == 'CE'}">CE</option>
+                                        <option value="DF" th:selected="${uf == 'DF'}">DF</option>
+                                        <option value="ES" th:selected="${uf == 'ES'}">ES</option>
+                                        <option value="GO" th:selected="${uf == 'GO'}">GO</option>
+                                        <option value="MA" th:selected="${uf == 'MA'}">MA</option>
+                                        <option value="MG" th:selected="${uf == 'MG'}">MG</option>
+                                        <option value="MS" th:selected="${uf == 'MS'}">MS</option>
+                                        <option value="MT" th:selected="${uf == 'MT'}">MT</option>
+                                        <option value="PA" th:selected="${uf == 'PA'}">PA</option>
+                                        <option value="PB" th:selected="${uf == 'PB'}">PB</option>
+                                        <option value="PE" th:selected="${uf == 'PE'}">PE</option>
+                                        <option value="PI" th:selected="${uf == 'PI'}">PI</option>
+                                        <option value="PR" th:selected="${uf == 'PR'}">PR</option>
+                                        <option value="RJ" th:selected="${uf == 'RJ'}">RJ</option>
+                                        <option value="RN" th:selected="${uf == 'RN'}">RN</option>
+                                        <option value="RO" th:selected="${uf == 'RO'}">RO</option>
+                                        <option value="RR" th:selected="${uf == 'RR'}">RR</option>
+                                        <option value="RS" th:selected="${uf == 'RS'}">RS</option>
+                                        <option value="SC" th:selected="${uf == 'SC'}">SC</option>
+                                        <option value="SE" th:selected="${uf == 'SE'}">SE</option>
+                                        <option value="SP" th:selected="${uf == 'SP'}">SP</option>
+                                        <option value="TO" th:selected="${uf == 'TO'}">TO</option>
+                                    </select>
+                                </div>
+                                
+                             
+                                <div class="col-md-5 mb-4">
+                                    <div class="col-md-5 mb-4">
+                                        <label for="municipio" class="form-label">Município</label>
+                                        <select id="municipio" name="municipio" class="form-control" disabled>
+                                            <option value="">Selecione o município</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div> <!-- End row -->
+                            <hr>
+                            <!-- Contatos -->
+                            <h1 style="color: #428BCA;">Contatos</h1>
+                            <div class="row">
+                            <!-- Celular 1 -->
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                <label for="celular1">Celular 1:</label>
+                                <input type="text" class="form-control" id="celular1" name="celular1"   required>
+                                </div>
+                            </div>
+                            
+                    
+                            <!-- Celular 2 -->
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                <label for="celular2">Celular 2:</label>
+                                <input type="text" class="form-control" id="celular2" name="celular2"  required>
+                                </div>
+                            </div>
+                            
+
+                                <!-- Email -->
+                            <div class="col-md-3">
+                                    <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <input type="text" class="form-control" id="email" name="email"  required>
+                            </div>
+                            </div>
+                        
+                        <hr>
+                        <h1 style="color: #428BCA;">Upload Documentos</h1>
+                        <div class="row">
+                            <!-- FOTO -->
+                            <div class="col-md-6 col-lg-3">
+                                <div class="form-group">
+                                    <label class="form-label" for="customFile">DOCUMENTO COM FOTO</label>
+                                    <input type="file" class="form-control" id="foto" name="foto" />
+                                    <div id="fotoPreview" style="margin-top: 10px;"></div>
+                                    <button type="button" class="btn btn-info" id="btnFoto" style="margin-top: 5px; display:none;">Visualizar</button>
+                                </div>
+                            </div>     
+
+                            <!-- FICHA DE FILIAÇÃO -->
+                            <div class="col-md-6 col-lg-3">
+                                <div class="form-group">
+                                    <label class="form-label" for="customFile">FICHA DE FILIAÇÃO</label>
+                                    <input type="file" class="form-control" id="fichaFile" name="ficha" />
+                                    <div id="fichaPreview" style="margin-top: 10px;"></div>
+                                    <button type="button" class="btn btn-info" id="btnFicha" style="margin-top: 5px; display:none;">Visualizar</button>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <!-- Botão para enviar os documentos -->
+                        <button type="submit" class="btn btn-success" style="margin-top: 15px; display: block; margin-left: auto; margin-right: auto;">Enviar</button>
+
+                         <br>
+                       <!-- Exibir arquivos já enviados -->
+                        <h3 style="font-size:30px;  color: black; text-align: center;"></h3> <br> <br>
+                        <ul id="fileList" class="file-list"></ul>
+                            <!-- Aqui serão exibidos os arquivos como imagens -->
+                        </div>  
+                    </div> 
+             
+                    <footer class="footer">
+                        <div class="container d-flex">
+                          <nav class="pull-left">
+                            <ul class="nav">
+                              <li class="nav-item">
+                                <a class="nav-link" href="https://uniaobrasil.org.br/filie-se/">
+                                  Filiar 
+                                </a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" href="https://wa.me/61994180629?text=Olá%2C%20gostaria%20de%20mais%20informações"> Ajuda </a>
+                              </li>
+                              <li class="nav-item">
+                              <a class="nav-link" href="https://uniaobrasil.org.br/">2024, União Brasil <i class="fa fa-heart heart text-danger"></i> bySite</a>
+                            </li>
+                            </ul>
+                          </nav>
+                        </div>
+                      </footer>
+                    </form>
+                </div>  
+            </div>
+
+                      <style>
+                        /* Modal - oculto por padrão */
+                        .modal {
+                            display: none; /* Modal escondida por padrão */
+                            position: fixed; /* Fixa a modal na tela */
+                            z-index: 1; /* Coloca a modal sobre os outros elementos */
+                            left: 0;
+                            top: 0;
+                            width: 100%;
+                            height: 100%;
+                            overflow: auto;
+                            background-color: rgba(0, 0, 0, 0.4); /* Fundo semitransparente */
+                        }
+                    
+                        /* Conteúdo da modal */
+                        .modal-content {
+                            background-color: white;
+                            margin: 15% auto;
+                            padding: 20px;
+                            border: 1px solid #888;
+                            width: 300px;
+                            text-align: center;
+                            border-radius: 8px;
+                        }
+                    
+                        /* Botões */
+                        .confirmSubmit {
+                            background-color: #4CAF50;
+                            color: white;
+                            padding: 10px 20px;
+                            margin: 10px;
+                            border: none;
+                            cursor: pointer;
+                            border-radius: 5px;
+                        }
+                    
+                    
+                        .btn:hover {
+                            background-color: #45a049;
+                        }
+                    
+                        /* Botão de fechar */
+                        .close {
+                            color: #aaa;
+                            font-size: 28px;
+                            font-weight: bold;
+                            position: absolute;
+                            top: 5px;
+                            right: 10px;
+                        }
+                    
+                        .close:hover,
+                        .close:focus {
+                            color: black;
+                            text-decoration: none;
+                            cursor: pointer;
+                        }
+                    </style>
+
+     </body>
+            <script>
+    
+                document.getElementById('uf').addEventListener('change', function() {
+                    const ufSelecionada = this.value;
+                    const municipioSelect = document.getElementById('municipio');
+    
+                    // Limpa as opções anteriores
+                    municipioSelect.innerHTML = '<option value="">Selecione o município</option>';
+    
+                    if (ufSelecionada) {
+                        municipioSelect.disabled = false; // Habilita o campo de município
+    
+                        fetch(`/api/municipios/${ufSelecionada}`)
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Erro na resposta da rede');
+                                }
+                                return response.json();
+                            })
+                            .then(municipios => {
+                                municipios.forEach(function(municipio) {
+                                    const option = document.createElement('option');
+                                    option.value = municipio.municipio; // ou o ID do município
+                                    option.textContent = municipio.municipio;
+                                    municipioSelect.appendChild(option);
+                                });
+                            })
+                            .catch(error => {
+                                console.error('Erro ao buscar municípios:', error);
+                                municipioSelect.disabled = false; // Permite que o campo permaneça habilitado
+                            });
+                    } else {
+                        municipioSelect.disabled = true; // Desabilita se não houver UF selecionada
+                    }
+                  });
+    
+                  // Habilita o campo de município ao carregar a página se a UF já estiver selecionada
+                  document.addEventListener("DOMContentLoaded", function() {
+                    const ufSelecionada = document.getElementById('uf').value;
+                    if (ufSelecionada) {
+                        document.getElementById('uf').dispatchEvent(new Event('change'));
+                    }
+                  });
+    
+    </script>
+    
+    <script>
+        WebFont.load({
+          google: { families: ["Public Sans:300,400,500,600,700"] },
+          custom: {
+            families: [
+              "Font Awesome 5 Solid",
+              "Font Awesome 5 Regular",
+              "Font Awesome 5 Brands",
+              "simple-line-icons",
+            ],
+            urls: ["/css/fonts.min.css"], // Corrigido aqui
+          },
+          active: function () {
+            sessionStorage.fonts = true;
+          },
+        });
+      </script>
+
+      <script>
+       
+            // Função para aplicar a máscara no CPF
+            function maskCPF(cpf) {
+                cpf = cpf.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+                cpf = cpf.substring(0, 11); // Limita o CPF a 11 caracteres
+
+                // Aplica a máscara
+                cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2'); // Adiciona o ponto após os 3 primeiros números
+                cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2'); // Adiciona o ponto após os 3 próximos números
+                cpf = cpf.replace(/(\d{3})(\d{1,2})$/, '$1-$2'); // Adiciona o traço antes dos dois últimos números
+                return cpf;
+            }
+
+            // Função chamada no evento 'input' para aplicar a máscara
+            function formatCPF(input) {
+                input.value = maskCPF(input.value);
+            }
+
+            // Função para validar o CPF
+            function validateCPF(cpf) {
+                cpf = cpf.replace(/\D/g, ''); // Remove caracteres não numéricos
+
+                // Verifica se o CPF tem 11 dígitos
+                if (cpf.length !== 11) {
+                    return false;
+                }
+
+                // Verifica se todos os números são iguais (ex: 111.111.111-11)
+                if (/^(\d)\1{10}$/.test(cpf)) {
+                    return false;
+                }
+
+                // Valida o primeiro dígito verificador
+                let sum = 0;
+                for (let i = 0; i < 9; i++) {
+                    sum += parseInt(cpf.charAt(i)) * (10 - i);
+                }
+                let firstDigit = (sum * 10) % 11;
+                if (firstDigit === 10 || firstDigit === 11) {
+                    firstDigit = 0;
+                }
+                if (firstDigit !== parseInt(cpf.charAt(9))) {
+                    return false;
+                }
+
+                // Valida o segundo dígito verificador
+                sum = 0;
+                for (let i = 0; i < 10; i++) {
+                    sum += parseInt(cpf.charAt(i)) * (11 - i);
+                }
+                let secondDigit = (sum * 10) % 11;
+                if (secondDigit === 10 || secondDigit === 11) {
+                    secondDigit = 0;
+                }
+                if (secondDigit !== parseInt(cpf.charAt(10))) {
+                    return false;
+                }
+
+                return true;
+            }
+
+            // Função para validar CPF no campo
+            function checkCPF(input) {
+                let cpf = input.value;
+                 // Se o campo estiver vazio, esconde a mensagem de erro
+                if (cpf === "") {
+                    document.getElementById("cpf-error").style.display = "none";
+                    input.setCustomValidity(""); // Limpa a validação
+                    return;
+                }
+
+                if (!validateCPF(cpf)) {
+                    document.getElementById("cpf-error").style.display = "inline"; // Exibe a mensagem de erro
+                    input.setCustomValidity("CPF inválido");
+                } else {
+                    document.getElementById("cpf-error").style.display = "none"; // Esconde a mensagem de erro
+                    input.setCustomValidity(""); // Validação bem-sucedida
+                }
+            }
+/*******************************************************************************************************************************************************/
+   // Função para validar o Título de Eleitor
+// Função para validar o Título de Eleitor
+function validateTitulo(titulo) {
+    if (titulo.length !== 12 || isNaN(titulo)) {
+        return false;
+    }
+
+    let digitoVerificador1 = parseInt(titulo[10]);
+    let digitoVerificador2 = parseInt(titulo[11]);
+    let soma1 = 0, soma2 = 0;
+
+    for (let i = 0; i < 8; i++) {
+        soma1 += parseInt(titulo[i]) * (9 - i);
+    }
+
+    let resto1 = soma1 % 11;
+    resto1 = resto1 < 2 ? 0 : 11 - resto1;
+
+    if (resto1 !== digitoVerificador1) {
+        return false;
+    }
+
+    for (let i = 8; i < 10; i++) {
+        soma2 += parseInt(titulo[i]) * (12 - i);
+    }
+    soma2 += digitoVerificador1 * 2;
+
+    let resto2 = soma2 % 11;
+    resto2 = resto2 < 2 ? 0 : 11 - resto2;
+
+    return resto2 === digitoVerificador2;
+}
+
+// Função para validar o Título de Eleitor no campo
+function checkTitulo(input) {
+    let titulo = input.value;
+
+    // Se o campo estiver vazio, esconde a mensagem de erro
+    if (titulo === "") {
+        document.getElementById("titulo-error").style.display = "none";
+        input.setCustomValidity(""); // Limpa a validação
+        return;
+    }
+
+    if (!validateTitulo(titulo)) {
+        document.getElementById("titulo-error").style.display = "inline"; // Exibe a mensagem de erro
+        input.setCustomValidity("Título de Eleitor inválido");
+    } else {
+        document.getElementById("titulo-error").style.display = "none"; // Esconde a mensagem de erro
+        input.setCustomValidity(""); // Validação bem-sucedida
+    }
+}
+
+/************************************************************************************************************************************************************/
+</script>
+        
+      <style>
+        #cpf-error {
+            color: red;
+            display: none;
+        }
+        #titulo-error {
+            color: red;
+            display: none;
+        }
+    </style>
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Função para validar os tipos de arquivo
+            function isValidFileType(file) {
+                const allowedTypes = ['image/jpeg', 'image/png', 'application/pdf','image/png','image/jfif',]; // Tipos permitidos
+                return allowedTypes.includes(file.type);
+            }
+        
+            // Função para exibir um preview do arquivo
+            function previewFile(inputElement, previewId, buttonId) {
+                const file = inputElement.files[0];
+                const preview = document.getElementById(previewId);
+                const button = document.getElementById(buttonId);
+        
+                if (file) {
+                    // Verifica o tipo de arquivo
+                    if (!isValidFileType(file)) {
+                        preview.innerHTML = `<p>Tipo de arquivo não permitido: ${file.name}</p>`;
+                        button.style.display = "none";  // Oculta o botão se o arquivo for inválido
+                        return;
+                    }
+        
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        if (file.type.startsWith("image/")) {
+                            preview.innerHTML = `<img src="${e.target.result}" alt="Preview" style="max-width: 100%; max-height: 200px;">`;
+                        } else {
+                            preview.innerHTML = `<p>Arquivo carregado: ${file.name}</p>`;
+                        }
+                        button.style.display = "inline-block";  // Exibe o botão de visualização
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    preview.innerHTML = "";
+                    button.style.display = "none";  // Oculta o botão se não houver arquivo
+                }
+            }
+        
+            // Função para visualizar o arquivo
+            function visualizarArquivo(inputElement) {
+                const file = inputElement.files[0];
+                const fileURL = URL.createObjectURL(file);
+                window.open(fileURL, '_blank');
+            }
+        
+            // Ouvintes de evento para os campos de upload
+            const camposUpload = [
+                { id: "foto", previewId: "fotoPreview", buttonId: "btnFoto" },
+                { id: "cpfFile", previewId: "cpfPreview", buttonId: "btnCpf" },
+                { id: "tituloFile", previewId: "tituloPreview", buttonId: "btnTitulo" },
+                { id: "fichaFile", previewId: "fichaPreview", buttonId: "btnFicha" },
+                { id: "desfichaFile", previewId: "desfichaPreview", buttonId: "btndesFicha" }
+            ];
+        
+            // Adiciona ouvintes para os campos de upload
+            camposUpload.forEach(function (campo) {
+                const inputElement = document.getElementById(campo.id);
+                if (inputElement) {
+                    inputElement.addEventListener("change", function () {
+                        previewFile(this, campo.previewId, campo.buttonId);
+                    });
+                } else {
+                    console.warn(`Elemento com ID "${campo.id}" não encontrado.`);
+                }
+            });
+        
+            // Adiciona ouvintes para os botões de visualização
+            camposUpload.forEach(function (campo) {
+                const buttonElement = document.getElementById(campo.buttonId);
+                if (buttonElement) {
+                    buttonElement.addEventListener("click", function () {
+                        visualizarArquivo(document.getElementById(campo.id));
+                    });
+                } else {
+                    console.warn(`Botão com ID "${campo.buttonId}" não encontrado.`);
+                }
+            });
+        
+            // Abrir a modal ao clicar no botão "submitDocuments"
+            const submitButton = document.getElementById("submitDocuments");
+            if (submitButton) {
+                submitButton.addEventListener("click", function () {
+                    console.log("Botão 'Salvar Documentos' foi clicado!");
+                    const modal = document.getElementById("confirmModal");
+                    if (modal) {
+                        modal.style.display = "block"; // Exibe o modal
+                    } else {
+                        console.error("Modal não encontrado.");
+                    }
+                });
+            } else {
+                console.error("Botão 'submitDocuments' não encontrado.");
+            }
+        
+            // Fechar a modal ao clicar no "X"
+            const closeButton = document.querySelector(".close");
+            if (closeButton) {
+                closeButton.addEventListener("click", function () {
+                    console.log("Fechando o modal...");
+                    const modal = document.getElementById("confirmModal");
+                    if (modal) {
+                        modal.style.display = "none"; // Oculta o modal
+                    }
+                });
+            } else {
+                console.error("Botão de fechar modal não encontrado.");
+            }
+        
+            // Ação de cancelar envio
+            const cancelButton = document.getElementById("cancelSubmit");
+            if (cancelButton) {
+                cancelButton.addEventListener("click", function () {
+                    const modal = document.getElementById("confirmModal");
+                    if (modal) {
+                        modal.style.display = "none"; // Oculta o modal
+                    }
+                });
+            } else {
+                console.error("Botão de cancelar não encontrado.");
+            }
+        
+        });
+        
+        
+      // Função para carregar os arquivos enviados
+      function loadFiles() {
+        const filiadoId = window.location.pathname.split('/')[2]; // Obtém o 'filiadoId' da URL
+        // Fazendo a requisição para listar os arquivos
+        fetch(`/documentos/${filiadoId}/arquivos`)
+            .then(response => response.json())
+            .then(files => {
+                const fileListElement = document.getElementById('fileList');
+                fileListElement.innerHTML = ''; // Limpa a lista antes de preencher novamente
+                
+                // Para cada arquivo, cria um item na lista
+                files.forEach(file => {
+                    const fileItem = document.createElement('li');
+                    fileItem.classList.add('file-item');
+                    
+                    // Obter o caminho do arquivo
+                    const filePath = `/documentos/${filiadoId}/imagem/${file}`;
+                    const fileDownloadPath = `/documentos/${filiadoId}/download/${file}`;
+                    
+                    // Criar link de download para o arquivo
+                    const downloadLink = document.createElement('a');
+                    downloadLink.href = fileDownloadPath;
+                    downloadLink.download = file; // Defina o nome do arquivo para download
+    
+                    // Verifica a extensão do arquivo
+                    const fileExtension = file.split('.').pop().toLowerCase();
+                    
+                    if (['jpg', 'jpeg', 'png', 'gif','jfif'].includes(fileExtension)) {
+                        // Para imagens, cria uma tag <img>
+                        const img = document.createElement('img');
+                        img.src = filePath;
+                        img.alt = file;
+                        img.style.maxWidth = '350px'; // Tamanho da imagem
+                        img.style.maxHeight = '350px';
+                        
+                        // Adiciona a imagem dentro do link de download
+                        downloadLink.appendChild(img);
+
+                    } else if (fileExtension === 'pdf') {
+                         // Cria o ícone ou imagem de pré-visualização do PDF
+                            const pdfPreviewImage = document.createElement('img');
+                            pdfPreviewImage.src= '/img/pdf.png';
+                            pdfPreviewImage.alt = 'PDF Preview';
+                            pdfPreviewImage.width = 50;  // Tamanho do ícone
+                            pdfPreviewImage.height = 50; // Tamanho do ícone
+                            
+                            // Cria o link para abrir o PDF em uma nova página
+                            const pdfLink = document.createElement('a');
+                            pdfLink.href = filePath;
+                            pdfLink.target = '_blank'; // Abre o PDF em uma nova aba
+                            pdfLink.title = 'Visualizar PDF';
+
+                            // Adiciona a imagem do PDF dentro do link de visualização
+                            pdfLink.appendChild(pdfPreviewImage);
+
+                            // Adiciona o link de visualização dentro do contêiner de download
+                            downloadLink.appendChild(pdfLink);
+                    } else {
+                        // Caso seja outro tipo de arquivo, apenas exibe o nome do arquivo
+                        const fileName = document.createElement('span');
+                        fileName.textContent = file;
+                        downloadLink.appendChild(fileName);
+                    }
+                    
+                    // Adiciona o link de download à lista
+                    fileItem.appendChild(downloadLink);
+                    fileListElement.appendChild(fileItem);
+                });
+            })
+            .catch(error => console.error('Erro ao carregar arquivos:', error));
+    }
+    
+    // Chama a função para carregar os arquivos quando a página é carregada
+    window.onload = loadFiles;
+    $(document).ready(function() {
+        $('#filiacaoForm').on('submit', function(event) {
+            event.preventDefault();  // Impede o envio padrão do formulário
+    
+            var formData = new FormData(this);  // Cria um FormData com todos os dados do formulário
+    
+            $.ajax({
+                url: '/salvarFiliadoComDocumentos',  // URL para onde a requisição será enviada
+                type: 'POST',  // Método de envio
+                data: formData,  // Dados do formulário
+                contentType: false,  // Não definir contentType, pois o FormData já cuida disso
+                processData: false,  // Impede que o jQuery tente processar os dados como JSON
+                success: function(response) {
+                    // Sucesso: A resposta do servidor (status 200)
+                    alert('Filiado salvo com sucesso!');
+                    // Aqui você pode realizar outras ações após o sucesso (ex. limpar formulário, redirecionar, etc.)
+                },
+                error: function(xhr, status, error) {
+                    // Erro: Caso o servidor retorne um erro (status diferente de 200)
+                    alert('Erro ao salvar os dados: ' + xhr.responseText);
+                }
+            });
+        });
+    });
+    
+
+
+</script>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    h3 {
+        color: #428BCA;
+    }
+    .file-list {
+        display: flex;               /* Torna o contêiner flexível */
+        flex-wrap: wrap;             /* Permite que as imagens quebrem para a linha seguinte, se necessário */
+        gap: 10px;                  /* Espaçamento entre as imagens */
+        list-style-type: none;      /* Remove os marcadores da lista */
+        padding: 0;
+    }
+    .file-item {
+        width: 350px;               /* Define a largura máxima de cada imagem */
+        height: 350px;              /* Define a altura máxima de cada imagem */
+        display: flex;              /* Torna cada item flexível */
+        justify-content: center;    /* Alinha as imagens horizontalmente */
+        align-items: center;        /* Alinha as imagens verticalmente */
+    }
+    .file-item img {
+        max-width: 100%;            /* Limita a largura da imagem ao tamanho do contêiner */
+        max-height: 100%;           /* Limita a altura da imagem ao tamanho do contêiner */
+        object-fit: contain;        /* Garante que a imagem seja redimensionada proporcionalmente */
+    }
+</style>
+    
+   </html>
+        

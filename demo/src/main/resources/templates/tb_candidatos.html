@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>União Brasil</title>
+    <meta
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+      name="viewport"
+    />
+    <link rel="icon" th:href="@{/img/ub.jfif}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Fonts and icons -->
+      <script th:src="@{/js/plugin/webfont/webfont.min.js}"></script>
+
+
+      <script>
+        WebFont.load({
+          google: { families: ["Public Sans:300,400,500,600,700"] },
+          custom: {
+            families: [
+              "Font Awesome 5 Solid",
+              "Font Awesome 5 Regular",
+              "Font Awesome 5 Brands",
+              "simple-line-icons",
+            ],
+            urls: ["/css/fonts.min.css"], // Corrigido aqui
+          },
+          active: function () {
+            sessionStorage.fonts = true;
+          },
+        });
+      </script>
+  
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/plugins.min.css}" />
+   <link rel="stylesheet" href="/css/kaiadmin.min.css" />
+    <link rel="stylesheet" th:href="@{/css/demo.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  </head>
+  <body>
+    <div class="wrapper">
+   <!-- Sidebar -->
+   <div class="sidebar" data-background-color="white">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo">
+        <!-- Logo Header -->
+        <div class="logo-header" data-background-color="white">
+          <a th:href="@{/index}" class="logo">
+            <img
+              th:src="@{/img/logo.ico}"
+              alt="navbar brand"
+              class="navbar-brand"
+             
+            />
+          </a>
+          <div class="nav-toggle">
+            <button class="btn btn-toggle toggle-sidebar">
+              <i class="gg-menu-right"></i>
+            </button>
+            <button class="btn btn-toggle sidenav-toggler">
+              <i class="gg-menu-left"></i>
+            </button>
+          </div>
+          <button class="topbar-toggler more">
+            <i class="gg-more-vertical-alt"></i>
+          </button>
+        </div>
+        <!-- Fim do Cabeçalho do Logo -->
+      </div>
+  
+    </div>
+
+    <div class="sidebar-wrapper scrollbar scrollbar-inner">
+      <div class="sidebar-content">
+        <ul class="nav nav-secondary">
+          <li class="nav-item active">
+            <a
+              data-bs-toggle="collapse"
+              href="#dashboard"
+              class="collapsed"
+              aria-expanded="false"
+              th:href="@{/index}"
+            >
+              <i class="fas fa-home me-2"></i>  <!-- O ícone da casa -->
+              Início
+             
+            </a>
+  
+          </li>
+          <li class="nav-section">
+            <span class="sidebar-mini-icon">
+              <i class="fa fa-ellipsis-h"></i>
+            </span>
+            <h4 class="text-section">Menu</h4>
+          </li>
+          <li class="nav-item">
+            <a data-bs-toggle="collapse" href="#tables">
+              <i class="bi bi-person-plus"></i>
+              <p>Cadastros</p>
+              <span class="caret"></span>
+            </a>
+            <div class="collapse" id="tables">
+              <ul class="nav nav-collapse">
+                <li>
+                  <a th:href="@{/novo-filiado}">
+                    <span class="sub-item"> Cadastrar Filiado Interno</span>
+                  </a>
+                </li>
+                <li>
+                  <a th:href="@{/cadastrar}">
+                    <span class="sub-item">Novo Usuário</span>
+                  </a>
+                </li>
+              
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a data-bs-toggle="collapse" href="#tables">
+              <i class="fas fa-table"></i>
+              <p>Consulta</p>
+              <span class="caret"></span>
+            </a>
+            <div class="collapse" id="tables">
+              <ul class="nav nav-collapse">
+               
+               
+                <li>
+                  <a th:href="@{/filiados}">
+                    <span class="sub-item">Filiados</span>
+                  </a>
+                </li>
+
+               
+
+                <li>
+                  <a th:href="@{/candidatos}">
+                    <span class="sub-item">Candidatos</span>
+                  </a>
+                </li>
+
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link d-flex align-items-center" aria-label="Ir para documentos">
+              <i class="fas fa-file mr-2"></i>
+              <span class="sub-item mr-2">Documentos</span>
+              <span class="badge badge-secondary" aria-hidden="true">1</span>
+            </a>
+          </li>
+         
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- final menu vertical -->
+
+      <div class="main-panel">
+        <div class="main-header">
+          <div class="main-header-logo">
+            <!-- Logo Header -->
+          <div class="logo-header" data-background-color="dark">
+            <a th:href="@{/index}" class="logo">
+              <img
+                th:src="@{/img/logo.ico}"
+                alt="navbar brand"
+                class="navbar-brand"
+              />
+            </a>
+              <div class="nav-toggle">
+                <button class="btn btn-toggle toggle-sidebar">
+                  <i class="gg-menu-right"></i>
+                </button>
+                <button class="btn btn-toggle sidenav-toggler">
+                  <i class="gg-menu-left"></i>
+                </button>
+              </div>
+              <button class="topbar-toggler more">
+                <i class="gg-more-vertical-alt"></i>
+              </button>
+            </div>
+            <!-- End Logo Header -->
+          </div>
+          <!-- Navbar Header -->
+           
+          <nav
+            class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
+            <span class="profile-username">
+              <button class="btn btn-primary" onclick="window.location.href='/index';">Voltar</button>
+              <button type="button" class="btn btn-danger"  onclick="window.location.href='/dashboardCandidatos';">Dashboards Candidatos</button>
+        
+              
+             
+          </span>
+      
+            
+          </nav>
+          <!-- End Navbar -->
+        </div>
+            <!--começo da tabela-->  
+        <div class="container">
+          <div class="page-inner">
+            <form id="filterForm" method="get" action="/pesquisar" onsubmit="submitForm()">
+              <div class="col-md-12 mb-4">
+                  <div class="card card-stats card-round">
+                      <div class="card-body">
+                          <div class="row align-items-center">
+                              <div class="col-icon">
+                                  <div class="icon-big text-center icon-primary bubble-shadow-small">
+                                      <i class="fas fa-filter"></i>
+                                  </div>
+                              </div>
+
+                              <div class="col col-stats ms-3 ms-sm-0">
+                                      <div class="numbers">
+                                      <p class="card-category">FILTRAR</p>
+                                      <div class="d-flex align-items-center mb-3">
+                                      <div class="row w-100">
+                                        <div class="col-md-2 mb-3">
+                                          <label for="ano_filtro" class="form-label">Ano</label>
+                                          <select id="ano_filtro" name="ano_filtro" class="form-control">
+                                              <option value="">Selecione o Ano</option>
+                                              <option value="2024" th:selected="${ano_filtro == '2024'}">2024</option>
+                                              <option value="2022" th:selected="${ano_filtro == '2022'}">2022</option>
+                                              <option value="2020" th:selected="${ano_filtro == '2020'}">2020</option>
+                                              <option value="2018" th:selected="${ano_filtro == '2018'}">2018</option>
+                                              <option value="2016" th:selected="${ano_filtro == '2016'}">2016</option>
+                                          </select>
+                                      </div>
+                                          <div class="col-md-2 mb-3">
+                                          <label for="cargo" class="form-label">Cargo</label>
+                                          <select id="cargo" name="cargo" class="form-control">
+                                            <option value="">Selecione o Cargo</option>
+                                              <option value="DEPUTADO DISTRITAL" th:selected="${cargo == 'DEPUTADO DISTRITAL'}">DEPUTADO DISTRITAL</option>
+                                              <option value="DEPUTADO ESTADUAL" th:selected="${cargo== 'DEPUTADO ESTADUAL'}">DEPUTADO ESTADUAL</option>
+                                              <option value="DEPUTADO FEDERAL" th:selected="${cargo == 'DEPUTADO FEDERAL'}">DEPUTADO FEDERAL</option>
+                                              <option value="GOVERNADOR" th:selected="${cargo == 'GOVERNADOR'}">GOVERNADOR</option>
+                                              <option value="SENADOR" th:selected="${cargo== 'SENADOR'}">SENADOR</option>
+                                              <option value="VICE-GOVERNADOR" th:selected="${cargo == 'VICE-GOVERNADOR'}">VICE-GOVERNADOR</option>
+                                              <option value="PREFEITO" th:selected="${cargo == 'PREFEITO'}">PREFEITO</option>
+                                              <option value="VEREADOR" th:selected="${cargo == 'VEREADOR'}">VEREADOR</option>
+                                              <option value="VICE-PREFEITO" th:selected="${cargo == 'VICE-PREFEITO'}">VICE-PREFEITO</option>
+                                              <option value="PRESIDENTE" th:selected="${cargo == 'PRESIDENTE'}">PRESIDENTE</option>
+                                              <option value="VICE-PRESIDENTE" th:selected="${cargo == 'VICE-PRESIDENTE'}">VICE-PRESIDENTE</option>
+                                          </select>
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                      <label for="situ_filiacao" class="form-label">Situação</label>
+                                      <select id="situ_filiacao" name="situ_filiacao" class="form-control">
+                                        <option value="">Selecione a Situação</option>
+                                          <option value="Filiado" th:selected="${situ_filiacao == 'Filiado'}">Filiado</option>
+                                          <option value="Não Filiado" th:selected="${situ_filiacao =='Não Filiado'}">Não Filiado</option>
+                                          
+                                      </select>
+                                </div>
+                                        <div class="col-md-3 mb-3">
+                                          <label for="nome" class="form-label">Nome</label>
+                                          <input type="text" class="form-control" id="nome" name="nome" th:value="${nome}">
+                                    </div>
+                                      <div class="col-md-2 mb-3">
+                                            <label for="titulo" class="form-label">Título</label>
+                                            <input type="text" class="form-control" id="titulo" name="titulo" th:value="${titulo}">
+                                          </div>
+                                      <div class="col-md-3 mb-3">
+                                          <label for="uf" class="form-label">UF</label>
+                                          <select id="uf" name="uf" class="form-control">
+                                              <option value="">Selecione a UF</option>
+                                              <option value="AC" th:selected="${uf == 'AC'}">AC</option>
+                                              <option value="AL" th:selected="${uf == 'AL'}">AL</option>
+                                              <option value="AM" th:selected="${uf == 'AM'}">AM</option>
+                                              <option value="AP" th:selected="${uf == 'AP'}">AP</option>
+                                              <option value="BA" th:selected="${uf == 'BA'}">BA</option>
+                                              <option value="CE" th:selected="${uf == 'CE'}">CE</option>
+                                              <option value="DF" th:selected="${uf == 'DF'}">DF</option>
+                                              <option value="ES" th:selected="${uf == 'ES'}">ES</option>
+                                              <option value="GO" th:selected="${uf == 'GO'}">GO</option>
+                                              <option value="MA" th:selected="${uf == 'MA'}">MA</option>
+                                              <option value="MG" th:selected="${uf == 'MG'}">MG</option>
+                                              <option value="MS" th:selected="${uf == 'MS'}">MS</option>
+                                              <option value="MT" th:selected="${uf == 'MT'}">MT</option>
+                                              <option value="PA" th:selected="${uf == 'PA'}">PA</option>
+                                              <option value="PB" th:selected="${uf == 'PB'}">PB</option>
+                                              <option value="PE" th:selected="${uf == 'PE'}">PE</option>
+                                              <option value="PI" th:selected="${uf == 'PI'}">PI</option>
+                                              <option value="PR" th:selected="${uf == 'PR'}">PR</option>
+                                              <option value="RJ" th:selected="${uf == 'RJ'}">RJ</option>
+                                              <option value="RN" th:selected="${uf == 'RN'}">RN</option>
+                                              <option value="RO" th:selected="${uf == 'RO'}">RO</option>
+                                              <option value="RR" th:selected="${uf == 'RR'}">RR</option>
+                                              <option value="RS" th:selected="${uf == 'RS'}">RS</option>
+                                              <option value="SC" th:selected="${uf == 'SC'}">SC</option>
+                                              <option value="SE" th:selected="${uf == 'SE'}">SE</option>
+                                              <option value="SP" th:selected="${uf == 'SP'}">SP</option>
+                                              <option value="TO" th:selected="${uf == 'TO'}">TO</option>
+                                          </select>
+                                      </div>
+                    
+                                  <div class="col-md-3 mb-3">
+                                      <label for="municipio" class="form-label">Município</label>
+                                      <select id="municipio" name="municipio" class="form-control" disabled>
+                                          <option value="">Selecione o município</option>
+                                      </select>
+                                  </div>
+                                  <div class="col-md-3 mb-3 d-flex align-items-end">
+                                      <button type="button" class="btn btn-primary" onclick="submitForm()">Pesquisar</button>
+                                      <button type="button" class="btn btn-danger" onclick="limparForm()">Limpar</button>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>           
+            </form>
+
+                                        
+  <script>
+          // Evento para carregar os municípios com base na UF selecionada
+          document.getElementById('uf').addEventListener('change', function() {
+          const ufSelecionada = this.value;
+          const municipioSelect = document.getElementById('municipio');
+
+          // Limpa as opções anteriores
+          municipioSelect.innerHTML = '<option value="">Selecione o município</option>';
+
+          if (ufSelecionada) {
+              municipioSelect.disabled = false; // Habilita o campo de município
+
+              fetch(`/api/municipios/${ufSelecionada}`)
+                  .then(response => {
+                      if (!response.ok) {
+                          throw new Error('Erro na resposta da rede');
+                      }
+                      return response.json();
+                  })
+                  .then(municipios => {
+                      municipios.forEach(function(municipio) {
+                          const option = document.createElement('option');
+                          option.value = municipio.municipio; // ou o ID do município
+                          option.textContent = municipio.municipio;
+                          municipioSelect.appendChild(option);
+                      });
+                  })
+                  .catch(error => {
+                      console.error('Erro ao buscar municípios:', error);
+                      municipioSelect.disabled = false; // Permite que o campo permaneça habilitado
+                  });
+          } else {
+              municipioSelect.disabled = true; // Desabilita se não houver UF selecionada
+          }
+        });
+
+        // Habilita o campo de município ao carregar a página se a UF já estiver selecionada
+        document.addEventListener("DOMContentLoaded", function() {
+          const ufSelecionada = document.getElementById('uf').value;
+          if (ufSelecionada) {
+              document.getElementById('uf').dispatchEvent(new Event('change'));
+          }
+        });
+
+    
+          // Função para aplicar filtros e buscar resultados dinamicamente
+          function aplicarFiltros() {
+            const ufSelecionada = document.getElementById('uf').value;
+            const municipioSelecionado = document.getElementById('municipio').value;
+            const titulo = document.querySelector('input[name="titulo"]').value; // Filtro por título
+            const nome = document.querySelector('input[name="nome"]').value; // Filtro por nome
+            const ano_filtro = document.querySelector('input[name="ano_filtro"]').value; // Filtro por ano
+            const ano_cargo = document.querySelector('input[name="cargo"]').value; // Filtro por CPF
+            const ano_partido = document.querySelector('input[name="partido"]').value; // Filtro por CPF
+
+            // Cria a URL com os parâmetros
+            const params = new URLSearchParams();
+            if (ufSelecionada) params.append('uf', ufSelecionada);
+            if (municipioSelecionado) params.append('municipio', municipioSelecionado);
+           
+
+      
+            
+          }
+
+              // Adiciona eventos para os campos de filtro
+              document.querySelector('input[name="titulo"]').addEventListener('input', aplicarFiltros);
+              document.querySelector('input[name="nome"]').addEventListener('input', aplicarFiltros);
+              document.querySelector('input[name="ano_filtro"]').addEventListener('input', aplicarFiltros);
+              document.querySelector('input[name="partido"]').addEventListener('input', aplicarFiltros);
+              document.querySelector('input[name="cargo"]').addEventListener('input', aplicarFiltros);
+              document.getElementById('municipio').addEventListener('change', aplicarFiltros);
+              document.getElementById('uf').addEventListener('change', aplicarFiltros);
+            function submitForm() {
+              const form = document.getElementById("filterForm");
+              const formData = new FormData(form);
+              const params = new URLSearchParams();
+          
+              // Adiciona parâmetros apenas se não estiverem vazios
+              for (const [key, value] of formData.entries()) {
+                  if (value) {
+                      params.append(key, value);
+                  }
+              }
+          
+              const queryString = params.toString();
+              const actionUrl = queryString ? `/candidatos?${queryString}` : '/candidatos'; // Redireciona para '/candidatos' se não houver filtros
+              window.location.href = actionUrl; // Atualiza a página com os filtros
+          }
+        
+          function limparForm() {
+            // Seleciona todos os campos do formulário
+            const form = document.getElementById('filterForm');
+            
+            // Limpa todos os campos de texto (input type="text", input type="number", etc.)
+            const inputs = form.querySelectorAll('input[type="text"], input[type="number"], input[type="search"], input[type="date"], select');
+            inputs.forEach(input => {
+                input.value = '';  // Limpa o valor do campo
+            });
+        
+            // Redireciona para a URL '/candidatos'
+            const actionUrl = '/candidatos';
+            window.location.href = actionUrl;  // Redireciona a página
+        }
+        
+          
+  </script>
+            <div class="page-header">
+              <h3 class="fw-bold mb-3">Navegar</h3>
+              <ul class="breadcrumbs mb-3">
+                <li class="nav-home">
+                  <a th:href="@{/index}">
+                    <i class="icon-home"></i>
+                  </a>
+                </li>
+                <li class="separator">
+                  <i class="icon-arrow-right"></i>
+                </li>
+                <li class="nav-item">
+                  <a href="#">Tabela</a>
+                </li>
+                <li class="separator">
+                  <i class="icon-arrow-right"></i>
+                </li>
+                <li class="nav-item">
+                  <a href="#">candidatos</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Candidatos</h4>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table
+                      id="multi-filter-select"
+                      class="display table table-striped table-hover"
+                    >
+                      <thead>
+                        <thead>
+                          <tr>
+                            <th>Ano</th>
+                            <th>Nome</th>
+                            <th>Titulo eleitor</th>
+                            <th> Situação</th>
+                            <th>UF</th>
+                            <th>Municipio</th>
+                            <th>Partido</th>
+                            <th>Cargo</th>
+                            <th>Ficha</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="candidato : ${candidatos}" th:data-id="${candidato.id}">
+                              <td th:text="${candidato.ano_filtro}"></td>
+                              <td th:text="${candidato.nome}"></td>
+                              <td th:text="${candidato.titulo}"></td>
+                              <td th:text="${candidato.situ_filiacao}"></td>
+                              <td th:text="${candidato.uf}"></td>
+                              <td th:text="${candidato.municipio}"></td>
+                              <td th:text="${candidato.partido}"></td>
+                              <td th:text="${candidato.cargo}"></td>
+                              <td><span class="text-primary link-ficha" data-id="${candidato.id}">Ficha</span></td>
+                          </tr>
+                          <tr th:if="${#lists.isEmpty(candidatos)}">
+                            <td colspan="6">Nenhum resultado encontrado</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span>Página <span th:text="${currentPage}"></span> de <span th:text="${totalPages}"></span></span>
+              <nav>
+                  <ul class="pagination">
+                      <!-- Botão "Anterior" -->
+                      <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled'">
+                          <a class="page-link text-primary"
+                             th:href="@{/candidatos(page=${currentPage - 1}, size=${pageSize}, 
+                                                      titulo=${titulo}, nome=${nome}, ano_filtro=${ano_filtro}, 
+                                                      partido=${partido}, cargo=${cargo}, uf=${uf}, municipio=${municipio},situ_filiacao=${situ_filiacao})}">
+                              Anterior
+                          </a>
+                      </li>
+          
+          
+                      <!-- Botão "Próximo" -->
+                      <li class="page-item" th:classappend="${currentPage == totalPages} ? 'disabled'">
+                          <a class="page-link text-primary"
+                             th:href="@{/candidatos(page=${currentPage + 1}, size=${pageSize}, 
+                                                      titulo=${titulo}, nome=${nome}, ano_filtro=${ano_filtro}, 
+                                                      partido=${partido}, cargo=${cargo}, uf=${uf}, municipio=${municipio},situ_filiacao =${situ_filiacao})}">
+                              Próximo
+                          </a>
+                      </li>
+                  </ul>
+              </nav>
+          </div>
+          
+                <style>
+          
+                
+                  .page-link {
+                border-radius: 0.25rem; /* Bordas arredondadas */
+            }
+            
+            .page-link:hover {
+                background-color: #0056b3; /* Azul escuro ao passar o mouse */
+                color: white; /* Manter texto branco */
+            }
+
+            .page-item.disabled .page-link {
+                background-color: #e9ecef; /* Cor de fundo para itens desabilitados */
+                color: #6c757d; /* Cor do texto para itens desabilitados */
+            }
+
+          </style>
+
+              <footer class="footer">
+                <div class="container-fluid d-flex justify-content-between">
+                  <nav class="pull-left">
+                    <ul class="nav">
+                      <li class="nav-item">
+                        <a class="nav-link" href="https://uniaobrasil.org.br/filie-se/">
+                          Filiar 
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="https://wa.me/61994180629?text=Olá%2C%20gostaria%20de%20mais%20informações">  Ajuda </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#"> União Brasil </a>
+                      </li>
+                      <li class="nav-item">
+                      <a class="nav-link" href="https://uniaobrasil.org.br/">2024, União Brasil <i class="fa fa-heart heart text-danger"></i> bySite</a>
+                    </li>
+                    </ul>
+                  </nav>
+                </div>
+              </footer>
+            </div>
+            <script>
+              document.addEventListener('DOMContentLoaded', function() {
+                  // Captura todas as linhas da tabela com o atributo 'data-id'
+                  const rows = document.querySelectorAll("tr[data-id]");
+          
+                  rows.forEach(function(row) {
+                      // Adiciona o ouvinte de evento para cada linha
+                      row.addEventListener('click', function() {
+                          // Pega o valor do id armazenado no atributo 'data-id'
+                          const candidatoIdString = this.getAttribute('data-id');
+                          
+                          // Converte o valor para número (long equivalente em JavaScript)
+                          const candidatoIdLong = parseInt(candidatoIdString, 10);
+                          
+                          // Verifica se a conversão deu certo
+                          if (!isNaN(candidatoIdLong)) {
+                              // Redireciona para a URL de detalhes com o id convertido
+                              console.log("Redirecionando para:", "/detalhar/candidato/" + candidatoIdLong);
+                              window.location.href = "/detalhar/candidato/" + candidatoIdLong;
+                          } else {
+                              console.error("ID inválido:", candidatoIdString);
+                          }
+                      });
+                  });
+              });
+          </script>
+          
+      <!-- Custom template | don't include it in your project! -->
+      <div class="custom-template">
+        <div class="title">Configurar</div>
+        <div class="custom-content">
+          <div class="switcher">
+            <div class="switch-block">
+              <h4>menu Horizontal</h4>
+              <div class="btnSwitch">
+                <button
+                  type="button"
+                  class="selected changeLogoHeaderColor"
+                  data-color="dark"
+                ></button>
+                <button
+                  type="button"
+                  class="selected changeLogoHeaderColor"
+                  data-color="blue"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="purple"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="light-blue"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="green"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="orange"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="red"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="white"
+                ></button>
+                <br />
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="dark2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="blue2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="purple2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="light-blue2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="green2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="orange2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="red2"
+                ></button>
+              </div>
+            </div>
+            <div class="switch-block">
+              <h4>Menu vertical</h4>
+              <div class="btnSwitch">
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="dark"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="blue"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="purple"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="light-blue"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="green"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="orange"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="red"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="white"
+                ></button>
+                <br />
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="dark2"
+                ></button>
+                <button
+                  type="button"
+                  class="selected changeTopBarColor"
+                  data-color="blue2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="purple2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="light-blue2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="green2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="orange2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="red2"
+                ></button>
+              </div>
+            </div>
+            <div class="switch-block">
+              <h4>Menu Horizontal</h4>
+              <div class="btnSwitch">
+                <button
+                  type="button"
+                  class="selected changeSideBarColor"
+                  data-color="white"
+                ></button>
+                <button
+                  type="button"
+                  class="changeSideBarColor"
+                  data-color="dark"
+                ></button>
+                <button
+                  type="button"
+                  class="changeSideBarColor"
+                  data-color="dark2"
+                ></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="custom-toggle">
+          <i class="icon-settings"></i>
+        </div>
+      </div>
+      <!-- End Custom template -->
+    </div>
+  <!-- Core JS Files -->
+<script th:src="@{/js/core/jquery-3.7.1.min.js}"></script>
+<script th:src="@{/js/core/popper.min.js}"></script>
+<script th:src="@{/js/core/bootstrap.min.js}"></script>
+
+<!-- jQuery Scrollbar -->
+<script th:src="@{/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js}"></script>
+
+<!-- Chart JS -->
+<script th:src="@{/js/plugin/chart.js/chart.min.js}"></script>
+
+<!-- jQuery Sparkline -->
+<script th:src="@{/js/plugin/jquery.sparkline/jquery.sparkline.min.js}"></script>
+
+<!-- Chart Circle -->
+<script th:src="@{/js/plugin/chart-circle/circles.min.js}"></script>
+
+<!-- Datatables -->
+<script th:src="@{/js/plugin/datatables/datatables.min.js}"></script>
+
+<!-- Bootstrap Notify -->
+<!-- <script th:src="@{/js/plugin/bootstrap-notify/bootstrap-notify.min.js}"></script>-->
+
+<!-- jQuery Vector Maps -->
+<script th:src="@{/js/plugin/jsvectormap/jsvectormap.min.js}"></script>
+<script th:src="@{/js/plugin/jsvectormap/world.js}"></script>
+
+<!-- Sweet Alert -->
+<script th:src="@{/js/plugin/sweetalert/sweetalert.min.js}"></script>
+
+<!-- Kaiadmin JS -->
+<script th:src="@{/js/kaiadmin.min.js}"></script>
+
+<!-- Kaiadmin DEMO methods, don't include it in your project! -->
+<script th:src="@{/js/setting-demo.js}"></script>
+<script th:src="@{/js/demo.js}"></script>
+
+    <script>
+   $(document).ready(function () {
+    // Inicialização da tabela
+    var basicTable = $("#multi-filter-select").DataTable({
+        pageLength: 5,
+        initComplete: function () {
+            this.api().columns().every(function () {
+                var column = this;
+                var select = $('<select class="form-select"><option value=""></option></select>')
+                    .appendTo($(column.footer()).empty())
+                    .on("change", function () {
+                        var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                        column.search(val ? "^" + val + "$" : "", true, false).draw();
+                    });
+
+                column.data().unique().sort().each(function (d, j) {
+                    select.append('<option value="' + d + '">' + d + "</option>");
+                });
+            });
+        },
+        drawCallback: function () {
+            translateWords(); // Chamando a função de tradução após o desenho da tabela
+        },
+    });
+
+    // Função para traduzir palavras
+    function translateWords() {
+        // Traduzindo informações da tabela
+        $('#multi-filter-select_info').text(function(i, text) {
+            var totalEntries = text.match(/\d+/g);
+            if (totalEntries && totalEntries.length > 1) {
+                return 'Exibindo ' + totalEntries[1] + ' registros'; // Retorna a nova string
+            }
+            return text; // Se não houver correspondência, retorna o texto original
+        });
+
+        // Traduzindo a paginação
+        $('#multi-filter-select_paginate a').each(function() {
+            var text = $(this).text();
+            switch (text) {
+                case 'Previous':
+                    $(this).text('Anterior');
+                    break;
+                case 'Next':
+                    $(this).text('Próximo');
+                    break;
+            }
+        });
+    }
+});
+       // Troca o texto da label assim que a página carrega
+       $(document).ready(function() {
+            // Troca os textos da label
+            $('.dataTables_length label').contents().filter(function() {
+                return this.nodeType === 3; // Node text
+            }).each(function() {
+                if (this.nodeValue.trim() === 'Show') {
+                    this.nodeValue = 'Mostrar';
+                }
+                if (this.nodeValue.trim() === 'entries') {
+                    this.nodeValue = 'entradas';
+                }
+            });
+        });
+        $(document).ready(function() {
+            // Troca o texto da label
+            $('#multi-filter-select_filter label').contents().filter(function() {
+                return this.nodeType === 3; // Filtra nós de texto
+            }).each(function() {
+                if (this.nodeValue.trim() === 'Search:') {
+                    this.nodeValue = 'Buscar:'; // Troca "Search:" por "Buscar:"
+                }
+            });
+        });
+      
+        $(document).ready(function() {
+            // Troca o texto dos botões de paginação
+            $('#multi-filter-select_previous a').text('Anterior'); // Troca "Previous" por "Anterior"
+            $('#multi-filter-select_next a').text('Próximo'); // Troca "Next" por "Próximo"
+        });
+        $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "#177dff",
+        fillColor: "rgba(23, 125, 255, 0.14)",
+      });
+
+      $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "#f3545d",
+        fillColor: "rgba(243, 84, 93, .14)",
+      });
+
+      $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "#ffa534",
+        fillColor: "rgba(255, 165, 52, .14)",
+      });
+      $(document).ready(function() {
+        $('#municipio').select2({
+            dropdownAutoWidth: true,
+            width: '100%'
+        });
+    });
+    </script>
+  </body>
+</html>

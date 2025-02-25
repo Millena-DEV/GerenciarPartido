@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Privilegios de Usuário</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="text-center">Controle de Privilegios de Usuário</h2>
+    <form id="permissionsForm">
+        <!-- Seleção do Tipo de Usuário -->
+        <div class="form-group">
+            <label for="userRole">Escolha o Tipo de Usuário:</label>
+            <select id="userRole" class="form-control">
+                <option value="ADMINISTRADOR">Administrador</option>
+                <option value="ADMINISTRADOR_NACIONAL">Administrador Nacional</option>
+                <option value="CONSULTOR_NACIONAL">Consultor Nacional</option>
+                <option value="OPERADOR_NACIONAL">Operador Nacional</option>
+                <option value="CONSULTOR_ESTADUAL">Consultor Estadual</option>
+                <option value="CONSULTOR_MUNICIPAL">Consultor Municipal</option>
+                <option value="OPERADOR_ESTATUAL">Operador Estadual</option>
+                <option value="OPERADOR_MUNICIPAL">Operador Municipal</option>
+            </select>
+        </div>
+
+        <!-- Definir Permissões -->
+        <div class="form-group">
+            <label for="permissions">Defina as Permissões:</label>
+            <div id="permissions">
+                <!-- Seções específicas que serão mostradas ou ocultadas -->
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="dashboard" id="dashboard">
+                    <label class="form-check-label" for="dashboard">Dashboard</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="upload" id="upload">
+                    <label class="form-check-label" for="upload">Subir Documentos</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="consultar" id="consultar">
+                    <label class="form-check-label" for="consultar">Consultar Dados</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="uf" id="uf">
+                    <label class="form-check-label" for="uf">Acesso à UF</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="municipio" id="municipio">
+                    <label class="form-check-label" for="municipio">Acesso ao Município</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botão de Salvar -->
+        <button type="submit" class="btn btn-primary">Salvar Configurações</button>
+    </form>
+
+    <hr>
+    
+    <!-- Seções que serão visíveis ou não, dependendo do tipo de usuário -->
+    <h3 class="my-4 text-center">Visibilidade das Telas</h3>
+    <div id="dashboardSection" class="section" style="display: none;">
+        <h4>Dashboard (Administrador)</h4>
+        <p>Esta seção é visível apenas para Administradores e Operadores.</p>
+    </div>
+    <div id="uploadSection" class="section" style="display: none;">
+        <h4>Subir Documentos (Operador Nacional)</h4>
+        <p>Esta seção é visível para quem tem permissões para fazer upload de documentos.</p>
+    </div>
+    <div id="consultarSection" class="section" style="display: none;">
+        <h4>Consultar Dados (Consultores)</h4>
+        <p>Esta seção é visível para quem tem permissões para consultar dados.</p>
+    </div>
+    <div id="ufSection" class="section" style="display: none;">
+        <h4>Acesso à UF (Consultores e Operadores Estaduais)</h4>
+        <p>Esta seção é visível apenas para quem tem acesso à sua UF.</p>
+    </div>
+    <div id="municipioSection" class="section" style="display: none;">
+        <h4>Acesso ao Município (Consultores e Operadores Municipais)</h4>
+        <p>Esta seção é visível apenas para quem tem acesso ao seu município.</p>
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    // Função que controla a visibilidade das seções com base no tipo de usuário
+    function updatePermissions(userRole) {
+        // Limpar todas as seções
+        document.querySelectorAll('.section').forEach(function(section) {
+            section.style.display = 'none';
+        });
+
+        // Configurações de visibilidade para cada tipo de usuário
+        switch (userRole) {
+            case 'ADMINISTRADOR':
+                document.getElementById("dashboardSection").style.display = 'block';
+                document.getElementById("uploadSection").style.display = 'block';
+                document.getElementById("consultarSection").style.display = 'block';
+                document.getElementById("ufSection").style.display = 'block';
+                document.getElementById("municipioSection").style.display = 'block';
+                break;
+            case 'ADMINISTRADOR_NACIONAL':
+                document.getElementById("dashboardSection").style.display = 'block';
+                document.getElementById("uploadSection").style.display = 'block';
+                document.getElementById("consultarSection").style.display = 'block';
+                break;
+            case 'CONSULTOR_NACIONAL':
+                document.getElementById("consultarSection").style.display = 'block';
+                break;
+            case 'OPERADOR_NACIONAL':
+                document.getElementById("uploadSection").style.display = 'block';
+                document.getElementById("consultarSection").style.display = 'block';
+                break;
+            case 'CONSULTOR_ESTADUAL':
+                document.getElementById("consultarSection").style.display = 'block';
+                document.getElementById("ufSection").style.display = 'block';
+                break;
+            case 'CONSULTOR_MUNICIPAL':
+                document.getElementById("consultarSection").style.display = 'block';
+                document.getElementById("municipioSection").style.display = 'block';
+                break;
+            case 'OPERADOR_ESTATUAL':
+                document.getElementById("uploadSection").style.display = 'block';
+                document.getElementById("ufSection").style.display = 'block';
+                break;
+            case 'OPERADOR_MUNICIPAL':
+                document.getElementById("uploadSection").style.display = 'block';
+                document.getElementById("municipioSection").style.display = 'block';
+                break;
+        }
+    }
+
+    // Quando o tipo de usuário mudar, atualizar as permissões
+    document.getElementById('userRole').addEventListener('change', function() {
+        updatePermissions(this.value);
+    });
+
+    // Quando o formulário for enviado, salva as configurações
+    document.getElementById("permissionsForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        const userRole = document.getElementById("userRole").value;
+        updatePermissions(userRole);
+    });
+</script>
+
+</body>
+</html>

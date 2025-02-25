@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>União Brasil</title>
+    <meta
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+      name="viewport"
+    />
+    <link rel="icon" th:href="@{/img/ub.jfif}" />
+    <!-- Incluindo o Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Carregando jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Carregando jQuery Notify -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-notify/1.0.2/jquery.notify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    
+    <!-- Fonts and icons -->
+      <script th:src="@{/js/plugin/webfont/webfont.min.js}"></script>
+
+    <script>
+      WebFont.load({
+        google: { families: ["Public Sans:300,400,500,600,700"] },
+        custom: {
+          families: [
+            "Font Awesome 5 Solid",
+            "Font Awesome 5 Regular",
+            "Font Awesome 5 Brands",
+            "simple-line-icons",
+          ],
+          urls: ["/css/fonts.min.css"], // Corrigido aqui
+        },
+        active: function () {
+          sessionStorage.fonts = true;
+        },
+      });
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/plugins.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/kaiadmin.min.css}" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" th:href="@{/css/demo.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Sidebar -->
+      <div class="sidebar" data-background-color="white">
+        <div class="sidebar-logo">
+          <!-- Logo Header -->
+          <div class="logo-header" data-background-color="white">
+            <a th:href="@{/index}" class="logo">
+              <img
+                th:src="@{/img/logo.ico}"
+                alt="navbar brand"
+                class="navbar-brand"
+               
+              />
+            </a>
+            <div class="nav-toggle">
+              <button class="btn btn-toggle toggle-sidebar">
+                <i class="gg-menu-right"></i>
+              </button>
+              <button class="btn btn-toggle sidenav-toggler">
+                <i class="gg-menu-left"></i>
+              </button>
+            </div>
+            <button class="topbar-toggler more">
+              <i class="gg-more-vertical-alt"></i>
+            </button>
+          </div>
+          <!-- Fim do Cabeçalho do Logo -->
+        </div>
+  
+        <div class="sidebar-wrapper scrollbar scrollbar-inner">
+          <div class="sidebar-content">
+            <ul class="nav nav-secondary">
+              <li class="nav-item active">
+                <a th:href="@{/index}"class="fas fa-home"><i class="fas fa-home"></i>inicio</a>
+      
+              </li>
+              <li class="nav-section">
+                <span class="sidebar-mini-icon">
+                  <i class="fa fa-ellipsis-h"></i>
+                </span>
+                <h4 class="text-section">Menu</h4>
+              </li>
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#tables">
+                  <i class="bi bi-person-plus"></i>
+                  <p>Cadastros</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="tables">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a th:href="@{/novo-filiado}">
+                        <span class="sub-item"> Cadastrar Filiado Interno</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a th:href="@{/cadastrar}">
+                        <span class="sub-item">Novo Usuário</span>
+                      </a>
+                    </li>
+                  
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#tables">
+                  <i class="fas fa-table"></i>
+                  <p>Consultas</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="tables">
+                  <ul class="nav nav-collapse">
+
+                   
+                   
+                    <li>
+                      <a th:href="@{/filiados}">
+                        <span class="sub-item">Filiados</span>
+                      </a>
+                    </li>
+                    
+                    <li>
+                      <a th:href="@{/candidatos}">
+                        <span class="sub-item">Cargos</span>
+                      </a>
+                    </li>
+                  
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link d-flex align-items-center" aria-label="Ir para documentos">
+                  <i class="fas fa-file mr-2"></i>
+                  <span class="sub-item mr-2">Documentos</span>
+                  <span class="badge badge-secondary" aria-hidden="true">1</span>
+                </a>
+              </li>
+              
+             
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- final menu vertical -->
+
+      <div class="main-panel">
+        <div class="main-header">
+          <div class="main-header-logo">
+            <!-- Logo Header -->
+            <div class="logo-header" data-background-color="dark">
+              <a th:href="@{../index.html}" class="logo">
+                <img
+                  th:src="@{/img/logo.ico}"
+                  alt="navbar brand"
+                  class="navbar-brand"
+                
+                />
+              </a>
+              <div class="nav-toggle">
+                <button class="btn btn-toggle toggle-sidebar">
+                  <i class="gg-menu-right"></i>
+                </button>
+                <button class="btn btn-toggle sidenav-toggler">
+                  <i class="gg-menu-left"></i>
+                </button>
+              </div>
+              <button class="topbar-toggler more">
+                <i class="gg-more-vertical-alt"></i>
+              </button>
+            </div>
+            <!-- End Logo Header -->
+          </div>
+          <!-- Navbar Header -->
+          <nav
+            class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom"
+          >
+            <div class="container-fluid">
+              <nav
+                class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex"
+              >
+                <div class="input-group-prepend">
+                  </div>
+                  
+
+
+                    <span class="profile-username">
+                      <button class="btn btn-info" onclick="window.location.href='/candidatos';">Voltar</button>
+                      <span class="op-7"  style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;"></span>
+                      <span  style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Sua Função Definida é:
+                     <span th:text="${userFuncao}"  style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold; color:blue;"></span>!</span>
+                     
+                  </span>
+             
+              </nav>
+
+              <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
+                <li
+                  class="nav-item topbar-icon dropdown hidden-caret d-flex d-lg-none"
+                >
+                  <a
+                    class="nav-link dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    role="button"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                  >
+                    <i class="fa fa-search"></i>
+                  </a>
+                  
+                </li>
+                <li class="nav-item topbar-user dropdown hidden-caret">
+                  <a
+                    class="dropdown-toggle profile-pic"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    aria-expanded="false"
+                  >
+                
+                  </a>
+                 
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <!-- End Navbar -->
+        </div>
+        <div class="container">
+          <div class="page-inner">
+            <form action="/dashboardCandidatos" method="get" id="filterForm">
+            </form>
+    <div class="d-flex  pb-1">
+      <div class="row">
+        <div class="col-auto">
+            <div class="card card-stats card-round">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col col-stats ms-3 ms-sm-0">
+                            <div class="numbers">
+                              <h5 >
+                                Prefeitos
+                                <i class="fas fa-user-tie fa-1x"></i>
+                              </h5>
+                              <span th:text="${totalPrefeitos}" style="font-size: 40px; text-align: center; display: block;">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+    <div class="col-auto">
+        <div class="card card-stats card-round">
+            <div class="card-body">
+                <div class="row align-items-center">
+                  
+                    <div class="col col-stats ms-3 ms-sm-0">
+                        <div class="numbers">
+                          <h5 >
+                            Vice-Prefeitos
+                            <i class="fas fa-user-tie fa-1x"></i>
+                          </h5>
+                          <span th:text="${totalVicePrefeitos}" style="font-size: 40px; text-align: center; display: block;">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            
+    <div class="col-auto">
+        <div class="card card-stats card-round">
+            <div class="card-body">
+                <div class="row align-items-center">
+                
+                    <div class="col col-stats ms-3 ms-sm-0">
+                        <div class="numbers">
+                          <h5 >
+                            Governadores
+                            <i class="fas fa-user-tie fa-1x"></i>
+                          </h5>
+                          <span th:text="${totalGovernador}" style="font-size: 40px; text-align: center; display: block;">0</span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            
+      <div class="col-auto">
+          <div class="card card-stats card-round">
+              <div class="card-body">
+                  <div class="row align-items-center">
+                
+                      <div class="col col-stats ms-3 ms-sm-0">
+                          <div class="numbers">
+                            <h5 >
+                              Vice-Governadores
+                              <i class="fas fa-user-tie fa-1x"></i>
+                            </h5>
+                            <span th:text="${totalViceGovernador}" style="font-size: 40px; text-align: center; display: block;">0</span>
+
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+            
+      <div class="col-auto">
+          <div class="card card-stats card-round">
+              <div class="card-body">
+                  <div class="row align-items-center">
+                    
+                      <div class="col col-stats ms-3 ms-sm-0">
+                          <div class="numbers">
+                              <h5 >
+                              Senadores
+                              <i class="fas fa-user-tie fa-1x"></i>
+                            </h5>
+                            <span  style="font-size: 40px; text-align: center; display: block;">7</span>
+
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  
+      <div class="col-auto">
+          <div class="card card-stats card-round">
+              <div class="card-body">
+                  <div class="row align-items-center">
+                    
+                      <div class="col col-stats ms-3 ms-sm-0">
+                          <div class="numbers">
+                            <h5 >
+                              Deputados Federais
+                              <i class="fas fa-user-tie fa-1x"></i>
+                            </h5>
+                            <span th:text="${totalDeputadoFederal}" style="font-size: 40px; text-align: center; display: block;">0</span>
+                            
+                          
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+            
+      <div class="col-auto">
+          <div class="card card-stats card-round">
+              <div class="card-body">
+                  <div class="row align-items-center">
+                      <div class="col col-stats ms-1 ms-sm-0">
+                          <div class="numbers">
+                            <h5 >
+                              Vereadores
+                              <i class="fas fa-user-tie fa-1x"></i>
+                            </h5>
+                            <span th:text="${totalVereador}" style="font-size: 40px; text-align: center; display: block;">0</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+            
+        <div class="col-auto ">
+          <div class="card card-stats card-round">
+              <div class="card-body">
+                  <div class="row align-items-center">
+                      <div class="col col-stats ms-4 ms-sm-0">
+                          <div class="numbers">
+                            <h5 >
+                              Deputados Distritais
+                              <i class="fas fa-user-tie fa-1x"></i>
+                            </h5>
+                            <span th:text="${totalDeputadoDistrital}" style="font-size: 40px; text-align: center; display: block;">0</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+              
+      <div class="col-auto  ">
+        <div class="card card-stats card-round">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col col-stats ms-4 ms-sm-0">
+                        <div class="numbers">
+                          <h5 >
+                            Deputados  Estaduais
+                            <i class="fas fa-user-tie fa-1x"></i>
+                          </h5>
+                          <span th:text="${totalDeputadoEstadual}" style="font-size: 40px; text-align: center; display: block;">0</span>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 mb-2">
+          <div class="card card-stats card-round">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col-icon">
+                  <div class="icon-big text-center icon-primary bubble-shadow-small">
+                    <i class="fas fa-filter"></i>
+                  </div>
+                </div>
+                <div class="col ms-4">
+                  <div class="numbers">
+                    <p class="card-category">FILTRAR</p>
+                    <div class="row row-cols-auto g-2 align-items-end">
+                      <!-- Ano -->
+                      <div class="col-1">
+                        <label for="anoSelect" class="form-label">ANO:</label>
+                        <select  id="anoSelect" class="form-control">
+                          <option value="2024">2024</option>
+                          <option value="2022">2022</option>
+                          <option value="2020">2020</option>
+                        </select>
+                      </div>
+        
+                      <!-- Partido -->
+                      <div class="col-1">
+                        <label for="partidoSelect" class="form-label">Partido:</label>
+                        <select id="partidoSelect" class="form-control">
+                          <option value="UNIÃO">UNIÃO</option>
+                          <option value="DEM">DEM</option>
+                          <option value="PSL">PSL</option>
+                        </select>
+                      </div>
+        
+                      <!-- Cargo -->
+                      <div class="col-1">
+                        <label for="cargoSelect" class="form-label">Cargo:</label>
+                        <select id="cargoSelect" class="form-control">
+                          <option value="">Todos</option>
+                          <option value="DEPUTADO DISTRITAL">DEPUTADO DISTRITAL</option>
+                          <option value="DEPUTADO ESTADUAL">DEPUTADO ESTADUAL</option>
+                          <option value="DEPUTADO FEDERAL">DEPUTADO FEDERAL</option>
+                          <option value="GOVERNADOR">GOVERNADOR</option>
+                          <option value="PREFEITO">PREFEITO</option>
+                          <option value="SENADOR">SENADOR</option>
+                          <option value="VEREADOR">VEREADOR</option>
+                          <option value="VICE-GOVERNADOR">VICE-GOVERNADOR</option>
+                          <option value="VICE-PREFEITO">VICE-PREFEITO</option>
+                        </select>
+                      </div>
+        
+                      <!-- UF -->
+                      <div class="col-1">
+                        <label for="ufSelect" class="form-label">UF:</label>
+                        <select id="ufSelect" class="form-control">
+                          <!-- Options dynamically added -->
+                        </select>
+                      </div>
+        
+                      <!-- Município -->
+                      <div class="col-1">
+                        <label for="municipioSelect" class="form-label">Município:</label>
+                        <select id="municipioSelect" class="form-control">
+                          <!-- Options dynamically added -->
+                        </select>
+                      </div>
+        
+                      <!-- Gênero -->
+                      <div class="col-1">
+                        <label for="generoSelect" class="form-label">Gênero:</label>
+                        <select id="generoSelect" class="form-control">
+                          <option value="">Todos</option>
+                          <option value="FEMININO">FEMININO</option>
+                          <option value="MASCULINO">MASCULINO</option>
+                        </select>
+                      </div>
+        
+                      <!-- Etnia -->
+                      <div class="col-1">
+                        <label for="etniaSelect" class="form-label">Etnia:</label>
+                        <select id="etniaSelect" class="form-control">
+                          <option value="">Todos</option>
+                          <option value="AMARELA">AMARELA</option>
+                          <option value="BRANCA">BRANCA</option>
+                          <option value="INDÍGENA">INDÍGENA</option>
+                          <option value="NÃO INFORMADO">NÃO INFORMADO</option>
+                          <option value="PARDA">PARDA</option>
+                          <option value="PRETA">NEGRO</option>
+                        </select>
+                      </div>
+        
+                      <!-- Botão Pesquisar -->
+                      <div class="col">
+                        <button id="btnPesquisar" class="btn btn-primary w-100">Pesquisar</button>
+                      </div>
+        
+                    </div> <!-- row -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; display: flex; justify-content: space-between;">
+
+          <!-- Gráfico de Filiado por UF -->
+          <div id="Grafico_candidato" style="height:150px; width: 80%;">Gráfico de Candidatos por UF</div>
+          <!-- Gráfico de Filiado por Gênero -->
+          <div id="Grafico_candidato_genero" style="height:150px; width: 20%;">Gráfico Candidatos por Gênero</div>
+      </div>
+
+        <div style="text-align: center; display: flex; justify-content: space-between;">
+         
+          <div id="Grafico_municipio"style="height:150px; width: 75%;">Gráfico de Candidatos por Municípios 10 maiores </div>
+        <div id="Grafico_cargos"style="height:130px; width: 45%;">Gráfico de cargos</div>
+        <div id="Grafico_candidato_etinia" style="height:150px; width: 32%;">Gráfico Candidato por Etnia</div>
+  </div>
+  <div>
+    <button id="prevPage" style="display:none;">⬅ Anterior</button>
+    <button id="nextPage" style="display:none;">Próximo ➡</button>
+</div>
+</div>
+</div>
+    <footer class="footer">
+      <div class="container-fluid d-flex justify-content-between">
+        <nav class="pull-left">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{https://uniaobrasil.org.br/filie-se/}">
+                Filiar 
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://wa.me/61994180629?text=Olá%2C%20gostaria%20de%20mais%20informações">  Ajuda </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"> União Brasil </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="copyright">
+          2024, União Brasil <i class="fa fa-heart heart text-danger"></i> by
+          <a th:href="@{https://uniaobrasil.org.br/}">Site</a>
+        </div>
+
+      </div>
+    </footer>
+  </div>
+  <!-- Custom template | don't include it in your project! -->
+  <div class="custom-template">
+    <div class="title">Configurar</div>
+    <div class="custom-content">
+      <div class="switcher">
+        <div class="switch-block">
+          <h4>Logo Header</h4>
+          <div class="btnSwitch">
+            <button
+              type="button"
+              class="selected changeLogoHeaderColor"
+              data-color="dark"
+            ></button>
+            <button
+              type="button"
+              class="changeLogoHeaderColor"
+              data-color="blue"
+            ></button>
+            <button
+              type="button"
+              class="changeLogoHeaderColor"
+              data-color="purple"
+            ></button>
+            <button
+              type="button"
+              class="changeLogoHeaderColor"
+              data-color="light-blue"
+            ></button>
+            <button
+              type="button"
+              class="changeLogoHeaderColor"
+              data-color="green"
+            ></button>
+            <button
+              type="button"
+              class="changeLogoHeaderColor"
+              data-color="orange"
+            ></button>
+            <button
+              type="button"
+              class="changeLogoHeaderColor"
+              data-color="red"
+            ></button>
+            <button
+              type="button"
+              class="changeLogoHeaderColor"
+              data-color="white"
+            ></button>
+            <br />
+            <button
+              type="button"
+              class="changeLogoHeaderColor"
+              data-color="dark2"
+            ></button>
+            <button
+              type="button"
+              class="changeLogoHeaderColor"
+              data-color="blue2"
+            ></button>
+            <button
+              type="button"
+              class="changeLogoHeaderColor"
+              data-color="purple2"
+            ></button>
+            <button
+              type="button"
+              class="changeLogoHeaderColor"
+              data-color="light-blue2"
+            ></button>
+            <button
+              type="button"
+              class="changeLogoHeaderColor"
+              data-color="green2"
+            ></button>
+            <button
+              type="button"
+              class="changeLogoHeaderColor"
+              data-color="orange2"
+            ></button>
+            <button
+              type="button"
+              class="changeLogoHeaderColor"
+              data-color="red2"
+            ></button>
+          </div>
+        </div>
+        <div class="switch-block">
+          <h4>Menu vertical</h4>
+          <div class="btnSwitch">
+            <button
+              type="button"
+              class="changeTopBarColor"
+              data-color="dark"
+            ></button>
+            <button
+              type="button"
+              class="changeTopBarColor"
+              data-color="blue"
+            ></button>
+            <button
+              type="button"
+              class="changeTopBarColor"
+              data-color="purple"
+            ></button>
+            <button
+              type="button"
+              class="changeTopBarColor"
+              data-color="light-blue"
+            ></button>
+            <button
+              type="button"
+              class="changeTopBarColor"
+              data-color="green"
+            ></button>
+            <button
+              type="button"
+              class="changeTopBarColor"
+              data-color="orange"
+            ></button>
+            <button
+              type="button"
+              class="changeTopBarColor"
+              data-color="red"
+            ></button>
+            <button
+              type="button"
+              class="selected changeTopBarColor"
+              data-color="white"
+            ></button>
+            <br />
+            <button
+              type="button"
+              class="changeTopBarColor"
+              data-color="dark2"
+            ></button>
+            <button
+              type="button"
+              class="changeTopBarColor"
+              data-color="blue2"
+            ></button>
+            <button
+              type="button"
+              class="changeTopBarColor"
+              data-color="purple2"
+            ></button>
+            <button
+              type="button"
+              class="changeTopBarColor"
+              data-color="light-blue2"
+            ></button>
+            <button
+              type="button"
+              class="changeTopBarColor"
+              data-color="green2"
+            ></button>
+            <button
+              type="button"
+              class="changeTopBarColor"
+              data-color="orange2"
+            ></button>
+            <button
+              type="button"
+              class="changeTopBarColor"
+              data-color="red2"
+            ></button>
+          </div>
+        </div>
+        <div class="switch-block">
+          <h4>Menu Horizontal</h4>
+          <div class="btnSwitch">
+            <button
+              type="button"
+              class="changeSideBarColor"
+              data-color="white"
+            ></button>
+            <button
+              type="button"
+              class="selected changeSideBarColor"
+              data-color="dark"
+            ></button>
+            <button
+              type="button"
+              class="changeSideBarColor"
+              data-color="dark2"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="custom-toggle">
+      <i class="icon-settings"></i>
+    </div>
+  </div>
+  <!-- Core JS Files -->
+<script th:src="@{/js/core/jquery-3.7.1.min.js}"></script>
+<script th:src="@{/js/core/popper.min.js}"></script>
+<script th:src="@{/js/core/bootstrap.min.js}"></script>
+
+<!-- jQuery Scrollbar -->
+<script th:src="@{/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js}"></script>
+
+<!-- Chart JS -->
+<script th:src="@{/js/plugin/chart.js/chart.min.js}"></script>
+
+<!-- jQuery Sparkline -->
+<script th:src="@{/js/plugin/jquery.sparkline/jquery.sparkline.min.js}"></script>
+
+<!-- Chart Circle -->
+<script th:src="@{/js/plugin/chart-circle/circles.min.js}"></script>
+
+<!-- Datatables -->
+<script th:src="@{/js/plugin/datatables/datatables.min.js}"></script>
+
+<!-- Bootstrap Notify -->
+<!--<script th:src="@{/js/plugin/bootstrap-notify/bootstrap-notify.min.js}"></script>-->
+
+<!-- jQuery Vector Maps -->
+<script th:src="@{/js/plugin/jsvectormap/jsvectormap.min.js}"></script>
+<script th:src="@{/js/plugin/jsvectormap/world.js}"></script>
+
+<!-- Sweet Alert -->
+<script th:src="@{/js/plugin/sweetalert/sweetalert.min.js}"></script>
+
+<!-- Kaiadmin JS -->
+<script th:src="@{/js/kaiadmin.min.js}"></script>
+
+<!-- Kaiadmin DEMO methods, don't include it in your project! -->
+<script th:src="@{/js/setting-demo.js}"></script>
+<script th:src="@{/js/demo.js}"></script>
+<script>
+  async function preencherUFSelect() {
+        // Lista das UFs (substitua com a lista real de UFs se necessário)
+  const ufs = [
+      'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 
+      'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'
+  ];
+
+  // Ordena as UFs em ordem alfabética
+  ufs.sort();
+    // Faz a requisição para obter o usuário logado
+    const response = await fetch("/api/usuario/logado");
+    const dataUsuario = await response.json();
+    const ufUsuario = dataUsuario.uf;  // UF do usuário logado
+    const roleUsuario = dataUsuario.funcao;  // Função do usuário (role)
+
+    // Ordena as UFs
+    ufs.sort();
+
+    // Limpa o conteúdo do select antes de preenchê-lo
+    ufSelect.innerHTML = '';
+
+    // Se o usuário for operador estadual, a UF será a do usuário logado
+    if (["CONSULTOR_ESTADUAL", "OPERADOR_ESTADUAL", "ADM_ESTADUAL","OPERADOR_MUNICIPAL","CONSULTOR_MUNICIPAL"].includes(roleUsuario) && ufUsuario) {
+        const option = document.createElement('option');
+        option.value = ufUsuario;
+        option.textContent = ufUsuario;
+        option.selected = true;  // Define a UF do usuário como selecionada
+        ufSelect.appendChild(option);
+        $('#btnPesquisar').click();
+    }else{
+        // Adiciona a opção "Todos"
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.textContent = 'Todos';
+        ufSelect.appendChild(defaultOption);
+         // Adiciona as outras UFs ao select, exceto a UF já selecionada
+        ufs.forEach(uf => {
+          if (uf !== ufUsuario) {
+              const option = document.createElement('option');
+              option.value = uf;
+              option.textContent = uf;
+              ufSelect.appendChild(option);
+          }
+      });
+    }
+}
+document.getElementById('ufSelect').addEventListener('change', function() {
+  const ufSelecionada = this.value;
+  const municipio = document.querySelector("#municipioSelect").value;
+
+  // Limpa as opções anteriores
+  municipioSelect.innerHTML = '<option value="">Selecione o município</option>';
+
+  if (ufSelecionada) {
+      municipioSelect.disabled = false; // Habilita o campo de município
+
+      fetch(`/api/municipios/${ufSelecionada}`)
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Erro na resposta da rede');
+              }
+              return response.json();
+          })
+          .then(municipios => {
+              municipios.forEach(function(municipio) {
+                  const option = document.createElement('option');
+                  option.value = municipio.municipio; // ou o ID do município
+                  option.textContent = municipio.municipio;
+                  municipioSelect.appendChild(option);
+              });
+          })
+          .catch(error => {
+             // console.error('Erro ao buscar municípios:', error);
+              municipioSelect.disabled = false; // Permite que o campo permaneça habilitado
+          });
+  } else {
+      municipioSelect.disabled = true; // Desabilita se não houver UF selecionada
+  }
+});
+
+// Habilita o campo de município ao carregar a página se a UF já estiver selecionada
+document.addEventListener("DOMContentLoaded", function() {
+  if (ufSelecionada) {
+      document.getElementById('ufSelect').dispatchEvent(new Event('change'));
+  }
+});
+// Chama a função para preencher o select ao carregar a página
+preencherUFSelect();
+   $(document).ready(function() {
+        const municipioSelect = document.getElementById('municipioSelect');
+        municipioSelect.disabled = true;
+        setTimeout(() => {
+          $('#btnPesquisar').trigger('click');
+      }, 500);
+   $('#btnPesquisar').on('click', function(event) {
+          event.preventDefault();
+
+          let ano = $('#anoSelect').val();
+          if (ano === '') {
+              ano = '2024';  // Se o ano não for selecionado, definir como 2024
+          }
+          let partido = $('#partidoSelect').val(); 
+          if (partido === '') {  
+            partido = 'UNIÃO';
+        }  
+
+          const cargo = $('#cargoSelect').val();  // Cargo selecionado
+          const uf = $('#ufSelect').val();  // UF selecionada
+          const municipio = $('#municipioSelect').val();  // UF selecionada
+          const genero = $('#generoSelect').val();
+          const etnia = $('#etniaSelect').val();
+  
+          //console.log("Filtros aplicados:", { ano, partido, cargo, uf,municipio,genero,etnia});
+  
+          // Chama a função para buscar os dados com os filtros aplicados
+          fetchData(ano, partido, cargo, uf,municipio,genero,etnia);
+      });
+    });
+    async function fetchData(ano, partido, cargo, uf,municipio,genero,etnia) {
+      //console.log("Função renderChart chamada.");
+      try {
+          // Construir a URL com os parâmetros válidos
+          let url = `/api/candidatos?`;
+       
+        if (ano !== '') { 
+            url += `&ano=${ano}`;
+        }
+        if (cargo !== '') { 
+              url += `&cargo=${cargo}`;
+          }
+          
+          if (partido !== '') { 
+                url += `&partido=${partido}`;
+        }
+          if (uf !== '') { 
+              url += `&uf=${uf}`;
+        }
+          if (municipio && municipio.trim() !== '') { 
+            url +=  `&municipio=${municipio}`;  
+        }
+        if (genero !== '') { 
+          url += `&genero=${genero}`;
+        }
+        if (etnia !== '') { 
+          url += `&etnia=${etnia}`;
+        }
+          //console.log("Requisição API com os filtros:", url);
+          const response = await fetch(url);
+          const data = await response.json(); 
+         // console.log("Dados recebidos da API:", response);
+          //console.log("Dados recebidos da API:", data);
+          renderChart(data, ano, partido, cargo, uf,municipio,genero,etnia);
+          updateGeneroChart(data,ano, partido, cargo, uf,municipio,genero,etnia); 
+          updateEtiniaChart(data,ano, partido, cargo, uf,municipio,genero,etnia); 
+          updatecargos(data,ano, partido, cargo, uf,municipio,genero,etnia);
+          updateMunicipioChart(data, ano,partido,cargo, uf,municipio, genero, etnia);
+         // concole.log(data);
+      } catch (error) {
+          //console.error('Erro ao buscar dados:', error);
+      }
+  }
+  let renderChartInstance = null; // Variável para armazenar a instância do gráfico
+
+function renderChart(data, ano, partido, cargo, uf, municipio, genero, etnia) {
+    const chartElement = document.querySelector("#Grafico_candidato");
+
+    let filteredData = data; // Garante que os dados originais não sejam modificados
+
+    // 🔹 Aplica os filtros corretamente
+    if (ano != '') {
+        filteredData = filteredData.filter(item => item.ano === ano);
+    }
+
+    if (partido != '') {
+        filteredData = filteredData.filter(item => item.partido === partido);
+    }
+
+    if (cargo != '') {
+        filteredData = filteredData.filter(item => item.cargo === cargo);
+    }
+
+    if (uf != '') {
+        filteredData = filteredData.filter(item => item.uf === uf);
+    }
+
+    if (municipio && municipio.trim() !== '') {
+        filteredData = filteredData.filter(item => item.municipio === municipio);
+    }
+
+    if (genero != '') {
+        filteredData = filteredData.filter(item => item.genero === genero);
+    }
+
+    if (etnia != '') {
+        filteredData = filteredData.filter(item => item.etnia === etnia);
+    }
+    // Se não houver filtros, traz todos os dados
+    if (filteredData.length === 0) {
+     // console.log("⚠️ Nenhum dado filtrado! Carregando todos os dados.");
+      filteredData = data;  // Aqui estamos trazendo todos os dados quando o filtro retorna vazio
+  }
+   //console.log("Dados filtrados para o gráfico:", filteredData);
+  
+   const ufData = {};
+
+    filteredData.forEach(item => {
+      // Verifica se o mandato é válido para o ano filtrado
+      if (item.ano_validade_mandato > ano && item.partido === partido) {
+          // Inicializa a UF no objeto se não existir
+          if (!ufData[item.uf]) {
+              ufData[item.uf] = {};
+          }
+
+          // Inicializa o cargo para a UF se não existir
+          if (!ufData[item.uf][item.cargo]) {
+              ufData[item.uf][item.cargo] = 0;
+          }
+
+          // Incrementa o número de eleitos para o cargo naquela UF
+          ufData[item.uf][item.cargo]++;
+         
+      }
+  });
+  let ufs = Object.keys(ufData).map(uf => {
+    // Soma o total de eleitos para todos os cargos dentro de cada UF
+    const totalEleitos = Object.values(ufData[uf]).reduce((acc, count) => acc + count, 0);
+    return { uf, totalEleitos };  // Retorna a UF e a soma dos eleitos
+  });
+  ufs = ufs.sort((a, b) => b.totalEleitos - a.totalEleitos);
+
+  // Extrair apenas as UFs ordenadas
+  ufs = ufs.map(item => item.uf);
+
+  if (uf) {
+    ufs = [uf]; // Se há filtro de UF, mostra somente a UF filtrada
+}
+
+  // Caso não haja filtro de cargo, mostramos todos os cargos
+  let cargos = [];
+  if (cargo) {
+      cargos = [cargo]; // Quando o filtro de cargo for aplicado, mostre apenas o cargo filtrado
+     
+  } else {
+      // Se não houver filtro de cargo, vamos pegar todos os cargos disponíveis nas UFs filtradas
+      cargos = [...new Set(data.filter(item => ufs.includes(item.uf)).map(item => item.cargo))];
+    
+  }
+// Filtra os cargos que têm 1 ou mais eleitos
+const cargosValidos = cargos.filter(cargo => {
+    return ufs.some(uf => ufData[uf][cargo] > 0); // Verifica se o cargo tem pelo menos 1 eleito em alguma UF
+});
+
+const seriesData = [];
+
+cargosValidos.forEach(cargo => {
+    const dataForCargo = ufs.map(uf => ufData[uf][cargo] || 0); // Contagem de eleitos por UF
+    seriesData.push({
+        name: cargo,
+        data: dataForCargo
+       
+    });
+});
+ // Verificar se temos cargos para exibir
+ if (seriesData.length === 0) {
+  //console.error("Nenhum cargo encontrado nos dados.");
+  return;
+}
+// Definir cores para cada cargo de forma dinâmica
+const cargoColors = ['#FF5733', '#33FF57', '#3357FF', '#F1C40F', '#006400', '#4B0082', '#FF00FF', '#8A2BE2'];
+
+// 🔹 Configuração do ApexCharts
+const options = {
+    series: seriesData,
+    chart: {
+        height: 350,
+        type: 'bar',
+        stacked: true, // Empilhado para mostrar por UF e cargo
+        events: {
+            dataPointMouseEnter: function(event, chartContext, config) {
+                const uf = ufs[config.dataPointIndex];
+                updateGeneroChart(data, ano, partido, cargo, uf, municipio, genero, etnia);
+                updateEtiniaChart(data,ano, partido, cargo, uf,municipio,genero,etnia);
+                updatecargos(data,ano, partido, cargo, uf,municipio,genero,etnia);
+                updateMunicipioChart(data, ano,partido,cargo, uf,municipio, genero, etnia);
+                //console.log("UF:", uf);
+            }
+        }
+    },
+    plotOptions: {
+      bar: {
+          horizontal: false,
+          columnWidth: '80%',
+          distributed: true, // Distribui as cores igualmente entre os cargos
+      }
+  },
+  xaxis: {
+      categories: ufs, // UFs no eixo X
+      labels: {
+          style: {
+              fontSize: '12px',
+          }
+      }
+  },
+  yaxis: {
+      show: true, // Exibe o eixo Y
+     
+  },
+  colors: cargoColors.slice(0, seriesData.length), // Cor única para todas as barras de UFs
+  fill: {
+      colors: ['#F4A623'], 
+  },
+  dataLabels: {
+      enabled: true, // Habilita os valores nas barras
+  },
+  legend: {
+    show: true,
+    position: 'top',
+    horizontalAlign: 'center',
+    //floating: true,
+    fontSize: '12px',
+    // Aqui a legenda só vai mostrar o cargo filtrado
+    formatter: function(seriesName) {
+          return cargo || seriesName; // Se o cargo estiver filtrado, ele será exibido
+      },
+},
+};
+
+// 🔹 Se um gráfico já estiver renderizado, destruí-lo antes de criar um novo
+if (renderChartInstance !== null) {
+    renderChartInstance.destroy();
+}
+
+// 🔹 Criar e renderizar o novo gráfico
+renderChartInstance = new ApexCharts(chartElement, options);
+
+try {
+    renderChartInstance.render();
+   // console.log(`Gráfico de candidatos por UF e cargos renderizado com sucesso!`);
+} catch (error) {
+   // console.error("Erro ao renderizar o gráfico:", error);
+}
+}
+
+// 🔹 Função para formatar números com "k" e "M"
+function formatNumber(value) {
+if (value >= 1000000) {
+    return (value / 1000000).toFixed(1) + "M";
+} else if (value >= 1000) {
+    return (value / 1000).toFixed(1) + "k";
+}
+return value.toString();
+}
+/*****************************************************************************************/
+  let generoChart = null; 
+  function updateGeneroChart(data, ano, partido, cargo, uf, municipio, genero, etnia) {
+
+    //console.log("inicia ano:",ano);
+    let filteredData = data;
+     // Aplica os filtros
+
+     if (partido !== '') {
+      filteredData = filteredData.filter(item => item.partido === partido);
+    }
+    if (ano  && ano.trim() !== '') {
+      filteredData = filteredData.filter(item => item.ano.toString() === ano.toString());  // Garantir que ambos sejam do tipo string
+     //console.log("Após filtro de ano:", filteredData);
+    }
+    if (uf !== '') {
+      filteredData = filteredData.filter(item => item.uf === uf);
+    }
+    if (municipio && municipio.trim() !== '') { 
+      filteredData = filteredData.filter(item => item.municipio === municipio); 
+    }
+    if (genero !== '') {
+      filteredData = filteredData.filter(item => item.genero === genero);
+    }
+    if (etnia !== '') {
+      filteredData = filteredData.filter(item => item.etnia === etnia);
+    }
+
+   
+    if (cargo !== '') {
+      filteredData = filteredData.filter(item => item.cargo === cargo );
+      console.log("cargo entrou:", filteredData);  // Para verificar o que está filtrando
+  }
+  
+  
+
+  
+    // Inicializa as variáveis de contagem
+    let maleCount = 0;
+    let femaleCount = 0;  
+    // Filtra os dados por gênero
+    if (genero === 'FEMININO') {
+      femaleCount = filteredData.filter(item => item.genero === 'FEMININO').length;
+    } else if (genero === 'MASCULINO') {
+      maleCount = filteredData.filter(item => item.genero === 'MASCULINO').length;
+    }else{
+    // Se nenhum gênero específico for filtrado, conta os dois gêneros
+      maleCount = filteredData.filter(item => item.genero === 'MASCULINO').length;
+      femaleCount = filteredData.filter(item => item.genero === 'FEMININO').length;
+    }
+  
+let seriesData = [];
+let labels = [];
+let colors = [];
+
+if (genero === 'MASCULINO') {
+    seriesData = [maleCount];
+    labels = ['Masculino'];
+    colors = ['rgb(14, 98, 243)']; // Azul
+} else if (genero === 'FEMININO') {
+    seriesData = [femaleCount];
+    labels = ['Feminino'];
+    colors = ['#FF69B4']; // Rosa
+} else {
+    seriesData = [maleCount, femaleCount];
+    labels = ['Masculino', 'Feminino'];
+    colors = ['rgb(14, 98, 243)', '#FF69B4']; // Azul e rosa
+}
+
+ // console.log("Dados antes dos filtros:", data);
+  //console.log("Dados após filtros:", filteredData);
+  
+
+   // Definindo o título para a UF
+const title = `Gênero dos candidatos da UF: ${uf}`;
+
+const options = {
+  series: seriesData,
+    chart: {
+        type: 'pie',
+    },
+    labels: labels,
+    colors: colors,
+    title: {
+        text: title, // Exibe a UF no título do gráfico
+        align: 'center',
+        style: {
+            fontSize: '12px',
+            fontWeight: 'bold',
+            color: '#333'
+        }
+    },
+    responsive: [{
+        breakpoint: 480,
+        options: {
+            chart: {
+                width: 200
+            },
+            legend: {
+                position: 'bottom'
+            }
+        }
+    }]
+};
+      const chartElement = document.querySelector("#Grafico_candidato_genero");
+  
+      if (!chartElement) {
+          //console.error("Elemento de gráfico de gênero não encontrado.");
+          return;
+      }
+  
+      // Se o gráfico de gênero já foi criado, destrua-o antes de criar um novo
+      if (generoChart !== null) {
+          generoChart.destroy();
+      }
+  
+      // Cria o gráfico de gênero
+      generoChart = new ApexCharts(chartElement, options);
+  
+      try {
+          generoChart.render();
+          //console.log(`Gráfico de gênero para a UF ${uf} renderizado com sucesso!`);
+      } catch (error) {
+         // console.error("Erro ao renderizar o gráfico de gênero:", error);
+      }
+  }
+    /*************************************************************************************************/
+   let etiniaChart = null; // Variável global para armazenar o gráfico de etnia
+function updateEtiniaChart(data,ano, partido, cargo, uf,municipio,genero,etnia) {
+  let filteredData = data;
+        // Aplica os filtros
+  if (partido !== '') {
+    filteredData = filteredData.filter(item => item.partido === partido);
+  }
+  if (ano  && ano.trim() !== '') {
+    filteredData = filteredData.filter(item => item.ano.toString() === ano.toString());  // Garantir que ambos sejam do tipo string
+    //console.log("Após filtro de ano:", filteredData);
+  }
+  if (uf !== '') {
+    filteredData = filteredData.filter(item => item.uf === uf);
+  }
+  if (municipio && municipio.trim() !== '') { 
+    filteredData = filteredData.filter(item => item.municipio === municipio); 
+  }
+  if (genero !== '') {
+    filteredData = filteredData.filter(item => item.genero === genero);
+  }
+  if (etnia !== '') {
+    filteredData = filteredData.filter(item => item.etnia === etnia);
+  }
+  if (cargo !== '') {
+    filteredData = filteredData.filter(item => item.cargo === cargo);
+  }
+  // Inicializa as variáveis de contagem
+  let amareloCount = 0;
+  let brancoCount = 0;
+  let indigenaCount = 0;
+  let naInformaCount = 0;
+  let pardaCount = 0;
+  let pretaCount = 0;
+  // Filtra os dados por gênero
+  if (etnia === 'AMARELA') {
+    amareloCount = filteredData.filter(item => item.etnia === 'AMARELA').length;
+  } else if (etnia === 'BRANCA') {
+    brancoCount= filteredData.filter(item => item.etnia === 'BRANCA').length;
+  }else if (etnia === 'INDÍGENA'){
+    indigenaCount = filteredData.filter(item => item.etnia === 'INDÍGENA').length;
+  }else if(etnia === 'NÃO INFORMADO'){
+    naInformaCount = filteredData.filter( item => item.etnia === 'NÃO INFORMADO').length;
+  }else if(etnia === 'PARDA'){
+    pardaCount = filteredData.filter(item => item.etnia === 'PARDA').length;
+  }else if(etnia === 'PRETA'){
+    pretaCount = filteredData.filter(item => item.etnia === 'PRETA').length;
+  }else{
+    amareloCount = filteredData.filter(item => item.etnia === 'AMARELA').length;
+    brancoCount = filteredData.filter(item => item.etnia === 'BRANCA').length;
+    indigenaCount = filteredData.filter(item => item.etnia === 'INDÍGENA').length;
+    naInformaCount= filteredData.filter( item => item.etnia === 'NÃO INFORMADO').length;
+    pardaCount = filteredData.filter(item => item.etnia === 'PARDA').length;
+    pretaCount = filteredData.filter(item => item.etnia === 'PRETA').length;
+  }
+
+let seriesData = [];
+let labels = [];
+let colors = [];
+
+if (etnia === 'AMARELA') {
+    seriesData = [amareloCount];
+    labels = ['AMARELO'];
+    colors = ['#F4A623']; // Azul
+} else if (etnia === 'BRANCA') {
+    seriesData = [brancoCount];
+    labels = ['BRANCO'];
+    colors = ['rgb(255, 209, 232)']; // Rosa
+}else if (etnia === 'INDÍGENA'){
+  seriesData = [indigenaCount];
+    labels = ['INDÍGENA'];
+    colors = ['rgb(220, 192, 164)']; // Rosa
+
+}else if(etnia === 'NÃO INFORMADO'){
+  seriesData = [naInformaCount];
+    labels = ['NÃO INFORMADO'];
+    colors = ['rgb(255, 43, 60)']; // Rosa
+
+}else if(etnia === 'PARDA'){
+  seriesData = [pardaCount];
+    labels = ['PARDA'];
+    colors = ['rgb(209, 173, 132)']; // Rosa
+
+}else if (etnia === 'PRETA'){
+  seriesData = [pretaCount];
+    labels = ['PRETA'];
+    colors = [' rgb(0, 0, 0)']; // Rosa
+} else {
+    seriesData = [ amareloCount, brancoCount,indigenaCount,naInformaCount,pardaCount,pretaCount];
+    labels = ['AMARELO', 'BRANCO','INDÍGENA','NÃO INFORMADO','PARDA','PRETA'];
+    colors = ['#F4A623', 'rgb(255, 209, 232)','rgb(220, 192, 164)','rgb(255, 43, 60)','rgb(209, 173, 132)','rgb(0, 0, 0)']; // Azul e rosa
+}
+
+//console.log("array de etnias",amareloCount, brancoCount,indigenaCount,naInformaCount,pardaCount,pretaCount);
+const title = `Etnia dos candidatos da UF: ${uf}`;
+
+const options = {
+  series: seriesData,
+    chart: {
+        type: 'pie',
+    },
+    labels: labels,
+    colors: colors,
+    title: {
+        text: title, // Exibe a UF no título do gráfico
+        align: 'center',
+        style: {
+            fontSize: '12px',
+            fontWeight: 'bold',
+            color: '#333'
+        }
+    },
+    responsive: [{
+        breakpoint: 480,
+        options: {
+            chart: {
+                width: 200
+            },
+            legend: {
+                position: 'bottom'
+            }
+        }
+    }]
+};
+   // console.log(ufData);  // Exibe os dados filtrados para depuração
+
+    const chartElement = document.querySelector("#Grafico_candidato_etinia");
+
+    if (!chartElement) {
+       // console.error("Elemento de gráfico de etnia não encontrado.");
+        return;
+    }
+
+    // Se o gráfico de etnia já foi criado, destrua-o antes de criar um novo
+    if (etiniaChart !== null) {
+        etiniaChart.destroy();
+    }
+
+    // Cria o gráfico de etnia
+    etiniaChart = new ApexCharts(chartElement, options);
+
+    try {
+        etiniaChart.render();
+        //console.log(`Gráfico de etnia para a UF ${uf} renderizado com sucesso!`);
+    } catch (error) {
+        //console.error("Erro ao renderizar o gráfico de etnia:", error);
+    }
+}
+ /********************************************************************************************************************************/
+ let cargosChart = null;
+ function updatecargos(data,ano, partido, cargo, uf,municipio,genero,etnia) {
+  let filteredData = data;
+        // Aplica os filtros
+  if (partido !== '') {
+    filteredData = filteredData.filter(item => item.partido === partido);
+  }
+  if (ano  && ano.trim() !== '') {
+    filteredData = filteredData.filter(item => item.ano.toString() === ano.toString());  // Garantir que ambos sejam do tipo string
+    //console.log("Após filtro de ano:", filteredData);
+  }
+  if (uf !== '') {
+    filteredData = filteredData.filter(item => item.uf === uf);
+  }
+  if (municipio && municipio.trim() !== '') { 
+    filteredData = filteredData.filter(item => item.municipio === municipio); 
+  }
+  if (genero !== '') {
+    filteredData = filteredData.filter(item => item.genero === genero);
+  }
+  if (etnia !== '') {
+    filteredData = filteredData.filter(item => item.etnia === etnia);
+  }
+  if (cargo !== '') {
+    filteredData = filteredData.filter(item => item.cargo === cargo);
+  }
+
+    // Inicializa as variáveis de contagem
+    let prefeitoCount = 0;
+    let vicePrefeitoCount = 0;
+    let governadorCount = 0;
+    let viceGovernadorCount = 0;
+    let senadorCount = 0;
+    let depFederalCount = 0;
+    let depDistritalCount = 0;
+    let depEstadualCount = 0;
+    let vereadorCount = 0;
+
+    // Filtra os dados por gênero
+    if (cargo === 'PREFEITO') {
+      prefeitoCount = filteredData.filter(item => item.cargo === 'PREFEITO').length;
+    } else if (cargo === 'VICE-PREFEITO') {
+      vicePrefeitoCount = filteredData.filter(item => item.cargo === 'VICE-PREFEITO').length;
+    }else if (cargo === 'GOVERNADOR'){
+      governadorCount = filteredData.filter(item => item.cargo === 'GOVERNADOR').length;
+    }else if(cargo === 'VICE GOVERNADOR'){
+      viceGovernadorCount = filteredData.filter( item => item.cargo === 'VICE GOVERNADOR').length;
+    }else if(cargo === 'SENADOR'){
+      senadorCount = filteredData.filter( item => item.cargo === 'SENADOR').length;
+    }else if(cargo === 'DEPUTADO FEDERAL'){
+      depFederalCount = filteredData.filter( item => item.cargo === 'DEPUTADO FEDERAL').length;
+    }else if(cargo === 'DEPUTADO DISTRITAL'){
+      depDistritalCount= filteredData.filter(item => item.cargo === 'DEPUTADO DISTRITAL').length;
+
+    }else if(cargo === 'DEPUTADO ESTADUAL'){
+      depEstadualCount=filteredData.filter(item => item.cargo === 'DEPUTADO ESTADUAL').length;
+
+    }else if(cargo === 'VEREADOR'){
+      vereadorCount= filteredData.filter(item => item.cargo === 'VEREADOR').length;
+
+    }else{
+      prefeitoCount = filteredData.filter(item => item.cargo === 'PREFEITO').length;
+      vicePrefeitoCount = filteredData.filter(item => item.cargo === 'VICE-PREFEITO').length;
+      governadorCount = filteredData.filter(item => item.cargo === 'GOVERNADOR').length;
+      viceGovernadorCount = filteredData.filter( item => item.cargo === 'VICE GOVERNADOR').length;
+      senadorCount = filteredData.filter( item => item.cargo === 'SENADOR').length;
+      depFederalCount = filteredData.filter( item => item.cargo === 'DEPUTADO FEDERAL').length;
+      depDistritalCount= filteredData.filter(item => item.cargo === 'DEPUTADO DISTRITAL').length;
+      depEstadualCount=filteredData.filter(item => item.cargo === 'DEPUTADO ESTADUAL').length;
+      vereadorCount= filteredData.filter(item => item.cargo === 'VEREADOR').length;
+    }
+  
+
+    let seriesData = [];
+    let labels = [];
+    colors = ['#0d6efd']; // Azul e rosa
+
+      if (cargo === 'PREFEITO') {
+          seriesData = [prefeitoCount];
+          labels = ['PREFEITO'];
+      } else if (cargo === 'VICE-PREFEITO') {
+            seriesData = [vicePrefeitoCount];
+            labels = ['VICE-PREFEITO'];
+      } else if (cargo === 'GOVERNADOR') {
+          seriesData = [governadorCount];
+          labels = ['GOVERNADOR'];
+      }else if (cargo === 'VICE GOVERNADOR') {
+        seriesData = [viceGovernadorCount];
+        labels = ['VICE GOVERNADOR'];
+      }else if (cargo === 'SENADOR') {
+        seriesData = [senadorCount];
+        labels = ['SENADOR'];
+      }else if (cargo === 'DEPUTADO FEDERAL') {
+        seriesData = [depFederalCount];
+        labels = ['DEPUTADO FEDERAL'];
+      }else if (cargo === 'DEPUTADO DISTRITAL') {
+        seriesData = [depDistritalCount];
+        labels = ['DEPUTADO DISTRITAL'];
+      }else if (cargo === 'DEPUTADO ESTADUAL') {
+        seriesData = [depEstadualCount];
+        labels = ['DEPUTADO ESTADUAL'];
+      }else if (cargo === 'VEREADOR') {
+        seriesData = [vereadorCount];
+        labels = ['VEREADOR'];
+      }else {
+      seriesData = [prefeitoCount,vicePrefeitoCount,governadorCount,viceGovernadorCount,senadorCount,depFederalCount,depDistritalCount,depEstadualCount,vereadorCount];
+      labels = ['PREFEITO', 'VICE-PREFEITO','GOVERNADOR','VICE GOVERNADOR','SENADOR','DEPUTADO FEDERAL','DEPUTADO DISTRITAL','DEPUTADO ESTADUAL','VEREADOR'];
+  }
+
+  const title = `Gênero dos Cargos da UF: ${uf}  MUNICIPIO: ${municipio}`;
+      const options = {
+        series: [{
+          name: "Quantidade",
+          data: seriesData
+      }],
+      chart: {
+          type: 'bar',
+      },
+      plotOptions: {
+        bar: {
+          borderRadius: 4,
+          borderRadiusApplication: 'end',
+          horizontal: true,
+        }
+      },
+      labels: labels,
+      colors: colors,
+      title: {
+          text: title, // Exibe a UF no título do gráfico
+          align: 'center',
+          style: {
+              fontSize: '12px',
+              fontWeight: 'bold',
+              color: '#333'
+          }
+      },
+      responsive: [{
+          breakpoint: 480,
+          options: {
+              chart: {
+                  width: 200
+              },
+              legend: {
+                  position: 'bottom'
+              }
+          }
+      }]
+  };
+
+  const chartElement = document.querySelector("#Grafico_cargos");
+
+      if (!chartElement) {
+        // console.error("Elemento de gráfico de etnia não encontrado.");
+          return;
+      }
+
+      // Se o gráfico de etnia já foi criado, destrua-o antes de criar um novo
+      if (cargosChart !== null) {
+          cargosChart.destroy();
+      }
+
+      // Cria o gráfico de etnia
+      cargosChart = new ApexCharts(chartElement, options);
+
+      try {
+          cargosChart.render();
+          //console.log(`Gráfico de etnia para a UF ${uf} renderizado com sucesso!`);
+      } catch (error) {
+          //console.error("Erro ao renderizar o gráfico de etnia:", error);
+      }
+
+ }
+/****************************************************************************************************************************************************/
+  let currentPage = 0; // Página inicial
+  const itemsPerPage = 10; // Quantidade de municípios por página
+  let allMunicipiosSorted = []; // Armazena todos os municípios do UF
+  let selectedUF = ""; // 🔥 Guarda o UF selecionado
+  
+  function updateMunicipioChart(data, ano,partido,cargo, uf,municipio, genero, etnia) {
+    const chartElement = document.querySelector("#Grafico_municipio");
+    let filteredData = data;
+    //console.log("filtros",ano,partido,cargo, uf,municipio, genero, etnia);
+    // Aplicando filtros condicionais
+    if (uf !== '') {
+        filteredData = filteredData.filter(item => item.uf === uf);
+    }
+    if (ano  && ano.trim() !== '') {
+      filteredData = filteredData.filter(item => item.ano.toString() === ano.toString());  // Garantir que ambos sejam do tipo string
+    }
+    if (partido !== '') {
+        filteredData = filteredData.filter(item => item.partido === partido);
+      }
+    if (cargo !== '') {
+      filteredData = filteredData.filter(item => item.cargo === cargo);
+    }
+    if (genero !== '') {
+      filteredData = filteredData.filter(item => item.genero === genero);
+    }
+    if (etnia !== '') {
+      filteredData = filteredData.filter(item => item.etnia === etnia);
+    }
+  //console.log("uf:",uf);
+  //console.log("municipio depois do filtro",filteredData);
+    selectedUF = uf; // Armazena o UF selecionado
+    // Contagem de municípios
+    const ufMunicipioCount = {};
+    
+
+    filteredData.forEach(item => {
+      if (item.ano_validade_mandato > ano && item.partido === partido) {
+        //console.log("Verificando item:", item);
+        const estado = item.uf;
+        const cidade = item.municipio;
+
+        if (!ufMunicipioCount[estado]) {
+            ufMunicipioCount[estado] = {};
+        }
+
+        ufMunicipioCount[estado][cidade] = (ufMunicipioCount[estado][cidade] || 0) + 1;
+      }
+    });
+
+    // Lógica para exibir todos os municípios ou apenas o filtrado
+    if (municipio && municipio.trim() !== '') {
+        // Exibir apenas o município selecionado
+        allMunicipiosSorted = [{
+            municipio: municipio,
+            count: ufMunicipioCount[uf]?.[municipio] || 0
+        }];
+    } else {
+        // Exibir todos os municípios do estado ordenados
+        allMunicipiosSorted = Object.keys(ufMunicipioCount[uf] || {})
+            .map(cidade => ({
+                municipio: cidade,
+                count: ufMunicipioCount[uf][cidade]
+            }))
+            .sort((a, b) => b.count - a.count);
+    }
+
+    currentPage = 0; // Reinicia a página
+    renderMunicipioChart(chartElement, ano,partido,cargo, uf,municipio, genero, etnia);
+}
+  function renderMunicipioChart(chartElement, ano,partido,cargo, uf,municipio, genero, etnia) {
+      // Calcula o índice inicial e final da página
+      const startIndex = currentPage * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+
+    let pageData;
+    if (municipio && municipio.trim() !== '') {
+        // Mostrar apenas o município filtrado
+        pageData = allMunicipiosSorted;
+    } else {
+        // Mostrar todos os municípios do estado paginados
+        pageData = allMunicipiosSorted.slice(startIndex, endIndex);
+    }
+
+    const sortedCategories = pageData.map(item => item.municipio);
+    const sortedSeriesData = pageData.map(item => item.count);
+    const colors = sortedSeriesData.map(() => '#00A4E8'); // Azul
+      const options = {
+          series: [{ data: sortedSeriesData }],
+          chart: {
+              type: 'bar',
+              height: 400,
+              toolbar: { show: false },
+              animations: { enabled: true }
+          },
+          plotOptions: {
+              bar: {
+                  borderRadius: 4,
+                  horizontal: true,
+                  dataLabels: {
+                    position: 'top'
+                
+                  },
+              },
+          },
+          dataLabels: {
+              enabled: true,
+              formatter: function(val) {
+                  return formatNumber(val);
+              },
+              style: {
+                  colors: ['#000000'],
+                  fontSize: '14px',
+                  fontWeight: 'bold'
+              },
+              offsetX: 20, // 🔥 Move o número para fora da barra
+              textAnchor: 'start' // 🔥 Garante que o texto seja ancorado corretamente
+          },
+          xaxis: { categories: sortedCategories },
+          colors: colors,
+          yaxis: {
+              labels: {
+                  formatter: function(value) {
+                      return formatNumber(value);
+                  },
+                  style: {
+                    fontSize: '15px',  // Aumentando o tamanho da fonte
+                    color: '#333333',  // Cor da letra mais escura
+                }
+              }
+          },
+          title: {
+            text: `Top Municípios em ${selectedUF} - Página ${currentPage + 1}`, // 🔥 Agora mantém o UF correto
+              align: 'center'
+          }
+      };
+  
+      // Remove o gráfico antigo, se houver
+      if (window.municipioChart) {
+          window.municipioChart.destroy();
+      }
+  
+      // Cria o gráfico com as novas opções
+      window.municipioChart = new ApexCharts(chartElement, options);
+      window.municipioChart.render();
+  
+      // Atualiza a exibição dos botões de paginação
+      updatePaginationButtons();
+  }
+  
+  // Atualiza a exibição dos botões de paginação
+  function updatePaginationButtons() {
+      document.getElementById("prevPage").style.display = currentPage > 0 ? "inline-block" : "none";
+      document.getElementById("nextPage").style.display = (currentPage + 1) * itemsPerPage < allMunicipiosSorted.length ? "inline-block" : "none";
+  }
+  
+  // Botão de próxima página
+  document.getElementById("nextPage").addEventListener("click", function () {
+      if ((currentPage + 1) * itemsPerPage < allMunicipiosSorted.length) {
+          currentPage++;
+          renderMunicipioChart(document.querySelector("#Grafico_municipio"), allMunicipiosSorted[0].uf);
+      }
+  });
+  
+  // Botão de página anterior
+  document.getElementById("prevPage").addEventListener("click", function () {
+      if (currentPage > 0) {
+          currentPage--;
+          renderMunicipioChart(document.querySelector("#Grafico_municipio"), allMunicipiosSorted[0].uf);
+      }
+  });
+  
+  // Função auxiliar para formatar números
+  function formatNumber(value) {
+      if (value >= 1e6) return (value / 1e6).toFixed(1) + "M";
+      if (value >= 1e3) return (value / 1e3).toFixed(1) + "k";
+      return value.toString();
+  }
+
+
+
+    </script>
+  </body>
+</html>

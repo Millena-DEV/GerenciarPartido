@@ -1,0 +1,346 @@
+
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<link th:href="@{/css/reset.css}">
+<link th:href="@{/css/bootstrap.min.css}">
+<link th:href="@{css/bootstrap-select.min.css}">
+<link th:href="@{css/open-iconic-bootstrap.min.css}">
+<link th:href="@{css/simplePagination.css}">
+<link th:href="@{css/custom.css}">
+<link th:href="@{css/c3.min.css}">
+<script th:href="@{js/jquery.js}"></script>
+<script th:href="@{js/bootstrap.bundle.min.js}"></script>
+<script th:href="@{js/bootstrap-select.min.js}"></script>
+<script th:href="@{js/jquery.mask.min.js}"></script>
+<script th:href="@{js/jquery.simplePagination.js}"></script>
+<script th:href="@{js/custom.js}"></script>
+<script th:href="@{js/plugins/c3/d3.min.js}"></script>
+<script th:href="@{js/plugins/c3/c3.min.js}"></script>
+<link rel="icon" th:href="@{/img/ub.jfif}" />
+<title>União Brasil</title>
+<link rel="icon" th:href="@{img/ub.jfif}" >
+<script th:src="@{/js/plugin/webfont/webfont.min.js}"></script>
+<!-- Link para o Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+ <!-- CSS Files -->
+ <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+ <link rel="stylesheet" th:href="@{/css/plugins.min.css}" />
+<link rel="stylesheet" href="/css/kaiadmin.min.css" />
+<link rel="stylesheet" th:href="@{/css/demo.css}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- jQuery (necessário para o jQuery Mask) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- jQuery Mask Plugin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+
+<style>
+.custom-file-input ~ .custom-file-label::after {
+    display: none;
+}
+
+.btn-upload {
+    background-color: #428BCA;
+    border-color: #428BCA;;
+    color: white;
+}
+
+.btn-upload:hover {
+    background-color: #31b0d5;
+    border-color: #269abc;
+}
+
+.section-divider {
+    margin: 20px 0; /* Espaçamento acima e abaixo da linha */
+    border-top: 1px solid #dee2e6; /* Cor e espessura da linha */
+}
+
+.modal.fade .modal-dialog {
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.modal.fade.show .modal-dialog {
+    transform: translateY(0);
+    opacity: 1;
+}
+</style>
+ </head>
+
+        <body>  
+            <div th:if="${filiado == null}">
+                <p>Filiado não encontrado</p>
+            </div>
+            
+            <div class="container mt-5">
+              <a th:href="@{${referer}}" Class="btn btn-primary" style="margin-top: 5px">Voltar</a>
+                <div class="card">
+                    <div class="home card-header">
+                        <h1 style="font-size:20px; text-align: center;">Ficha do Filiado</h1>
+                        <h6 style="margin-top: 20px">
+                            Acesse nosso Site para ficar por dentro de todas as informações <a href="https://uniaobrasil.org.br/">clicando aqui </a>
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <!-- Dados Pessoais -->
+                        <h1 style="color: #428BCA;">Dados Pessoais</h1>
+                        <div class="row">
+                          <!-- Nome Completo -->
+                          <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                              <label for="nome">Nome Completo:</label>
+                              <input maxlength="250" type="text" class="form-control" id="nome" name="nome" th:value="${filiado.nome}" readonly>
+                            </div>
+                          </div>
+                          
+                          <!-- CPF -->
+                          <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                              <label for="cpf">CPF:</label>
+                              <input type="text" class="form-control" id="cpf" name="cpf" th:value="${filiado.cpf}" readonly>
+                            </div>
+                          </div>
+                
+                          <!-- Título de Eleitor -->
+                          <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                              <label for="Titulo">Título de Eleitor:</label>
+                              <input type="text" class="form-control" id="Titulo" name="Titulo" th:value="${filiado.titulo}" readonly>
+                            </div>
+                          </div>
+                
+                          <!-- Nome do Pai -->
+                          <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                              <label for="nome_pai">Nome do Pai:</label>
+                              <input maxlength="250" type="text" class="form-control" id="nome_pai" name="nome_pai" th:value="${filiado.nomePai}" readonly>
+                            </div>
+                          </div>
+                
+                          <!-- Nome da Mãe -->
+                          <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                              <label for="nome_mae">Nome da Mãe:</label>
+                              <input maxlength="250" type="text" class="form-control" id="nome_mae" name="nome_mae" th:value="${filiado.nomeMae}" readonly>
+                            </div>
+                          </div>
+                
+                          <!-- Data de Nascimento -->
+                          <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                              <label for="datanascimento">Data de Nascimento:</label>
+                              <input type="text" name="datanascimento" class="form-control" th:value="${filiado.dataNascimento}" readonly>
+                            </div>
+                          </div>
+                        </div> <!-- End row -->
+                
+                        <hr>
+                
+                        <!-- Endereço -->
+                        <h1 style="color: #428BCA;">Endereço</h1>
+                        <div class="row">
+                          <!-- UF -->
+                          <div class="col-md-1 col-lg-1">
+                            <div class="form-group">
+                              <label for="uf">UF:</label>
+                              <input type="text" class="form-control" id="uf" name="uf" th:value="${filiado.uf}" readonly>
+                            </div>
+                          </div>
+                
+                          <!-- Município -->
+                          <div class="col-md-4 col-lg-3">
+                            <div class="form-group">
+                              <label for="municipio">Município:</label>
+                              <input type="text" class="form-control" id="municipio" name="municipio" th:value="${filiado.municipio}" readonly>
+                            </div>
+                          </div>
+                
+                          <!-- Bairro -->
+                          <div class="col-md-4 col-lg-3">
+                            <div class="form-group">
+                              <label for="bairro">Bairro:</label>
+                              <input type="text" class="form-control" id="bairro" name="bairro" th:value="${filiado.bairro}" readonly>
+                            </div>
+                          </div>
+                       
+
+                          <!-- cep -->
+                          <div class="col-md-2 col-lg-2">
+                            <div class="form-group">
+                              <label for="cep">CEP:</label>
+                              <input type="text" class="form-control" id="cep" name="cep" th:value="${filiado.cep}" readonly>
+                            </div>
+                          </div>
+                        </div>
+                
+                        <div class="row">
+                          <!-- Logradouro -->
+                          <div class="col-md-12 col-lg-6">
+                            <div class="form-group">
+                              <label for="logradouro">Logradouro:</label>
+                              <input type="text" class="form-control" id="logradouro" name="logradouro" th:value="${filiado.logradouro}" readonly>
+                            </div>
+                          </div>
+                
+                          <!-- Número -->
+                          <div class="col-md-6 col-lg-3">
+                            <div class="form-group">
+                              <label for="numero">Número:</label>
+                              <input maxlength="8" type="text" class="form-control" id="numero" name="numero" th:value="${filiado.numero}" readonly>
+                            </div>
+                          </div>
+                
+                          <!-- Complemento -->
+                          <div class="col-md-6 col-lg-3">
+                            <div class="form-group">
+                              <label for="complemento">Complemento:</label>
+                              <input maxlength="100" type="text" class="form-control" id="complemento" name="complemento" th:value="${filiado.complemento}" readonly>
+                            </div>
+                          </div>
+                        </div> <!-- End row -->
+                
+                        <hr>
+                        <h1 style="color: #428BCA;">Dados Politicos</h1>
+                        <div class="row">
+                          <!-- zona -->
+                          <div class="col-md-6 col-lg-3">
+                            <div class="form-group">
+                              <label for="uf">Zona:</label>
+                              <input type="text" class="form-control" id="zona" name="zona" th:value="${filiado.zona}" readonly>
+                            </div>
+                          </div>
+                           <!-- secao -->
+                           <div class="col-md-6 col-lg-3">
+                            <div class="form-group">
+                              <label for="uf">Seção:</label>
+                              <input type="text" class="form-control" id="zona" name="zona" th:value="${filiado.secao}" readonly>
+                            </div>
+                          </div>
+                           <!-- UF -->
+                           <div class="col-md-6 col-lg-3">
+                            <div class="form-group">
+                              <label for="uf">Situação:</label>
+                              <input type="text" class="form-control" id="zona" name="zona" th:value="${filiado.situacao}" readonly>
+                            </div>
+                          </div>
+                            <!-- UF -->
+                            <div class="col-md-6 col-lg-3">
+                              <div class="form-group">
+                                <label for="uf">Data Filiação:</label>
+                                <input type="text" class="form-control" id="zona" name="zona" th:value="${filiado.dataFiliacao}" readonly>
+                              </div>
+                            </div>
+                          <hr>
+                        <!-- Contatos -->
+                        <h1 style="color: #428BCA;">Contatos</h1>
+                        <div class="row">
+                          <!-- Celular 1 -->
+                          <div class="col-md-3">
+                            <div class="form-group">
+                              <label for="celular1">Celular 1:</label>
+                              <input type="text" class="form-control" id="celular1" name="celular1" th:value="${filiado.NumeroTelefone1}" readonly>
+                            </div>
+                          </div>
+                         
+                
+                          <!-- Celular 2 -->
+                          <div class="col-md-3">
+                            <div class="form-group">
+                              <label for="celular2">Celular 2:</label>
+                              <input type="text" class="form-control" id="celular2" name="celular2" th:value="${filiado.NumeroTelefone2}" readonly>
+                            </div>
+                          </div>
+                        
+
+                            <!-- Email -->
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="text" class="form-control" id="email" name="email" th:value="${filiado.email}" readonly>
+                          </div>
+                        </div>
+                      </div>
+                       
+
+                        </div>
+                    </div>
+                  </div>
+
+                    <footer>
+                        <div class="container-fluid d-flex justify-content-between">
+                          <nav class="pull-left">
+                            <ul class="nav">
+                              <li class="nav-item">
+                                <a class="nav-link" href="https://uniaobrasil.org.br/filie-se/">
+                                  Filiar 
+                                </a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" href="https://wa.me/61994180629?text=Olá%2C%20gostaria%20de%20mais%20informações"> Ajuda </a>
+                              </li>
+                              <li class="nav-item">
+                              <a class="nav-link" href="https://uniaobrasil.org.br/">2024, União Brasil <i class="fa fa-heart heart text-danger"></i> bySite</a>
+                            </li>
+                            </ul>
+                          </nav>
+                        </div>
+                      </footer>
+    
+     </body>
+<script>
+    
+    $('#customFileButton').on('click', function() {
+        $('#foto').click();
+    });
+
+    $('#foto').on('change', function() {
+        var fileName = $(this).val().split('\\').pop();
+        $('#customFileLabel').html(fileName);
+    });
+    
+    
+        const input = document.getElementById("foto");
+
+    
+        const convertBase64 = (file) => {
+            return new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+
+            fileReader.onload = () => {
+                resolve(fileReader.result);
+            };
+
+            fileReader.onerror = (error) => {
+                reject(error);
+            };
+            });
+        };
+
+        const uploadImage = async (event) => {
+            const file = event.target.files[0];
+            const base64 = await convertBase64(file);
+            $('#fileBase64').val(base64.split(',')[1]);	
+        };
+
+        input.addEventListener("change", (e) => {
+            uploadImage(e);
+        });
+      
+        
+    
+</script>
+   </html>
+        

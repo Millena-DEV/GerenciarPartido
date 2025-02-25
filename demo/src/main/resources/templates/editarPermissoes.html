@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" th:href="@{/img/ub.jfif}" />
+    <title>Editar Permissões</title>
+
+     <!-- CSS Files -->
+     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+     <link rel="stylesheet" th:href="@{/css/plugins.min.css}" />
+     <link rel="stylesheet" th:href="@{/css/kaiadmin.min.css}" />
+     <!-- CSS Just for demo purpose, don't include it in your project -->
+     <link rel="stylesheet" th:href="@{/css/demo.css}" />
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+     <script th:src="@{/js/plugin/webfont/webfont.min.js}"></script>
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 50px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin-top: 50px;
+        }
+
+        .card {
+            margin-top: 20px;
+        }
+
+        .btn-custom {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-custom:hover {
+            background-color: #218838;
+        }
+
+        .checkbox-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .header-title {
+            color: #007bff;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="btn btn-info" onclick="window.location.href='/permissoes';">Voltar</button>
+        <div class="card">
+            
+            <div class="card-header text-center">
+                <h1 class="header-title">Editar Permissões de <span th:text="${usuario.nome} + ' ' + ${usuario.sobrenome}"></span></h1>
+                <h4 class="text-muted">Função: <span th:text="${usuario.funcao}"></span></h4>
+            </div>
+
+            <div class="card-body">
+                <form id="permissaoForm" action="/permissoes/alterar" method="post">
+                    <!-- Incluindo o id do usuário de forma oculta -->
+                    <input type="hidden" name="usuarioId" th:value="${usuario.id}" />
+
+                    <div class="table-responsive">
+                        <!-- Tabela com permissões -->
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Permissão</th>
+                                    <th class="text-center">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Iterar sobre a lista de permissões -->
+                                <tr th:each="permissao : ${permissoes}">
+                                    <td class="checkbox-label" th:text="'Criar'">Criar</td>
+                                    <td class="text-center">
+                                        <input type="checkbox" class="permissao-checkbox" data-permissao-id="__{permissao.id}__"
+                                               th:checked="${permissao.criar == 'Ativado'}"
+                                               th:data-criar="${permissao.criar}" />
+                                    </td>
+                                </tr>
+                                <tr th:each="permissao : ${permissoes}">
+                                    <td class="checkbox-label" th:text="'Editar'">Editar</td>
+                                    <td class="text-center">
+                                        <input type="checkbox" class="permissao-checkbox" data-permissao-id="__{permissao.id}__"
+                                               th:checked="${permissao.editar == 'Ativado'}"
+                                               th:data-editar="${permissao.editar}" />
+                                    </td>
+                                </tr>
+                                <tr th:each="permissao : ${permissoes}">
+                                    <td class="checkbox-label" th:text="'Excluir'">Excluir</td>
+                                    <td class="text-center">
+                                        <input type="checkbox" class="permissao-checkbox" data-permissao-id="__{permissao.id}__"
+                                               th:checked="${permissao.excluir == 'Ativado'}"
+                                               th:data-excluir="${permissao.excluir}" />
+                                    </td>
+                                </tr>
+                                <tr th:each="permissao : ${permissoes}">
+                                    <td class="checkbox-label" th:text="'Visualizar'">Visualizar</td>
+                                    <td class="text-center">
+                                        <input type="checkbox" class="permissao-checkbox" data-permissao-id="__{permissao.id}__"
+                                               th:checked="${permissao.vizualizar == 'Ativado'}"
+                                               th:data-vizualizar="${permissao.vizualizar}" />
+                                    </td>
+                                </tr>
+                                <tr th:each="permissao : ${permissoes}">
+                                    <td class="checkbox-label" th:text="'Aprovar'">Aprovar</td>
+                                    <td class="text-center">
+                                        <input type="checkbox" class="permissao-checkbox" data-permissao-id="__{permissao.id}__"
+                                               th:checked="${permissao.aprovar == 'Ativado'}"
+                                               th:data-aprovar="${permissao.aprovar}" />
+                                    </td>
+                                </tr>
+                                <tr th:each="permissao : ${permissoes}">
+                                    <td class="checkbox-label" th:text="'Acessar'">Acessar</td>
+                                    <td class="text-center">
+                                        <input type="checkbox" class="permissao-checkbox" data-permissao-id="__{permissao.id}__"
+                                               th:checked="${permissao.acessar == 'Ativado'}"
+                                               th:data-acessar="${permissao.acessar}" />
+                                    </td>
+                                </tr>
+                                <tr th:each="permissao : ${permissoes}">
+                                    <td class="checkbox-label" th:text="'Interagir'">Interagir</td>
+                                    <td class="text-center">
+                                        <input type="checkbox" class="permissao-checkbox" data-permissao-id="__{permissao.id}__"
+                                               th:checked="${permissao.interagir == 'Ativado'}"
+                                               th:data-interagir="${permissao.interagir}" />
+                                    </td>
+                                </tr>
+                                <tr th:each="permissao : ${permissoes}">
+                                    <td class="checkbox-label" th:text="'Bloquear Usuario'">Bloquear Usuario</td>
+                                    <td class="text-center">
+                                        <input type="checkbox" class="permissao-checkbox" data-permissao-id="__{permissao.id}__"
+                                               th:checked="${permissao.bloqueia_user == 'Ativado'}"
+                                               th:data-bloqueia_user="${permissao.bloqueia_user}" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Botão para salvar alterações -->
+                    <div class="text-center">
+                        <button type="button" id="salvarAlteracoes" class="btn btn-custom btn-lg">Salvar Alterações</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $("#salvarAlteracoes").click(function() {
+                var usuarioId = $("input[name='usuarioId']").val(); // Captura o usuárioId oculto do formulário
+
+                // Iterar sobre os checkboxes de permissão e capturar os dados
+                $(".permissao-checkbox").each(function() {
+                    var permissaoId = $(this).data("permissao-id"); // Captura o ID da permissão
+                    var permissao = $(this).data("permissao"); // Captura o nome da permissão (criar, editar, excluir, etc.)
+                    var status = $(this).prop("checked") ? "Ativado" : "Desativado"; // Se o checkbox estiver marcado
+
+                    // Enviar a requisição AJAX para atualizar o status da permissão
+                    $.ajax({
+                        url: "/permissoes/alterar-status/" + permissaoId, // Agora estamos usando permissaoId na URL
+                        type: "POST",
+                        data: {
+                            usuarioId: usuarioId, // Envia o ID do usuário
+                            permissao: permissao, // Tipo de permissão (criar, editar, excluir, etc.)
+                            status: status // Novo status da permissão
+                        },
+                        success: function(response) {
+                            console.log('Permissão alterada com sucesso');
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Erro ao alterar a permissão: ' + error);
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+2024-11-06T11:52:11.652-03:00 ERROR 13468 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to bind properties under 'logging.level.org.springframework.mail' to org.springframework.boot.logging.LogLevel:
+
+    Property: logging.level.org.springframework.mail
+    Value: "DEBUG  # Habilita log detalhado para Spring Mail"
+    Origin: class path resource [application.properties] - 36:40
+    Reason: failed to convert java.lang.String to org.springframework.boot.logging.LogLevel (caused by java.lang.IllegalArgumentException: No enum constant org.springframework.boot.logging.LogLevel.DEBUG  # Habilita log detalhado para Spring Mail)
+
+Action:
+
+Update your application's configuration. The following values are valid:
+
+    DEBUG
+    ERROR
+    FATAL
+    INFO
+    OFF
+    TRACE
+    WARN
+

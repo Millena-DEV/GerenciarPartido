@@ -1,0 +1,634 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>União Brasil</title>
+    <meta
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+      name="viewport"
+    />
+    <link rel="icon" th:href="@{/img/ub.jfif}" />
+    
+    <!-- Fonts and icons -->
+      <script th:src="@{/js/plugin/webfont/webfont.min.js}"></script>
+
+
+    <script>
+      WebFont.load({
+        google: { families: ["Public Sans:300,400,500,600,700"] },
+        custom: {
+          families: [
+            "Font Awesome 5 Solid",
+            "Font Awesome 5 Regular",
+            "Font Awesome 5 Brands",
+            "simple-line-icons",
+          ],
+          urls: ["/css/fonts.min.css"], // Corrigido aqui
+        },
+        active: function () {
+          sessionStorage.fonts = true;
+        },
+      });
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/plugins.min.css}" />
+   <link rel="stylesheet" href="/css/kaiadmin.min.css" />
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" th:href="@{/css/demo.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Sidebar -->
+      <div class="sidebar" data-background-color="dark">
+        <div class="sidebar-logo">
+          <!-- Logo Header -->
+          <div class="logo-header" data-background-color="dark">
+            <a th:href="@{/index}" class="logo">
+              <img
+                th:src="@{/img/logo.ico}"
+                alt="navbar brand"
+                class="navbar-brand"
+              />
+            </a>
+            <div class="nav-toggle">
+              <button class="btn btn-toggle toggle-sidebar">
+                <i class="gg-menu-right"></i>
+              </button>
+              <button class="btn btn-toggle sidenav-toggler">
+                <i class="gg-menu-left"></i>
+              </button>
+            </div>
+            <button class="topbar-toggler more">
+              <i class="gg-more-vertical-alt"></i>
+            </button>
+          </div>
+          <!-- Fim do Cabeçalho do Logo -->
+        </div>
+  
+        <div class="sidebar-wrapper scrollbar scrollbar-inner">
+          <div class="sidebar-content">
+            <ul class="nav nav-secondary">
+              <li class="nav-item active">
+                <a
+                data-bs-toggle="collapse"
+                href="#dashboard"
+                class="collapsed"
+                aria-expanded="false"
+                th:href="@{/index}"
+              >
+                <i class="fas fa-home me-2"></i>  <!-- O ícone da casa -->
+                Início
+               
+              </a>
+      
+              </li>
+              <li class="nav-section">
+                <span class="sidebar-mini-icon">
+                  <i class="fa fa-ellipsis-h"></i>
+                </span>
+                <h4 class="text-section">Menu</h4>
+              </li>
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#tables">
+                  <i class="fas fa-table"></i>
+                  <p>Tabelas</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="tables">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a th:href="@{/filiados}">
+                        <span class="sub-item">Filiados</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a th:href="@{/candidatos}">
+                        <span class="sub-item">Candidatos</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            
+              <li class="nav-item">
+                <a href="#" class="nav-link d-flex align-items-center" aria-label="Ir para documentos">
+                  <i class="fas fa-file mr-2"></i>
+                  <span class="sub-item mr-2">Documentos</span>
+                  <span class="badge badge-secondary" aria-hidden="true">1</span>
+                </a>
+              </li>
+             
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- final menu vertical -->
+
+      <div class="main-panel">
+        <div class="main-header">
+          <div class="main-header-logo">
+            <!-- Logo Header -->
+          <div class="logo-header" data-background-color="dark">
+            <a th:href="@{/index}" class="logo">
+              <img
+                th:src="@{/img/logo.ico}"
+                alt="navbar brand"
+                class="navbar-brand"
+              />
+            </a>
+              <div class="nav-toggle">
+                <button class="btn btn-toggle toggle-sidebar">
+                  <i class="gg-menu-right"></i>
+                </button>
+                <button class="btn btn-toggle sidenav-toggler">
+                  <i class="gg-menu-left"></i>
+                </button>
+              </div>
+              <button class="topbar-toggler more">
+                <i class="gg-more-vertical-alt"></i>
+              </button>
+            </div>
+            <!-- End Logo Header -->
+          </div>
+          <!-- Navbar Header -->
+          <nav
+            class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
+            <button class="btn btn-info" onclick="window.location.href='/index';">Voltar</button>
+
+          </nav>
+          <!-- End Navbar -->
+        </div>
+            <!--começo da tabela-->
+        <div class="container">
+          <div class="page-inner">
+            <div class="page-header">
+              <h3 class="fw-bold mb-3">Navegar</h3>
+              <ul class="breadcrumbs mb-3">
+                <li class="nav-home">
+                  <a th:href="@{/index}">
+                    <i class="icon-home"></i>
+                  </a>
+                </li>
+                <li class="separator">
+                  <i class="icon-arrow-right"></i>
+                </li>
+                <li class="nav-item">
+                  <a href="#">Tabela</a>
+                </li>
+                <li class="separator">
+                  <i class="icon-arrow-right"></i>
+                </li>
+                <li class="nav-item">
+                  <a href="#">Usuários e Permissões</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Usuários e Permissões</h4>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table
+                      id="multi-filter-select"
+                      class="display table table-striped table-hover"
+                    >
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Sobrenome</th>
+                                <th>Função</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="usuario : ${usuarios}">
+                                <td th:text="${usuario.nome}"></td>
+                                <td th:text="${usuario.sobrenome}"></td>
+                                <td th:text="${usuario.funcao}"></td>
+                                <td>
+                                    <a th:href="@{/permissoes/{usuarioId}(usuarioId=${usuario.id})}">Alterar Permissões</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <div>
+            <!-- <span>Página <span th:text="${currentPage}"></span> de <span th:text="${totalPages}"></span></span>
+            <nav>
+              <ul class="pagination">
+               
+                <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled'">
+                  <a class="page-link text-primary" 
+                     th:href="@{/filiados(page=${currentPage - 1}, size=${10}, uf=${uf}, municipio=${municipio}, titulo=${titulo}, nome=${nome}, cpf=${cpf})}">Anterior</a>
+                </li>
+        
+          
+               
+                <li class="page-item" th:classappend="${currentPage == totalPages} ? 'disabled'">
+                  <a class="page-link text-primary" 
+                     th:href="@{/filiados(page=${currentPage + 1}, size=${10}, uf=${uf}, municipio=${municipio}, titulo=${titulo}, nome=${nome}, cpf=${cpf} )}">Próximo</a>
+                </li>
+              </ul>
+            </nav>
+          </div>-->
+    
+          <style>
+                  .page-link {
+                border-radius: 0.25rem; /* Bordas arredondadas */
+            }
+            
+            .page-link:hover {
+                background-color: #0056b3; /* Azul escuro ao passar o mouse */
+                color: white; /* Manter texto branco */
+            }
+
+            .page-item.disabled .page-link {
+                background-color: #e9ecef; /* Cor de fundo para itens desabilitados */
+                color: #6c757d; /* Cor do texto para itens desabilitados */
+            }
+
+          </style>
+
+              <footer class="footer">
+                <div class="container-fluid d-flex justify-content-between">
+                  <nav class="pull-left">
+                    <ul class="nav">
+                      <li class="nav-item">
+                        <a class="nav-link" href="https://uniaobrasil.org.br/filie-se/">
+                          Filiar 
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="https://wa.me/61994180629?text=Olá%2C%20gostaria%20de%20mais%20informações">  Ajuda </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#"> União Brasil </a>
+                      </li>
+                      <li class="nav-item">
+                      <a class="nav-link" href="https://uniaobrasil.org.br/">2024, União Brasil <i class="fa fa-heart heart text-danger"></i> bySite</a>
+                    </li>
+                    </ul>
+                  </nav>
+                </div>
+              </footer>
+            </div>
+     
+
+      <!-- Custom template | don't include it in your project! -->
+      <div class="custom-template">
+        <div class="title">Configurar</div>
+        <div class="custom-content">
+          <div class="switcher">
+            <div class="switch-block">
+              <h4>menu Horizontal</h4>
+              <div class="btnSwitch">
+                <button
+                  type="button"
+                  class="selected changeLogoHeaderColor"
+                  data-color="dark"
+                ></button>
+                <button
+                  type="button"
+                  class="selected changeLogoHeaderColor"
+                  data-color="blue"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="purple"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="light-blue"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="green"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="orange"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="red"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="white"
+                ></button>
+                <br />
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="dark2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="blue2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="purple2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="light-blue2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="green2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="orange2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="red2"
+                ></button>
+              </div>
+            </div>
+            <div class="switch-block">
+              <h4>Menu vertical</h4>
+              <div class="btnSwitch">
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="dark"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="blue"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="purple"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="light-blue"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="green"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="orange"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="red"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="white"
+                ></button>
+                <br />
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="dark2"
+                ></button>
+                <button
+                  type="button"
+                  class="selected changeTopBarColor"
+                  data-color="blue2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="purple2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="light-blue2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="green2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="orange2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="red2"
+                ></button>
+              </div>
+            </div>
+            <div class="switch-block">
+              <h4>Menu Horizontal</h4>
+              <div class="btnSwitch">
+                <button
+                  type="button"
+                  class="selected changeSideBarColor"
+                  data-color="white"
+                ></button>
+                <button
+                  type="button"
+                  class="changeSideBarColor"
+                  data-color="dark"
+                ></button>
+                <button
+                  type="button"
+                  class="changeSideBarColor"
+                  data-color="dark2"
+                ></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="custom-toggle">
+          <i class="icon-settings"></i>
+        </div>
+      </div>
+      <!-- End Custom template -->
+    </div>
+  <!-- Core JS Files -->
+<script th:src="@{/js/core/jquery-3.7.1.min.js}"></script>
+<script th:src="@{/js/core/popper.min.js}"></script>
+<script th:src="@{/js/core/bootstrap.min.js}"></script>
+
+<!-- jQuery Scrollbar -->
+<script th:src="@{/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js}"></script>
+
+<!-- Chart JS -->
+<script th:src="@{/js/plugin/chart.js/chart.min.js}"></script>
+
+<!-- jQuery Sparkline -->
+<script th:src="@{/js/plugin/jquery.sparkline/jquery.sparkline.min.js}"></script>
+
+<!-- Chart Circle -->
+<script th:src="@{/js/plugin/chart-circle/circles.min.js}"></script>
+
+<!-- Datatables -->
+<script th:src="@{/js/plugin/datatables/datatables.min.js}"></script>
+
+<!-- Bootstrap Notify -->
+<script th:src="@{/js/plugin/bootstrap-notify/bootstrap-notify.min.js}"></script>
+
+<!-- jQuery Vector Maps -->
+<script th:src="@{/js/plugin/jsvectormap/jsvectormap.min.js}"></script>
+<script th:src="@{/js/plugin/jsvectormap/world.js}"></script>
+
+<!-- Sweet Alert -->
+<script th:src="@{/js/plugin/sweetalert/sweetalert.min.js}"></script>
+
+<!-- Kaiadmin JS -->
+<script th:src="@{/js/kaiadmin.min.js}"></script>
+
+<!-- Kaiadmin DEMO methods, don't include it in your project! -->
+<script th:src="@{/js/setting-demo.js}"></script>
+<script th:src="@{/js/demo.js}"></script>
+
+    <script>
+   $(document).ready(function () {
+    // Inicialização da tabela
+    var basicTable = $("#multi-filter-select").DataTable({
+        pageLength: 5,
+        initComplete: function () {
+            this.api().columns().every(function () {
+                var column = this;
+                var select = $('<select class="form-select"><option value=""></option></select>')
+                    .appendTo($(column.footer()).empty())
+                    .on("change", function () {
+                        var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                        column.search(val ? "^" + val + "$" : "", true, false).draw();
+                    });
+
+                column.data().unique().sort().each(function (d, j) {
+                    select.append('<option value="' + d + '">' + d + "</option>");
+                });
+            });
+        },
+        drawCallback: function () {
+            translateWords(); // Chamando a função de tradução após o desenho da tabela
+        },
+    });
+
+    // Função para traduzir palavras
+    function translateWords() {
+        // Traduzindo informações da tabela
+        $('#multi-filter-select_info').text(function(i, text) {
+            var totalEntries = text.match(/\d+/g);
+            if (totalEntries && totalEntries.length > 1) {
+                return 'Exibindo ' + totalEntries[1] + ' registros'; // Retorna a nova string
+            }
+            return text; // Se não houver correspondência, retorna o texto original
+        });
+
+        // Traduzindo a paginação
+        $('#multi-filter-select_paginate a').each(function() {
+            var text = $(this).text();
+            switch (text) {
+                case 'Previous':
+                    $(this).text('Anterior');
+                    break;
+                case 'Next':
+                    $(this).text('Próximo');
+                    break;
+            }
+        });
+    }
+});
+       // Troca o texto da label assim que a página carrega
+       $(document).ready(function() {
+            // Troca os textos da label
+            $('.dataTables_length label').contents().filter(function() {
+                return this.nodeType === 3; // Node text
+            }).each(function() {
+                if (this.nodeValue.trim() === 'Show') {
+                    this.nodeValue = 'Mostrar';
+                }
+                if (this.nodeValue.trim() === 'entries') {
+                    this.nodeValue = 'entradas';
+                }
+            });
+        });
+        $(document).ready(function() {
+            // Troca o texto da label
+            $('#multi-filter-select_filter label').contents().filter(function() {
+                return this.nodeType === 3; // Filtra nós de texto
+            }).each(function() {
+                if (this.nodeValue.trim() === 'Search:') {
+                    this.nodeValue = 'Buscar:'; // Troca "Search:" por "Buscar:"
+                }
+            });
+        });
+      
+        $(document).ready(function() {
+            // Troca o texto dos botões de paginação
+            $('#multi-filter-select_previous a').text('Anterior'); // Troca "Previous" por "Anterior"
+            $('#multi-filter-select_next a').text('Próximo'); // Troca "Next" por "Próximo"
+        });
+        $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "#177dff",
+        fillColor: "rgba(23, 125, 255, 0.14)",
+      });
+
+      $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "#f3545d",
+        fillColor: "rgba(243, 84, 93, .14)",
+      });
+
+      $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "#ffa534",
+        fillColor: "rgba(255, 165, 52, .14)",
+      });
+      $(document).ready(function() {
+        $('#municipio').select2({
+            dropdownAutoWidth: true,
+            width: '100%'
+        });
+    });
+    </script>
+  </body>
+</html>

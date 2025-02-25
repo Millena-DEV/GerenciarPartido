@@ -1,0 +1,315 @@
+
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<link th:href="@{/css/reset.css}">
+<link th:href="@{/css/bootstrap.min.css}">
+<link th:href="@{css/bootstrap-select.min.css}">
+<link th:href="@{css/open-iconic-bootstrap.min.css}">
+<link th:href="@{css/simplePagination.css}">
+<link th:href="@{css/custom.css}">
+<link th:href="@{css/c3.min.css}">
+<script th:href="@{js/jquery.js}"></script>
+<script th:href="@{js/bootstrap.bundle.min.js}"></script>
+<script th:href="@{js/bootstrap-select.min.js}"></script>
+<script th:href="@{js/jquery.mask.min.js}"></script>
+<script th:href="@{js/jquery.simplePagination.js}"></script>
+<script th:href="@{js/custom.js}"></script>
+<script th:href="@{js/plugins/c3/d3.min.js}"></script>
+<script th:href="@{js/plugins/c3/c3.min.js}"></script>
+<link rel="icon" th:href="@{/img/ub.jfif}" />
+<title>União Brasil</title>
+<link rel="icon" th:href="@{img/ub.jfif}" >
+<script th:src="@{/js/plugin/webfont/webfont.min.js}"></script>
+<!-- Link para o Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+ <!-- CSS Files -->
+ <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+ <link rel="stylesheet" th:href="@{/css/plugins.min.css}" />
+<link rel="stylesheet" href="/css/kaiadmin.min.css" />
+<link rel="stylesheet" th:href="@{/css/demo.css}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- jQuery (necessário para o jQuery Mask) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- jQuery Mask Plugin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+
+<style>
+.custom-file-input ~ .custom-file-label::after {
+    display: none;
+}
+
+.btn-upload {
+    background-color: #428BCA;
+    border-color: #428BCA;;
+    color: white;
+}
+
+.btn-upload:hover {
+    background-color: #31b0d5;
+    border-color: #269abc;
+}
+
+.section-divider {
+    margin: 20px 0; /* Espaçamento acima e abaixo da linha */
+    border-top: 1px solid #dee2e6; /* Cor e espessura da linha */
+}
+
+.modal.fade .modal-dialog {
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.modal.fade.show .modal-dialog {
+    transform: translateY(0);
+    opacity: 1;
+}
+</style>
+ </head>
+
+        <body>  
+            <div th:if="${candidato == null}">
+                <p>Filiado não encontrado</p>
+            </div>
+            
+            <div class="container mt-5">
+                <a th:href="@{${referer}}" Class="btn btn-primary" style="margin-top: 5px">Voltar</a>
+                <div class="card">
+                    <div class="home card-header">
+                        <h1 style="font-size:20px; text-align: center;">Ficha do Candidato</h1>
+                        <h6 style="margin-top: 20px">
+                            Acesse nosso Site para ficar por dentro de todas as informações <a href="https://uniaobrasil.org.br/">clicando aqui </a>
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <!-- Dados Pessoais -->
+                        <h1 style="color: #428BCA;">Dados Pessoais</h1>
+                        <div class="row">
+                          <!-- Nome Completo -->
+                          <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                              <label for="nome">Nome Completo:</label>
+                              <input maxlength="250" type="text" class="form-control" id="nome" name="nome" th:value="${candidato.nome}" readonly>
+                            </div>
+                          </div>
+                          
+                          <!-- CPF -->
+                          <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                              <label for="cpf">CPF:</label>
+                              <input type="text" class="form-control" id="cpf" name="cpf" th:value="${candidato.cpf}" readonly>
+                            </div>
+                          </div>
+                
+                          <!-- Título de Eleitor -->
+                          <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                              <label for="Titulo">Título de Eleitor:</label>
+                              <input type="text" class="form-control" id="Titulo" name="Titulo" th:value="${candidato.titulo}" readonly>
+                            </div>
+                          </div>
+                           <!-- Título de Eleitor -->
+                           <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                              <label for="Titulo">Situação da Filiação:</label>
+                              <input type="text" class="form-control" id="Titulo" name="Titulo" th:value="${candidato.Situ_filiacao}" readonly>
+                            </div>
+                          </div>
+                
+                          <!-- Nome do Pai -->
+                          <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                              <label for="nome_pai">Gênero:</label>
+                              <input maxlength="250" type="text" class="form-control" id="nome_pai" name="nome_pai" th:value="${candidato.genero}" readonly>
+                            </div>
+                          </div>
+                
+                          <!-- Nome da Mãe -->
+                          <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                              <label for="nome_mae">Etinia:</label>
+                              <input maxlength="250" type="text" class="form-control" id="nome_mae" name="nome_mae" th:value="${candidato.etinia}" readonly>
+                            </div>
+                          </div>
+                
+                          <!-- Data de Nascimento -->
+                          <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                              <label for="datanascimento">Data de Nascimento:</label>
+                              <input type="text" name="datanascimento" class="form-control" th:value="${candidato.Nascimento}" readonly>
+                            </div>
+                          </div>
+                        </div> <!-- End row -->
+                
+                        <hr>
+                
+                        <!-- Endereço -->
+                        <h1 style="color: #428BCA;">Candidatura</h1>
+                        <div class="row">
+                          <!-- UF -->
+                          <div class="col-md-6 col-lg-3">
+                            <div class="form-group">
+                              <label for="uf">Ano:</label>
+                              <input type="text" class="form-control" id="uf" name="uf" th:value="${candidato.ano}" readonly>
+                            </div>
+                          </div>
+                          <!-- UF -->
+                          <div class="col-md-6 col-lg-3">
+                            <div class="form-group">
+                              <label for="uf">UF:</label>
+                              <input type="text" class="form-control" id="uf" name="uf" th:value="${candidato.uf}" readonly>
+                            </div>
+                          </div>
+                
+                          <!-- Município -->
+                          <div class="col-md-6 col-lg-3">
+                            <div class="form-group">
+                              <label for="municipio">Município:</label>
+                              <input type="text" class="form-control" id="municipio" name="municipio" th:value="${candidato.municipio}" readonly>
+                            </div>
+                          </div>
+                
+                          <!-- Bairro -->
+                          <div class="col-md-6 col-lg-3">
+                            <div class="form-group">
+                              <label for="bairro">Cargo:</label>
+                              <input type="text" class="form-control" id="bairro" name="bairro" th:value="${candidato.cargo}" readonly>
+                            </div>
+                          </div>
+                        
+                              <!-- Partido -->
+                          <div class="col-md-6 col-lg-3">
+                            <div class="form-group">
+                            <label for="email">Partido:</label>
+                            <input type="text" class="form-control" id="email" name="email" th:value="${candidato.partido}" readonly>
+                          </div>
+                          </div>
+                
+                          <!-- Logradouro -->
+                          <div class="col-md-6 col-lg-3">
+                            <div class="form-group">
+                              <label for="logradouro">Situação:</label>
+                              <input type="text" class="form-control" id="logradouro" name="logradouro" th:value="${candidato.situ_cand}" readonly>
+                            </div>
+                          </div>
+                
+                          <!-- Despesa -->
+                          <div class="col-md-6 col-lg-3">
+                            <div class="form-group">
+                              <label for="numero">Despesa de Campanha:</label>
+                              <input maxlength="8" type="text" class="form-control" id="numero" name="numero" th:value="${candidato.despesa}" readonly oninput="formatarNumero(this)"> 
+                            </div>
+                          </div>
+                          <script>
+                            function formatarNumero(input) {
+                              let valor = input.value.replace(/\D/g, '');  // Remove todos os caracteres não numéricos
+                              let valorFormatado = (valor / 100).toFixed(2);  // Divide por 100 e formata com 2 casas decimais
+                              
+                              // Cria uma instância de NumberFormat para formatar o número com separação de milhar
+                              let numero = parseFloat(valorFormatado);
+                              valorFormatado = numero.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                          
+                              input.value = `R$ ${valorFormatado}`;
+                            }
+                          
+                            // Formatar o valor inicial no campo, caso o valor passado já tenha casas decimais
+                            window.addEventListener('DOMContentLoaded', (event) => {
+                              let input = document.getElementById('numero');
+                              let valor = input.value.replace(/\D/g, '');  // Remove todos os caracteres não numéricos
+                              if (valor) {
+                                let valorFormatado = (valor / 100).toFixed(2);  // Divide por 100 e formata com 2 casas decimais
+                                let numero = parseFloat(valorFormatado);
+                                valorFormatado = numero.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                                input.value = valorFormatado;
+                              }
+                            });
+                          </script>
+
+                          <div class="col-md-6 col-lg-3">
+                            <div class="form-group">
+                              <label for="numero">Quantidade de Votos:</label>
+                              <input maxlength="8" type="text" class="form-control" id="votos" name="votos" th:value="${candidato.qtd_votos}" readonly>
+                            </div>
+                          </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+                    <footer>
+                        <div class="container-fluid d-flex justify-content-between">
+                          <nav class="pull-left">
+                            <ul class="nav">
+                              <li class="nav-item">
+                                <a class="nav-link" href="https://uniaobrasil.org.br/filie-se/">
+                                  Filiar 
+                                </a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" href="https://wa.me/61994180629?text=Olá%2C%20gostaria%20de%20mais%20informações"> Ajuda </a>
+                              </li>
+                              <li class="nav-item">
+                              <a class="nav-link" href="https://uniaobrasil.org.br/">2024, União Brasil <i class="fa fa-heart heart text-danger"></i> bySite</a>
+                            </li>
+                            </ul>
+                          </nav>
+                        </div>
+                      </footer>
+    
+     </body>
+<script>
+    
+    $('#customFileButton').on('click', function() {
+        $('#foto').click();
+    });
+
+    $('#foto').on('change', function() {
+        var fileName = $(this).val().split('\\').pop();
+        $('#customFileLabel').html(fileName);
+    });
+    
+    
+        const input = document.getElementById("foto");
+
+    
+        const convertBase64 = (file) => {
+            return new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+
+            fileReader.onload = () => {
+                resolve(fileReader.result);
+            };
+
+            fileReader.onerror = (error) => {
+                reject(error);
+            };
+            });
+        };
+
+        const uploadImage = async (event) => {
+            const file = event.target.files[0];
+            const base64 = await convertBase64(file);
+            $('#fileBase64').val(base64.split(',')[1]);	
+        };
+
+        input.addEventListener("change", (e) => {
+            uploadImage(e);
+        });
+      
+        
+    
+</script>
+   </html>
+        

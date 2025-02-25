@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>União Brasil</title>
+    <meta
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+      name="viewport"
+    />
+    <link
+      rel="icon"
+      href="@{/img/logo.png}"
+      type="image/x-icon"
+    />
+    
+    <!-- Fonts and icons -->
+      <script th:src="@{/js/plugin/webfont/webfont.min.js}"></script>
+
+
+    <script>
+      WebFont.load({
+        google: { families: ["Public Sans:300,400,500,600,700"] },
+        custom: {
+          families: [
+            "Font Awesome 5 Solid",
+            "Font Awesome 5 Regular",
+            "Font Awesome 5 Brands",
+            "simple-line-icons",
+          ],
+          urls: ["/css/fonts.min.css"], // Corrigido aqui
+        },
+        active: function () {
+          sessionStorage.fonts = true;
+        },
+      });
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/plugins.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/kaiadmin.min.css}" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" th:href="@{/css/demo.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Sidebar -->
+      <div class="sidebar" data-background-color="dark">
+        <div class="sidebar-logo">
+          <!-- Logo Header -->
+          <div class="logo-header" data-background-color="dark">
+            <a th:href="@{/index}" class="logo">
+              <img
+                th:src="@{/img/logo.ico}"
+                alt="navbar brand"
+                class="navbar-brand"
+              />
+            </a>
+            <div class="nav-toggle">
+              <button class="btn btn-toggle toggle-sidebar">
+                <i class="gg-menu-right"></i>
+              </button>
+              <button class="btn btn-toggle sidenav-toggler">
+                <i class="gg-menu-left"></i>
+              </button>
+            </div>
+            <button class="topbar-toggler more">
+              <i class="gg-more-vertical-alt"></i>
+            </button>
+          </div>
+          <!-- Fim do Cabeçalho do Logo -->
+        </div>
+        <div class="sidebar-wrapper scrollbar scrollbar-inner">
+          <div class="sidebar-content">
+            <ul class="nav nav-secondary">
+              <li class="nav-item active">
+                <a
+                  data-bs-toggle="collapse"
+                  href="#dashboard"
+                  class="collapsed"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-home"></i>
+                  <p>inicio</p>
+                  <span class="caret"></span>
+                </a>
+      
+              </li>
+              <li class="nav-section">
+                <span class="sidebar-mini-icon">
+                  <i class="fa fa-ellipsis-h"></i>
+                </span>
+                <h4 class="text-section">Menu</h4>
+              </li>
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#tables">
+                  <i class="fas fa-table"></i>
+                  <p>Tabelas</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="tables">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a th:href="@{/filiados}">
+                        <span class="sub-item">Filiados</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#base">
+                  <i class="fas fa-layer-group"></i>
+                  <p>Detalhar</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="base">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a th:href="@{components/avatars.html}">
+                        <span class="sub-item">Avatars</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a th:href="@{components/buttons.html}">
+                        <span class="sub-item">Buttons</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a th:href="@{components/gridsystem.html}">
+                        <span class="sub-item">Grid System</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a th:href="@{components/panels.html}">
+                        <span class="sub-item">Panels</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a th:href="@{/components/notifications.html}">Notificações</a>
+                        <span class="sub-item">Notifications</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a th:href="@{components/sweetalert.html}">
+                        <span class="sub-item">Sweet Alert</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a th:href="@{components/font-awesome-icons.html}">
+                        <span class="sub-item">Font Awesome Icons</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a th:href="@{components/simple-line-icons.html}">
+                        <span class="sub-item">Simple Line Icons</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a th:href="@{components/typography.html}">
+                        <span class="sub-item">Typography</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarLayouts">
+                  <i class="fas fa-th-list"></i>
+                  <p>ver o que fazer aqui</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="sidebarLayouts">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a th:href="@{sidebar-style-2.html}">
+                        <span class="sub-item">Sidebar Style 2</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a th:href="@{icon-menu.html}">
+                        <span class="sub-item">Icon Menu</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#forms">
+                  <i class="fas fa-pen-square"></i>
+                  <p>Formulario</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="forms">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a th:href="@{forms/forms.html}">
+                        <span class="sub-item">Basic Form</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#maps">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <p>Mapa</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="maps">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a th:href="@{maps/googlemaps.html}">
+                        <span class="sub-item">Google Maps</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="@{maps/jsvectormap.html}">
+                        <span class="sub-item">Jsvectormap</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#charts">
+                  <i class="far fa-chart-bar"></i>
+                  <p>Graficos</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="charts">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a th:href="@{charts/charts.html}">
+                        <span class="sub-item">Detalhar</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a th:href="@{charts/sparkline.html}">
+                        <span class="sub-item">Sparkline</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a th:href="@{widgets.html}">
+                  <i class="fas fa-desktop"></i>
+                  <p>Dashboards</p>
+                  <span class="badge badge-success">4</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../../documentation/index.html">
+                  <i class="fas fa-file"></i>
+                  <p>Documentos</p>
+                  <span class="badge badge-secondary">1</span>
+                </a>
+              </li>
+             
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- final menu vertical -->
+
+      <div class="main-panel">
+        <div class="main-header">
+          <div class="main-header-logo">
+            <!-- Logo Header -->
+            <div class="logo-header" data-background-color="dark">
+              <a th:href="@{../index.html}" class="logo">
+                <img
+                  th:src="@{/img/logo.ico}"
+                  alt="navbar brand"
+                  class="navbar-brand"
+                
+                />
+              </a>
+              <div class="nav-toggle">
+                <button class="btn btn-toggle toggle-sidebar">
+                  <i class="gg-menu-right"></i>
+                </button>
+                <button class="btn btn-toggle sidenav-toggler">
+                  <i class="gg-menu-left"></i>
+                </button>
+              </div>
+              <button class="topbar-toggler more">
+                <i class="gg-more-vertical-alt"></i>
+              </button>
+            </div>
+            <!-- End Logo Header -->
+          </div>
+          <!-- Navbar Header -->
+          <nav
+            class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom"
+          >
+            <div class="container-fluid">
+              <nav
+                class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex"
+              >
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <button type="submit" class="btn btn-search pe-1">
+                      <i class="fa fa-search search-icon"></i>
+                    </button>
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Buscar ..."
+                    class="form-control"
+                  />
+                </div>
+              </nav>
+
+              <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
+                <li
+                  class="nav-item topbar-icon dropdown hidden-caret d-flex d-lg-none"
+                >
+                  <a
+                    class="nav-link dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    role="button"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                  >
+                    <i class="fa fa-search"></i>
+                  </a>
+                  <ul class="dropdown-menu dropdown-search animated fadeIn">
+                    <form class="navbar-left navbar-form nav-search">
+                      <div class="input-group">
+                        <input
+                          type="text"
+                          placeholder="Search ..."
+                          class="form-control"
+                        />
+                      </div>
+                    </form>
+                  </ul>
+                </li>
+                <li class="nav-item topbar-icon dropdown hidden-caret">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="messageDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i class="fa fa-envelope"></i>
+                  </a>
+                  <ul
+                    class="dropdown-menu messages-notif-box animated fadeIn"
+                    aria-labelledby="messageDropdown"
+                  >
+                    <li>
+                      <div
+                        class="dropdown-title d-flex justify-content-between align-items-center"
+                      >
+                        Mensagens
+                        <a href="#" class="small">Marcar tudo como lido</a>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="message-notif-scroll scrollbar-outer">
+                        <div class="notif-center">
+                          <a href="#">
+                            <div class="notif-img">
+                              <img
+                                th:src="@{/img/logo.png}"
+                                alt="Img Profile"
+                              />
+                            </div>
+                            <div class="notif-content">
+                              <span class="subject">nome</span>
+                              <span class="block"> mensagem ? </span>
+                              <span class="time">a quanto tempo a msg foi enviada</span>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <a class="see-all" href="javascript:void(0);"
+                        >
+                        Ver todas as mensagens<i class="fa fa-angle-right"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item topbar-icon dropdown hidden-caret">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="notifDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i class="fas fa-bell"></i>
+                    <span class="notification">4</span>
+                  </a>
+                  <ul
+                    class="dropdown-menu notif-box animated fadeIn"
+                    aria-labelledby="notifDropdown"
+                  >
+                    <li>
+                      <div class="dropdown-title">
+                        notificações
+                      </div>
+                    </li>
+                    <li>
+                      <div class="notif-scroll scrollbar-outer">
+                        <div class="notif-center">
+                          <a href="#">
+                            <div class="notif-icon notif-primary">
+                              <i class="fa fa-user-plus"></i>
+                            </div>
+                            <div class="notif-content">
+                              <span class="block"> msg de notificação </span>
+                              <span class="time">a quanto tempo foi enviada</span>
+                            </div>
+                          </a>
+                        
+                    <li>
+                      <a class="see-all" href="javascript:void(0);"
+                        >ver todas as notificalções <i class="fa fa-angle-right"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item topbar-icon dropdown hidden-caret">
+                  <a
+                    class="nav-link"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    aria-expanded="false"
+                  >
+                    <i class="fas fa-layer-group"></i>
+                  </a>
+                  <div class="dropdown-menu quick-actions animated fadeIn">
+                    <div class="quick-actions-header">
+                      <span class="title mb-1">Ações rápidas</span>
+                      <span class="subtitle op-7">Atalhos</span>
+                    </div>
+                    <div class="quick-actions-scroll scrollbar-outer">
+                      <div class="quick-actions-items">
+                        <div class="row m-0">
+                          <a class="col-6 col-md-4 p-0" href="#">
+                            <div class="quick-actions-item">
+                              <div class="avatar-item bg-danger rounded-circle">
+                                <i class="far fa-calendar-alt"></i>
+                              </div>
+                              <span class="text">Calendario</span>
+                            </div>
+                          </a>
+                          <a class="col-6 col-md-4 p-0" href="#">
+                            <div class="quick-actions-item">
+                              <div
+                                class="avatar-item bg-warning rounded-circle"
+                              >
+                                <i class="fas fa-map"></i>
+                              </div>
+                              <span class="text">Maps</span>
+                            </div>
+                          </a>
+                          <a class="col-6 col-md-4 p-0" href="#">
+                            <div class="quick-actions-item">
+                              <div class="avatar-item bg-info rounded-circle">
+                                <i class="fas fa-file-excel"></i>
+                              </div>
+                              <span class="text"> Documentos</span>
+                            </div>
+                          </a>
+                          <a class="col-6 col-md-4 p-0" href="#">
+                            <div class="quick-actions-item">
+                              <div
+                                class="avatar-item bg-success rounded-circle"
+                              >
+                                <i class="fas fa-envelope"></i>
+                              </div>
+                              <span class="text">Emails</span>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="nav-item topbar-user dropdown hidden-caret">
+                  <a
+                    class="dropdown-toggle profile-pic"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    aria-expanded="false"
+                  >
+                    <div class="avatar-sm">
+                      <img
+                        src="@{/img/logo}"
+                        alt="..."
+                        class="avatar-img rounded-circle"
+                      />
+                    </div>
+                    <span class="profile-username">
+                      <span class="op-7">olá,</span>
+                      <span>Bem-vindo, <span th:text="${username}">Usuário</span>!</span>
+                    </span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-user animated fadeIn">
+                    <div class="dropdown-user-scroll scrollbar-outer">
+                      <li>
+                        <div class="user-box">
+                          <div class="avatar-lg">
+                            <img
+                              src="@{/img/logo.png}"
+                              alt="image profile"
+                              class="avatar-img rounded"
+                            />
+                          </div>
+                          <div class="u-text">
+                            <h4>nome do user</h4>
+                            <p class="text-muted">email da pessoa</p>
+                            <a
+                              th:href="@{profile.html}"
+                              class="btn btn-xs btn-secondary btn-sm"
+                              >ver usuário</a
+                            >
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Meu usuário</a>
+                        <a class="dropdown-item" href="#">Atividades</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Configurar Conta</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Sair</a>
+                      </li>
+                    </div>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <!-- End Navbar -->
+        </div>
+        <div class="container">
+          <div class="page-inner">
+            <form action="/index" method="get" id="filterForm">
+              <div class="col-md-12 mb-4">
+                  <div class="card card-stats card-round">
+                      <div class="card-body">
+                          <div class="row align-items-center">
+                              <div class="col-icon">
+                                  <div class="icon-big text-center icon-primary bubble-shadow-small">
+                                      <i class="fas fa-filter"></i>
+                                  </div>
+                              </div>
+                              <div class="col col-stats ms-3 ms-sm-0">
+                                  <div class="numbers">
+                                      <p class="card-category">FILTRAR</p>
+                                      <div class="d-flex align-items-center mb-3">
+                                          <div class="form-group me-2">
+                                              <select id="ano" name="ano" class="form-control" onchange="submitForm()">
+                                                  <option value="2024" th:selected="${ano == '2024'}">2024</option>
+                                                  <option value="2022" th:selected="${ano == '2022'}">2022</option>
+                                                  <option value="2020" th:selected="${ano == '2020'}">2020</option>
+                                                  <option value="2018" th:selected="${ano == '2018'}">2018</option>
+                                                  <option value="2016" th:selected="${ano == '2016'}">2016</option>
+                                              </select>
+                                          </div>
+                                          <div class="form-group me-2">
+                                              <select id="partido" name="partido" class="form-control" onchange="submitForm()">
+                                                  <option value="UNIÃO" th:selected="${partido == 'UNIÃO'}">União Brasil</option>
+                                                  <option value="AGIR" th:selected="${partido == 'AGIR'}">AGIR</option>
+                                                  <option value="AVANTE" th:selected="${partido == 'AVANTE'}">AVANTE</option>
+                                                  <option value="CIDADANIA" th:selected="${partido == 'CIDADANIA'}">CIDADANIA</option>
+                                                  <option value="DC" th:selected="${partido == 'DC'}">DC</option>
+                                                  <option value="DEM" th:selected="${partido == 'DEM'}">DEM</option>
+                                                  <option value="MDB" th:selected="${partido == 'MDB'}">MDB</option>
+                                                  <option value="MOBILIZA" th:selected="${partido == 'MOBILIZA'}">MOBILIZA</option>
+                                                  <option value="NOVO" th:selected="${partido == 'NOVO'}">NOVO</option>
+                                                  <option value="PATRIOTA" th:selected="${partido == 'PATRIOTA'}">PATRIOTA</option>
+                                                  <option value="PC do B" th:selected="${partido == 'PC do B'}">PC do B</option>
+                                                  <option value="PCB" th:selected="${partido == 'PCB'}">PCB</option>
+                                                  <!-- Adicione as demais opções de partido aqui -->
+                                              </select>
+                                          </div>
+                                          <button class="btn btn-primary btn-lg">Pesquisar</button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </form>
+          
+          <script> 
+            function submitForm() {
+                document.getElementById("filterForm").submit();}
+           </script>
+              
+         
+          
+              <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
+                  <div class="row">
+                      <div class="col-sm-6 col-md-3">
+                          <div class="card card-stats card-round">
+                              <div class="card-body">
+                                  <div class="row align-items-center">
+                                      <div class="col-icon">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+                                          <div class="icon-big text-center icon-primary bubble-shadow-small">
+                                              <i class="fas fa-users"></i>
+                                          </div>
+                                      </div>
+                                      <div class="col col-stats ms-3 ms-sm-0">
+                                          <div class="numbers">
+                                              <p class="card-category">Filiados União Brasil</p>
+                                              <h4 class="card-title" th:text="${totalFiliados}">0</h4>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+      
+                      <div class="col-sm-6 col-md-3">
+                          <div class="card card-stats card-round">
+                              <div class="card-body">
+                                  <div class="row align-items-center">
+                                      <div class="col-icon">
+                                        <div class="icon-big text-center icon-warning bubble-shadow-small">
+                                          <i class="fas fa-user-friends fa-5x"></i>
+                                      </div>
+                                      </div>
+                                      <div class="col col-stats ms-3 ms-sm-0">
+                                          <div class="numbers">
+                                              <p class="card-category">Prefeitos</p>
+                                              <h4 class="card-title" th:text="${totalPrefeitos}">0</h4>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+      
+                      <div class="col-sm-6 col-md-3">
+                          <div class="card card-stats card-round">
+                              <div class="card-body">
+                                  <div class="row align-items-center">
+                                      <div class="col-icon">
+                                          <div class="icon-big text-center icon-primary bubble-shadow-small">
+                                              <i class="fas fa-user-friends fa-5x"></i>
+                                          </div>
+                                      </div>
+                                      <div class="col col-stats ms-3 ms-sm-0">
+                                          <div class="numbers">
+                                              <p class="card-category">Vereadores</p>
+                                              <h4 class="card-title" th:text="${totalVereador}">0</h4>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+      
+                      <div class="col-sm-6 col-md-3">
+                          <div class="card card-stats card-round">
+                              <div class="card-body">
+                                  <div class="row align-items-center">
+                                      <div class="col-icon">
+                                        <div class="icon-big text-center icon-warning bubble-shadow-small">
+                                          <i class="fas fa-user-friends fa-5x"></i>
+                                      </div>
+                                      </div>
+                                      <div class="col col-stats ms-3 ms-sm-0">
+                                          <div class="numbers">
+                                              <p class="card-category">Deputado Federal</p>
+                                              <h4 class="card-title">56</h4>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-6 col-md-3">
+                          <div class="card card-stats card-round">
+                              <div class="card-body">
+                                  <div class="row align-items-center">
+                                      <div class="col-icon">
+                                        <div class="icon-big text-center icon-primary bubble-shadow-small">
+                                          <i class="fas fa-user-friends fa-5x"></i>
+                                      </div>
+                                      </div>
+                                      <div class="col col-stats ms-3 ms-sm-0">
+                                          <div class="numbers">
+                                              <p class="card-category">Senadores</p>
+                                              <h4 class="card-title" th:text="${totalSenador}">0</h4>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                
+                  <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-round">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-icon">
+                                  <div class="icon-big text-center icon-warning bubble-shadow-small">
+                                    <i class="fas fa-user-friends fa-5x"></i>
+                                </div>
+                                </div>
+                                <div class="col col-stats ms-3 ms-sm-0">
+                                    <div class="numbers">
+                                        <p class="card-category">Governadores</p>
+                                        <h4 class="card-title" th:text="${totalGovernador}">0</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="col-sm-6 col-md-3">
+                      <div class="card card-stats card-round">
+                          <div class="card-body">
+                              <div class="row align-items-center">
+                                  <div class="col-icon">
+                                    <div class="icon-big text-center icon-primary bubble-shadow-small">
+                                      <i class="fas fa-user-friends fa-5x"></i>
+                                  </div>
+                                  </div>
+                                  <div class="col col-stats ms-3 ms-sm-0">
+                                      <div class="numbers">
+                                          <p class="card-category">Deputado Estadual</p>
+                                          <h4 class="card-title" th:text="${totalDeputadoEstadual}">0</h4>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                <div class="col-sm-6 col-md-3">
+                  <div class="card card-stats card-round">
+                      <div class="card-body">
+                          <div class="row align-items-center">
+                              <div class="col-icon">
+                                <div class="icon-big text-center icon-warning bubble-shadow-small">
+                                  <i class="fas fa-user-friends fa-5x"></i>
+                              </div>
+                              </div>
+                              <div class="col col-stats ms-3 ms-sm-0">
+                                  <div class="numbers">
+                                      <p class="card-category">Deputado Distrital</p>
+                                      <h4 class="card-title" th:text="${totalDeputadoDistrital}">0</h4>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              
+              <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-icon">
+                              <div class="icon-big text-center icon-primary bubble-shadow-small">
+                                <i class="fas fa-user-friends fa-5x"></i>
+                            </div>
+                            </div>
+                            <div class="col col-stats ms-3 ms-sm-0">
+                                <div class="numbers">
+                                    <p class="card-category">Vice-Governador</p>
+                                    <h4 class="card-title" th:text="${totalViceGovernador}">0</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-icon">
+                              <div class="icon-big text-center icon-warning bubble-shadow-small">
+                                <i class="fas fa-user-friends fa-5x"></i>
+                            </div>
+                            </div>
+                            <div class="col col-stats ms-3 ms-sm-0">
+                                <div class="numbers">
+                                    <p class="card-category">Vice-Prefeito</p>
+                                    <h4 class="card-title" th:text="${totalVicePrefeitos}">0</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-icon">
+                              <div class="icon-big text-center icon-primary bubble-shadow-small">
+                                <i class="fas fa-user-friends fa-5x"></i>
+                            </div>
+                            </div>
+                            <div class="col col-stats ms-3 ms-sm-0">
+                                <div class="numbers">
+                                    <p class="card-category">Presidentes</p>
+                                    <h4 class="card-title" th:text="${totalPresidentes}">0</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-icon">
+                              <div class="icon-big text-center icon-warning bubble-shadow-small">
+                                <i class="fas fa-user-friends fa-5x"></i>
+                            </div>
+                            </div>
+                            <div class="col col-stats ms-3 ms-sm-0">
+                                <div class="numbers">
+                                    <p class="card-category">Vice-Presidentes</p>
+                                    <h4 class="card-title" th:text="${totalVicePresidentes}">0</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+          </div>
+          </div>
+            <div class="row">
+              <div class="col-md-8">
+                <div class="card card-round">
+                  <div class="card-header">
+                    <div class="card-head-row">
+                      <div class="card-title">Filiados</div>
+                      <div class="card-tools">
+                        <a
+                          href="#"
+                          class="btn btn-label-success btn-round btn-sm me-2"
+                        >
+                          <span class="btn-label">
+                            <i class="fa fa-pencil"></i>
+                          </span>
+                          Export
+                        </a>
+                        <a href="#" class="btn btn-label-info btn-round btn-sm">
+                          <span class="btn-label">
+                            <i class="fa fa-print"></i>
+                          </span>
+                          Print
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="chart-container" style="min-height: 375px">
+                      <canvas id="statisticsChart"></canvas>
+                    </div>
+                    <div id="myChartLegend"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card card-primary card-round">
+                  <div class="card-header">
+                    <div class="card-head-row">
+                      <div class="card-title">CARGOS</div>
+                      <div class="card-tools">
+                        <div class="dropdown">
+                          <button
+                            class="btn btn-sm btn-label-light dropdown-toggle"
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-bs-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            Export
+                          </button>
+                          <div
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton"
+                          >
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#"
+                              >Something else here</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-category">current_date </div>
+                  </div>
+                  <div class="card-body pb-0">
+                    <div class="mb-4 mt-2">
+                      <h1>$4,578.58</h1>
+                    </div>
+                    <div class="pull-in">
+                      <canvas id="dailySalesChart"></canvas>
+                    </div>
+                  </div>
+                </div>
+                <div class="card card-round">
+                  <div class="card-body pb-0">
+                    <div class="h1 fw-bold float-end text-primary">+5%</div>
+                    <h2 class="mb-2">17</h2>
+                    <p class="text-muted">usuários online</p>
+                    <div class="pull-in sparkline-fix">
+                      <div id="lineChart"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+           
+        </div>
+
+        <footer class="footer">
+          <div class="container-fluid d-flex justify-content-between">
+            <nav class="pull-left">
+              <ul class="nav">
+                <li class="nav-item">
+                  <a class="nav-link" th:href="@{https://uniaobrasil.org.br/filie-se/}">
+                    Filiar 
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#"> Ajuda </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#"> União Brasil </a>
+                </li>
+              </ul>
+            </nav>
+            <div class="copyright">
+              2024, União Brasil <i class="fa fa-heart heart text-danger"></i> by
+              <a th:href="@{https://uniaobrasil.org.br/}">Site</a>
+            </div>
+
+          </div>
+        </footer>
+      </div>
+
+      <!-- Custom template | don't include it in your project! -->
+      <div class="custom-template">
+        <div class="title">Configurar</div>
+        <div class="custom-content">
+          <div class="switcher">
+            <div class="switch-block">
+              <h4>Logo Header</h4>
+              <div class="btnSwitch">
+                <button
+                  type="button"
+                  class="selected changeLogoHeaderColor"
+                  data-color="dark"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="blue"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="purple"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="light-blue"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="green"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="orange"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="red"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="white"
+                ></button>
+                <br />
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="dark2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="blue2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="purple2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="light-blue2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="green2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="orange2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="red2"
+                ></button>
+              </div>
+            </div>
+            <div class="switch-block">
+              <h4>Menu vertical</h4>
+              <div class="btnSwitch">
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="dark"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="blue"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="purple"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="light-blue"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="green"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="orange"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="red"
+                ></button>
+                <button
+                  type="button"
+                  class="selected changeTopBarColor"
+                  data-color="white"
+                ></button>
+                <br />
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="dark2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="blue2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="purple2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="light-blue2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="green2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="orange2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="red2"
+                ></button>
+              </div>
+            </div>
+            <div class="switch-block">
+              <h4>Menu Horizontal</h4>
+              <div class="btnSwitch">
+                <button
+                  type="button"
+                  class="changeSideBarColor"
+                  data-color="white"
+                ></button>
+                <button
+                  type="button"
+                  class="selected changeSideBarColor"
+                  data-color="dark"
+                ></button>
+                <button
+                  type="button"
+                  class="changeSideBarColor"
+                  data-color="dark2"
+                ></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="custom-toggle">
+          <i class="icon-settings"></i>
+        </div>
+      </div>
+      <!-- End Custom template -->
+    </div>
+  <!-- Core JS Files -->
+<script th:src="@{/js/core/jquery-3.7.1.min.js}"></script>
+<script th:src="@{/js/core/popper.min.js}"></script>
+<script th:src="@{/js/core/bootstrap.min.js}"></script>
+
+<!-- jQuery Scrollbar -->
+<script th:src="@{/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js}"></script>
+
+<!-- Chart JS -->
+<script th:src="@{/js/plugin/chart.js/chart.min.js}"></script>
+
+<!-- jQuery Sparkline -->
+<script th:src="@{/js/plugin/jquery.sparkline/jquery.sparkline.min.js}"></script>
+
+<!-- Chart Circle -->
+<script th:src="@{/js/plugin/chart-circle/circles.min.js}"></script>
+
+<!-- Datatables -->
+<script th:src="@{/js/plugin/datatables/datatables.min.js}"></script>
+
+<!-- Bootstrap Notify -->
+<script th:src="@{/js/plugin/bootstrap-notify/bootstrap-notify.min.js}"></script>
+
+<!-- jQuery Vector Maps -->
+<script th:src="@{/js/plugin/jsvectormap/jsvectormap.min.js}"></script>
+<script th:src="@{/js/plugin/jsvectormap/world.js}"></script>
+
+<!-- Sweet Alert -->
+<script th:src="@{/js/plugin/sweetalert/sweetalert.min.js}"></script>
+
+<!-- Kaiadmin JS -->
+<script th:src="@{/js/kaiadmin.min.js}"></script>
+
+<!-- Kaiadmin DEMO methods, don't include it in your project! -->
+<script th:src="@{/js/setting-demo.js}"></script>
+<script th:src="@{/js/demo.js}"></script>
+
+    <script>
+      $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "#177dff",
+        fillColor: "rgba(23, 125, 255, 0.14)",
+      });
+
+      $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "#f3545d",
+        fillColor: "rgba(243, 84, 93, .14)",
+      });
+
+      $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "#ffa534",
+        fillColor: "rgba(255, 165, 52, .14)",
+      });
+
+      $(document).ready(function() {
+        $('select').change(function() {
+            const ano = $('#ano').val();
+            const partido = $('#partido').val();
+            const cargo = $('#cargo').val();
+
+            $.ajax({
+                url: '/index', // A mesma URL
+                type: 'GET',
+                data: {
+                    ano: ano || null, // Envie como null se não for selecionado
+                    partido: partido || null,
+                    cargo: cargo || null
+                },
+                success: function(data) {
+                    // Atualize a interface com os dados retornados
+                    $('#resultado').html(data);
+                },
+                error: function(err) {
+                    console.error('Erro ao filtrar:', err);
+                }
+            });
+        });
+    });
+
+  
+    </script>
+  </body>
+</html>

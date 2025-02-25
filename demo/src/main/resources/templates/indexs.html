@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>União Brasil</title>
+    <meta
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+      name="viewport"
+    />
+    <link rel="icon" th:href="@{/img/ub.jfif}" />
+    
+    <!-- Fonts and icons -->
+      <script th:src="@{/js/plugin/webfont/webfont.min.js}"></script>
+
+    <script>
+      WebFont.load({
+        google: { families: ["Public Sans:300,400,500,600,700"] },
+        custom: {
+          families: [
+            "Font Awesome 5 Solid",
+            "Font Awesome 5 Regular",
+            "Font Awesome 5 Brands",
+            "simple-line-icons",
+          ],
+          urls: ["/css/fonts.min.css"], // Corrigido aqui
+        },
+        active: function () {
+          sessionStorage.fonts = true;
+        },
+      });
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/plugins.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/kaiadmin.min.css}" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" th:href="@{/css/demo.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Sidebar -->
+      <div class="sidebar" data-background-color="dark">
+        <div class="sidebar-logo">
+          <!-- Logo Header -->
+          <div class="logo-header" data-background-color="dark">
+            <a th:href="@{/index}" class="logo">
+              <img
+                th:src="@{/img/logo.ico}"
+                alt="navbar brand"
+                class="navbar-brand"
+              />
+            </a>
+            <div class="nav-toggle">
+              <button class="btn btn-toggle toggle-sidebar">
+                <i class="gg-menu-right"></i>
+              </button>
+              <button class="btn btn-toggle sidenav-toggler">
+                <i class="gg-menu-left"></i>
+              </button>
+            </div>
+            <button class="topbar-toggler more">
+              <i class="gg-more-vertical-alt"></i>
+            </button>
+          </div>
+          <!-- Fim do Cabeçalho do Logo -->
+        </div>
+  
+        <div class="sidebar-wrapper scrollbar scrollbar-inner">
+          <div class="sidebar-content">
+            <ul class="nav nav-secondary">
+              <li class="nav-item active">
+                <a
+                  data-bs-toggle="collapse"
+                  href="#dashboard"
+                  class="collapsed"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-home"></i>
+                  <p th:href="@{/index}">inicio</p>
+                 
+                </a>
+      
+              </li>
+              <li class="nav-section">
+                <span class="sidebar-mini-icon">
+                  <i class="fa fa-ellipsis-h"></i>
+                </span>
+                <h4 class="text-section">Menu</h4>
+              </li>
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#tables">
+                  <i class="fas fa-table"></i>
+                  <p>Tabelas</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="tables">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a th:href="@{/filiados}">
+                        <span class="sub-item">Filiados</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a th:href="@{/candidatos}">
+                        <span class="sub-item">Candidatos</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a th:href="@{/documentos}" class="nav-link d-flex align-items-center" aria-label="Ir para documentos">
+                  <i class="fas fa-file mr-2"></i>
+                  <span class="sub-item mr-2">Documentos</span>
+                  <span class="badge badge-secondary" aria-hidden="true">1</span>
+                </a>
+              </li>
+              
+             
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- final menu vertical -->
+
+      <div class="main-panel">
+        <div class="main-header">
+          <div class="main-header-logo">
+            <!-- Logo Header -->
+            <div class="logo-header" data-background-color="dark">
+              <a th:href="@{../index.html}" class="logo">
+                <img
+                  th:src="@{/img/logo.ico}"
+                  alt="navbar brand"
+                  class="navbar-brand"
+                
+                />
+              </a>
+              <div class="nav-toggle">
+                <button class="btn btn-toggle toggle-sidebar">
+                  <i class="gg-menu-right"></i>
+                </button>
+                <button class="btn btn-toggle sidenav-toggler">
+                  <i class="gg-menu-left"></i>
+                </button>
+              </div>
+              <button class="topbar-toggler more">
+                <i class="gg-more-vertical-alt"></i>
+              </button>
+            </div>
+            <!-- End Logo Header -->
+          </div>
+          <!-- Navbar Header -->
+          <nav
+            class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom"
+          >
+            <div class="container-fluid">
+              <nav
+                class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex"
+              >
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <button type="submit" class="btn btn-search pe-1">
+                      <i class="fa fa-search search-icon"></i>
+                    </button>
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Buscar ..."
+                    class="form-control"
+                  />
+                </div>
+              </nav>
+
+              <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
+                <li
+                  class="nav-item topbar-icon dropdown hidden-caret d-flex d-lg-none"
+                >
+                  <a
+                    class="nav-link dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    role="button"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                  >
+                    <i class="fa fa-search"></i>
+                  </a>
+                  <ul class="dropdown-menu dropdown-search animated fadeIn">
+                    <form class="navbar-left navbar-form nav-search">
+                      <div class="input-group">
+                        <input
+                          type="text"
+                          placeholder="Search ..."
+                          class="form-control"
+                        />
+                      </div>
+                    </form>
+                  </ul>
+                </li>
+                <li class="nav-item topbar-user dropdown hidden-caret">
+                  <a
+                    class="dropdown-toggle profile-pic"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    aria-expanded="false"
+                  >
+
+                    <span class="profile-username">
+                      <span class="op-7">olá,</span>
+                      <span>Bem-vindo</span>!</span>
+                    </span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-user animated fadeIn">
+                    <div class="dropdown-user-scroll scrollbar-outer">
+                      <li>
+                        <div class="user-box">
+                          <div class="u-text">
+                            <!-- <p class="text-muted">email da pessoa</p>-->
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="dropdown-divider"></div>
+                       <!-- <a class="dropdown-item" href="#">Meu usuário</a>-->
+                        <!-- <a class="dropdown-item" href="#">Meu usuário</a>-->
+                        <!-- <a class="dropdown-item" href="#">Atividades</a>-->
+                        <div class="dropdown-divider"></div>
+                        <!-- <a class="dropdown-item" href="#">Configurar Conta</a>-->
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" th:href="@{/login}">Sair</a>
+                      </li>
+                    </div>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <!-- End Navbar -->
+        </div>
+        <div class="container">
+          <div class="page-inner">
+            <form action="/index" method="get" id="filterForm">
+              <div class="col-md-12 mb-4">
+                  <div class="card card-stats card-round">
+                      <div class="card-body">
+                          <div class="row align-items-center">
+                              <div class="col-icon">
+                                  <div class="icon-big text-center icon-primary bubble-shadow-small">
+                                      <i class="fas fa-filter"></i>
+                                  </div>
+                              </div>
+                              <div class="col col-stats ms-3 ms-sm-0">
+                                  <div class="numbers">
+                                      <p class="card-category">FILTRAR</p>
+                                      <div class="d-flex align-items-center mb-3">
+                                          <div class="form-group me-2">
+                                              <select id="ano" name="ano" class="form-control" onchange="submitForm()">
+                                                  <option value="2024" th:selected="${ano == '2024'}">2024</option>
+                                                  <option value="2022" th:selected="${ano == '2022'}">2022</option>
+                                                  <option value="2020" th:selected="${ano == '2020'}">2020</option>
+                                                  <option value="2018" th:selected="${ano == '2018'}">2018</option>
+                                                  <option value="2016" th:selected="${ano == '2016'}">2016</option>
+                                              </select>
+                                          </div>
+                                          <div class="form-group me-2">
+                                              <select id="partido" name="partido" class="form-control" onchange="submitForm()">
+                                                <option value="UNIÃO" th:selected="${partido == 'UNIÃO'}">União Brasil</option>
+                                                <option value="AGIR" th:selected="${partido == 'AGIR'}">AGIR</option>
+                                                <option value="AVANTE" th:selected="${partido == 'AVANTE'}">AVANTE</option>
+                                                <option value="CIDADANIA" th:selected="${partido == 'CIDADANIA'}">CIDADANIA</option>
+                                                <option value="DC" th:selected="${partido == 'DC'}">DC</option>
+                                                <option value="DEM" th:selected="${partido == 'DEM'}">DEM</option>
+                                                <option value="MDB" th:selected="${partido == 'MDB'}">MDB</option>
+                                                <option value="MOBILIZA" th:selected="${partido == 'MOBILIZA'}">MOBILIZA</option>
+                                                <option value="NOVO" th:selected="${partido == 'NOVO'}">NOVO</option>
+                                                <option value="PATRIOTA" th:selected="${partido == 'PATRIOTA'}">PATRIOTA</option>
+                                                <option value="PC do B" th:selected="${partido == 'PC do B'}">PC do B</option>
+                                                <option value="PCB" th:selected="${partido == 'PCB'}">PCB</option>
+                                                <option value="PDT" th:selected="${partido == 'PDT'}">PDT</option>
+                                                <option value="PHS" th:selected="${partido == 'PHS'}">PHS</option>
+                                                <option value="PL" th:selected="${partido == 'PL'}">PL</option>
+                                                <option value="PMB" th:selected="${partido == 'PMB'}">PMB</option>
+                                                <option value="PMDB" th:selected="${partido == 'PMDB'}">PMDB</option>
+                                                <option value="PMN" th:selected="${partido == 'PMN'}">PMN</option>
+                                                <option value="PODE" th:selected="${partido == 'PODE'}">PODE</option>
+                                                <option value="PP" th:selected="${partido == 'PP'}">PP</option>
+                                                <option value="PPL" th:selected="${partido == 'PPL'}">PPL</option>
+                                                <option value="PPS" th:selected="${partido == 'PPS'}">PPS</option>
+                                                <option value="PR" th:selected="${partido == 'PR'}">PR</option>
+                                                <option value="PRB" th:selected="${partido == 'PRB'}">PRB</option>
+                                                <option value="PRD" th:selected="${partido == 'PRD'}">PRD</option>
+                                                <option value="PROS" th:selected="${partido == 'PROS'}">PROS</option>
+                                                <option value="PRP" th:selected="${partido == 'PRP'}">PRP</option>
+                                                <option value="PRTB" th:selected="${partido == 'PRTB'}">PRTB</option>
+                                                <option value="PSB" th:selected="${partido == 'PSB'}">PSB</option>
+                                                <option value="PSDB" th:selected="${partido == 'PSDB'}">PSDB</option>
+                                                <option value="PSDC" th:selected="${partido == 'PSDC'}">PSDC</option>
+                                                <option value="PSD" th:selected="${partido == 'PSD'}">PSD</option>
+                                                <option value="PSL" th:selected="${partido == 'PSL'}">PSC</option>
+                                                <option value="PSOL" th:selected="${partido == 'PSOL'}">PSOL</option>
+                                                <option value="PT" th:selected="${partido == 'PT'}">PT</option>
+                                                <option value="PT DO B" th:selected="${partido == 'PT DO B'}">PSC</option>
+                                                <option value="PTB" th:selected="${partido == 'PTB'}">PTB</option>
+                                                <option value="PTC" th:selected="${partido == 'PTC'}">PTC</option>
+                                                <option value="PTN" th:selected="${partido == 'PTN'}">PTN</option>
+                                                <option value="PV" th:selected="${partido == 'PV'}">PV</option>
+                                                <option value="REDE" th:selected="${partido == 'REDE'}">REDE</option>
+                                                <option value="REPUBLICANOS" th:selected="${partido == 'REPUBLICANOS'}">REPUBLICANOS</option>
+                                                <option value="SD" th:selected="${partido == 'SD'}">SD</option>
+                                                <option value="SOLIDARIEDADE" th:selected="${partido == 'SOLIDARIEDADE'}">SOLIDARIEDADE</option>
+                                              </select>
+                                          </div>
+                                          <button class="btn btn-primary btn-lg">Pesquisar</button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </form>
+          
+          <script> 
+            function submitForm() {
+                document.getElementById("filterForm").submit();}
+           </script>
+              
+         
+          
+              <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
+                  <div class="row">
+                      <div class="col-sm-6 col-md-3">
+                          <div class="card card-stats card-round">
+                              <div class="card-body">
+                                  <div class="row align-items-center">
+                                      <div class="col-icon">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+                                          <div class="icon-big text-center icon-primary bubble-shadow-small">
+                                              <i class="fas fa-users"></i>
+                                          </div>
+                                      </div>
+                                      <div class="col col-stats ms-3 ms-sm-0">
+                                          <div class="numbers">
+                                              <p class="card-category">Filiados União Brasil</p>
+                                              <h4 class="card-title" th:text="${totalFiliados}">0</h4>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+      
+                      <div class="col-sm-6 col-md-3">
+                          <div class="card card-stats card-round">
+                              <div class="card-body">
+                                  <div class="row align-items-center">
+                                      <div class="col-icon">
+                                        <div class="icon-big text-center icon-warning bubble-shadow-small">
+                                          <i class="fas fa-user-friends fa-5x"></i>
+                                      </div>
+                                      </div>
+                                      <div class="col col-stats ms-3 ms-sm-0">
+                                          <div class="numbers">
+                                              <p class="card-category">Prefeitos</p>
+                                              <h4 class="card-title" th:text="${totalPrefeitos}">0</h4>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+      
+                      <div class="col-sm-6 col-md-3">
+                          <div class="card card-stats card-round">
+                              <div class="card-body">
+                                  <div class="row align-items-center">
+                                      <div class="col-icon">
+                                          <div class="icon-big text-center icon-primary bubble-shadow-small">
+                                              <i class="fas fa-user-friends fa-5x"></i>
+                                          </div>
+                                      </div>
+                                      <div class="col col-stats ms-3 ms-sm-0">
+                                          <div class="numbers">
+                                              <p class="card-category">Vereadores</p>
+                                              <h4 class="card-title" th:text="${totalVereador}">0</h4>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+      
+                      <div class="col-sm-6 col-md-3">
+                          <div class="card card-stats card-round">
+                              <div class="card-body">
+                                  <div class="row align-items-center">
+                                      <div class="col-icon">
+                                        <div class="icon-big text-center icon-warning bubble-shadow-small">
+                                          <i class="fas fa-user-friends fa-5x"></i>
+                                      </div>
+                                      </div>
+                                      <div class="col col-stats ms-3 ms-sm-0">
+                                          <div class="numbers">
+                                              <p class="card-category">Deputado Federal</p>
+                                              <h4 class="card-title">56</h4>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-6 col-md-3">
+                          <div class="card card-stats card-round">
+                              <div class="card-body">
+                                  <div class="row align-items-center">
+                                      <div class="col-icon">
+                                        <div class="icon-big text-center icon-primary bubble-shadow-small">
+                                          <i class="fas fa-user-friends fa-5x"></i>
+                                      </div>
+                                      </div>
+                                      <div class="col col-stats ms-3 ms-sm-0">
+                                          <div class="numbers">
+                                              <p class="card-category">Senadores</p>
+                                              <h4 class="card-title" th:text="${totalSenador}">0</h4>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                
+                  <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-round">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-icon">
+                                  <div class="icon-big text-center icon-warning bubble-shadow-small">
+                                    <i class="fas fa-user-friends fa-5x"></i>
+                                </div>
+                                </div>
+                                <div class="col col-stats ms-3 ms-sm-0">
+                                    <div class="numbers">
+                                        <p class="card-category">Governadores</p>
+                                        <h4 class="card-title" th:text="${totalGovernador}">0</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="col-sm-6 col-md-3">
+                      <div class="card card-stats card-round">
+                          <div class="card-body">
+                              <div class="row align-items-center">
+                                  <div class="col-icon">
+                                    <div class="icon-big text-center icon-primary bubble-shadow-small">
+                                      <i class="fas fa-user-friends fa-5x"></i>
+                                  </div>
+                                  </div>
+                                  <div class="col col-stats ms-3 ms-sm-0">
+                                      <div class="numbers">
+                                          <p class="card-category">Deputado Estadual</p>
+                                          <h4 class="card-title" th:text="${totalDeputadoEstadual}">0</h4>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                <div class="col-sm-6 col-md-3">
+                  <div class="card card-stats card-round">
+                      <div class="card-body">
+                          <div class="row align-items-center">
+                              <div class="col-icon">
+                                <div class="icon-big text-center icon-warning bubble-shadow-small">
+                                  <i class="fas fa-user-friends fa-5x"></i>
+                              </div>
+                              </div>
+                              <div class="col col-stats ms-3 ms-sm-0">
+                                  <div class="numbers">
+                                      <p class="card-category">Deputado Distrital</p>
+                                      <h4 class="card-title" th:text="${totalDeputadoDistrital}">0</h4>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              
+              <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-icon">
+                              <div class="icon-big text-center icon-primary bubble-shadow-small">
+                                <i class="fas fa-user-friends fa-5x"></i>
+                            </div>
+                            </div>
+                            <div class="col col-stats ms-3 ms-sm-0">
+                                <div class="numbers">
+                                    <p class="card-category">Vice-Governador</p>
+                                    <h4 class="card-title" th:text="${totalViceGovernador}">0</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-icon">
+                              <div class="icon-big text-center icon-warning bubble-shadow-small">
+                                <i class="fas fa-user-friends fa-5x"></i>
+                            </div>
+                            </div>
+                            <div class="col col-stats ms-3 ms-sm-0">
+                                <div class="numbers">
+                                    <p class="card-category">Vice-Prefeito</p>
+                                    <h4 class="card-title" th:text="${totalVicePrefeitos}">0</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-icon">
+                              <div class="icon-big text-center icon-primary bubble-shadow-small">
+                                <i class="fas fa-user-friends fa-5x"></i>
+                            </div>
+                            </div>
+                            <div class="col col-stats ms-3 ms-sm-0">
+                                <div class="numbers">
+                                    <p class="card-category">Presidentes</p>
+                                    <h4 class="card-title" th:text="${totalPresidentes}">0</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-icon">
+                              <div class="icon-big text-center icon-warning bubble-shadow-small">
+                                <i class="fas fa-user-friends fa-5x"></i>
+                            </div>
+                            </div>
+                            <div class="col col-stats ms-3 ms-sm-0">
+                                <div class="numbers">
+                                    <p class="card-category">Vice-Presidentes</p>
+                                    <h4 class="card-title" th:text="${totalVicePresidentes}">0</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+          </div>
+          </div>
+          <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+          <!--<div style="display: flex; gap: 10px;">
+                <div id="Grafico_filiado_por_uf"style="width: 350px; height:150px;text-align: center;"> Gráfico de Filiados Por UF</div>
+                <div id="Grafico_candidato_por_uf"style="width: 350px; height:150px;text-align: center;">Gráfico de Candidatos Por UF</div>
+          </div>-->
+          <br>
+          <!--<div id="Grafico_candidato" style="text-align: center;">Gráfico de Candidatos por Partidos</div>-->
+        </div>
+
+        <footer class="footer">
+          <div class="container-fluid d-flex justify-content-between">
+            <nav class="pull-left">
+              <ul class="nav">
+                <li class="nav-item">
+                  <a class="nav-link" th:href="@{https://uniaobrasil.org.br/filie-se/}">
+                    Filiar 
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#"> Ajuda </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#"> União Brasil </a>
+                </li>
+              </ul>
+            </nav>
+            <div class="copyright">
+              2024, União Brasil <i class="fa fa-heart heart text-danger"></i> by
+              <a th:href="@{https://uniaobrasil.org.br/}">Site</a>
+            </div>
+
+          </div>
+        </footer>
+      </div>
+
+      <!-- Custom template | don't include it in your project! -->
+      <div class="custom-template">
+        <div class="title">Configurar</div>
+        <div class="custom-content">
+          <div class="switcher">
+            <div class="switch-block">
+              <h4>Logo Header</h4>
+              <div class="btnSwitch">
+                <button
+                  type="button"
+                  class="selected changeLogoHeaderColor"
+                  data-color="dark"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="blue"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="purple"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="light-blue"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="green"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="orange"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="red"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="white"
+                ></button>
+                <br />
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="dark2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="blue2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="purple2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="light-blue2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="green2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="orange2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="red2"
+                ></button>
+              </div>
+            </div>
+            <div class="switch-block">
+              <h4>Menu vertical</h4>
+              <div class="btnSwitch">
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="dark"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="blue"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="purple"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="light-blue"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="green"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="orange"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="red"
+                ></button>
+                <button
+                  type="button"
+                  class="selected changeTopBarColor"
+                  data-color="white"
+                ></button>
+                <br />
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="dark2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="blue2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="purple2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="light-blue2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="green2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="orange2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="red2"
+                ></button>
+              </div>
+            </div>
+            <div class="switch-block">
+              <h4>Menu Horizontal</h4>
+              <div class="btnSwitch">
+                <button
+                  type="button"
+                  class="changeSideBarColor"
+                  data-color="white"
+                ></button>
+                <button
+                  type="button"
+                  class="selected changeSideBarColor"
+                  data-color="dark"
+                ></button>
+                <button
+                  type="button"
+                  class="changeSideBarColor"
+                  data-color="dark2"
+                ></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="custom-toggle">
+          <i class="icon-settings"></i>
+        </div>
+      </div>
+      <!-- End Custom template -->
+    </div>
+  <!-- Core JS Files -->
+<script th:src="@{/js/core/jquery-3.7.1.min.js}"></script>
+<script th:src="@{/js/core/popper.min.js}"></script>
+<script th:src="@{/js/core/bootstrap.min.js}"></script>
+
+<!-- jQuery Scrollbar -->
+<script th:src="@{/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js}"></script>
+
+<!-- Chart JS -->
+<script th:src="@{/js/plugin/chart.js/chart.min.js}"></script>
+
+<!-- jQuery Sparkline -->
+<script th:src="@{/js/plugin/jquery.sparkline/jquery.sparkline.min.js}"></script>
+
+<!-- Chart Circle -->
+<script th:src="@{/js/plugin/chart-circle/circles.min.js}"></script>
+
+<!-- Datatables -->
+<script th:src="@{/js/plugin/datatables/datatables.min.js}"></script>
+
+<!-- Bootstrap Notify -->
+<script th:src="@{/js/plugin/bootstrap-notify/bootstrap-notify.min.js}"></script>
+
+<!-- jQuery Vector Maps -->
+<script th:src="@{/js/plugin/jsvectormap/jsvectormap.min.js}"></script>
+<script th:src="@{/js/plugin/jsvectormap/world.js}"></script>
+
+<!-- Sweet Alert -->
+<script th:src="@{/js/plugin/sweetalert/sweetalert.min.js}"></script>
+
+<!-- Kaiadmin JS -->
+<script th:src="@{/js/kaiadmin.min.js}"></script>
+
+<!-- Kaiadmin DEMO methods, don't include it in your project! -->
+<script th:src="@{/js/setting-demo.js}"></script>
+<script th:src="@{/js/demo.js}"></script>
+    <script>
+      $(document).ready(function() {
+        $('select').change(function() {
+            const ano = $('#ano').val();
+            const partido = $('#partido').val();
+            const cargo = $('#cargo').val();
+
+            $.ajax({
+                url: '/index', // A mesma URL
+                type: 'GET',
+                data: {
+                    ano: ano || null, // Envie como null se não for selecionado
+                    partido: partido || null,
+                    cargo: cargo || null
+                },
+                success: function(data) {
+                    // Atualize a interface com os dados retornados
+                    $('#resultado').html(data);
+                },
+                error: function(err) {
+                    console.error('Erro ao filtrar:', err);
+                }
+            });
+        });
+        });
+          
+  
+        // Função para buscar dados da API
+        async function fetchData() {
+          try {
+              const response = await fetch('/api/candidatos'); // Altere para o seu endpoint correto
+              const data = await response.json();
+      
+              // Processando os dados para incluir ano, cargo e partido
+              const seriesData = {};
+      
+              data.forEach(candidato => {
+                  const key = `${candidato.ano}-${candidato.cargo}-${candidato.partido}`; // Chave para ano, cargo e partido
+      
+                  if (!seriesData[key]) {
+                      seriesData[key] = {
+                          name: `${candidato.ano} - ${candidato.cargo} - ${candidato.partido}`, // Nome para o gráfico
+                          data: 0 // Inicializa a contagem de candidatos
+                      };
+                  }
+      
+                  // Usa a contagem retornada do DTO
+                  seriesData[key].data += candidato.contagem; // Soma a contagem de candidatos para aquela combinação
+              });
+      
+              // Convertendo o objeto em um array
+              const seriesArray = Object.values(seriesData);
+      
+              // Configurando as opções do gráfico
+              var options = {
+                  series: seriesArray,
+                  chart: {
+                      type: 'bar',
+                      height: 350
+                  },
+                  plotOptions: {
+                      bar: {
+                          horizontal: false,
+                          columnWidth: '55%',
+                          endingShape: 'rounded'
+                      },
+                  },
+                  dataLabels: {
+                      enabled: true // Habilita os rótulos de dados
+                  },
+                  stroke: {
+                      show: true,
+                      width: 2,
+                      colors: ['transparent']
+                  },
+                  xaxis: {
+                      categories: seriesArray.map(item => item.name), // Usando ano, cargo e partido como categorias
+                      title: {
+                          text: 'Ano - Cargo - Partido' // Título do eixo X
+                      }
+                  },
+                  yaxis: {
+                      title: {
+                          text: 'Número de Candidatos' // Título do eixo Y
+                      }
+                  },
+                  fill: {
+                      opacity: 1
+                  },
+                  tooltip: {
+                      y: {
+                          formatter: function (val) {
+                              return val + " candidatos";
+                          }
+                      }
+                  }
+              };
+      
+              // Inicializa o gráfico
+              var chart = new ApexCharts(document.querySelector("#Grafico_candidato"), options);
+              chart.render();
+      
+          } catch (error) {
+              console.error('Erro ao buscar dados da API:', error);
+          }
+      }
+      
+      // Chama a função para buscar os dados
+      fetchData();
+      /*****************************************************************************************/
+      
+      var options = {
+        series: [44, 55, 41, 17, 15],
+        chart: {
+        type: 'donut',
+      },
+      responsive: [{
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200
+          },
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }]
+      };
+      var chart = new ApexCharts(document.querySelector("#Grafico_filiado_por_uf"), options);
+      chart.render();
+    
+    /*************************************************************************************************/
+    var options = {
+      series: [44, 55, 41, 17, 15],
+      chart: {
+      type: 'donut',
+    },
+    responsive: [{
+      breakpoint: 480,
+      options: {
+        chart: {
+          width: 200
+        },
+        legend: {
+          position: 'bottom'
+        }
+      }
+    }]
+    };
+    var chart = new ApexCharts(document.querySelector("#Grafico_candidato_por_uf"), options);
+    chart.render();
+        
+    </script>
+  </body>
+</html>

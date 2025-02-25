@@ -1,0 +1,593 @@
+
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<link th:href="@{/css/reset.css}">
+<link th:href="@{/css/bootstrap.min.css}">
+<link th:href="@{css/bootstrap-select.min.css}">
+<link th:href="@{css/open-iconic-bootstrap.min.css}">
+<link th:href="@{css/simplePagination.css}">
+<link th:href="@{css/custom.css}">
+<link th:href="@{css/c3.min.css}">
+<script th:href="@{js/jquery.js}"></script>
+<script th:href="@{js/bootstrap.bundle.min.js}"></script>
+<script th:href="@{js/bootstrap-select.min.js}"></script>
+<script th:href="@{js/jquery.mask.min.js}"></script>
+<script th:href="@{js/jquery.simplePagination.js}"></script>
+<script th:href="@{js/custom.js}"></script>
+<script th:href="@{js/plugins/c3/d3.min.js}"></script>
+<script th:href="@{js/plugins/c3/c3.min.js}"></script>
+<link rel="icon" th:href="@{/img/ub.jfif}" />
+<title>União Brasil</title>
+<link rel="icon" th:href="@{img/ub.jfif}" >
+<script th:src="@{/js/plugin/webfont/webfont.min.js}"></script>
+<!-- Link para o Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+ <!-- CSS Files -->
+ <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+ <link rel="stylesheet" th:href="@{/css/plugins.min.css}" />
+<link rel="stylesheet" href="/css/kaiadmin.min.css" />
+<link rel="stylesheet" th:href="@{/css/demo.css}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- jQuery (necessário para o jQuery Mask) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- jQuery Mask Plugin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+
+<style>
+.custom-file-input ~ .custom-file-label::after {
+    display: none;
+}
+
+.btn-upload {
+    background-color: #428BCA;
+    border-color: #428BCA;;
+    color: white;
+}
+
+.btn-upload:hover {
+    background-color: #31b0d5;
+    border-color: #269abc;
+}
+
+.section-divider {
+    margin: 20px 0; /* Espaçamento acima e abaixo da linha */
+    border-top: 1px solid #dee2e6; /* Cor e espessura da linha */
+}
+
+.modal.fade .modal-dialog {
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.modal.fade.show .modal-dialog {
+    transform: translateY(0);
+    opacity: 1;
+}
+</style>
+ </head>
+
+        <body>  
+            <div th:if="${filiado == null}">
+                <p>Filiado não encontrado</p>
+            </div>
+            
+            <div class="container mt-5">
+                <a th:href="@{${referer}}" Class="btn btn-primary" style="margin-top: 5px">Voltar</a>
+                <div class="card">
+                    <div class="home card-header">
+                        <h1 style="font-size:20px; text-align: center;">Upload de Documentos</h1>
+                        <h6 style="margin-top: 20px">
+                            Acesse nosso Site para ficar por dentro de todas as informações <a href="https://uniaobrasil.org.br/">clicando aqui </a>
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <!-- Dados Pessoais -->
+                        <h1 style="color: #428BCA;">Dados Pessoais</h1>
+                        <div class="row">
+                          <!-- Nome Completo -->
+                          <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                              <label for="nome">Nome Completo:</label>
+                              <input maxlength="250" type="text" class="form-control" id="nome" name="nome" th:value="${filiado.nome}" readonly>
+                            </div>
+                          </div>
+                          
+                          <!-- CPF -->
+                          <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                              <label for="cpf">CPF:</label>
+                              <input type="text" class="form-control" id="cpf" name="cpf" th:value="${filiado.cpf}" readonly>
+                            </div>
+                          </div>
+                
+                          <!-- Título de Eleitor -->
+                          <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                              <label for="Titulo">Título de Eleitor:</label>
+                              <input type="text" class="form-control" id="Titulo" name="Titulo" th:value="${filiado.titulo}" readonly>
+                            </div>
+                          </div>
+
+                          <!-- Título de Eleitor -->
+                          <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                              <label for="situacao">Situação:</label>
+                              <input type="text" class="form-control" id="situacao" name="situacao" th:value="${filiado.situacao}" readonly>
+                            </div>
+                          </div>
+                
+                          <!-- Nome do Pai -->
+                          <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                              <label for="nome_pai">Nome do Pai:</label>
+                              <input maxlength="250" type="text" class="form-control" id="nome_pai" name="nome_pai" th:value="${filiado.nomePai}" readonly>
+                            </div>
+                          </div>
+                
+                          <!-- Nome da Mãe -->
+                          <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                              <label for="nome_mae">Nome da Mãe:</label>
+                              <input maxlength="250" type="text" class="form-control" id="nome_mae" name="nome_mae" th:value="${filiado.nomeMae}" readonly>
+                            </div>
+                          </div>
+                
+                          <!-- Data de Nascimento -->
+                          <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                              <label for="datanascimento">Data de Nascimento:</label>
+                              <input type="text" name="datanascimento" class="form-control" th:value="${filiado.dataNascimento}" readonly>
+                            </div>
+                          </div>
+                        </div> <!-- End row -->
+    
+                        <hr>
+                         <!-- Documentos -->
+                        <h1 style="color: #428BCA;">Upload Documentos</h1>
+                        <div class="row">
+                            <!-- FOTO -->
+                            <div class="col-md-6 col-lg-3">
+                                <div class="form-group">
+                                    <label class="form-label" for="customFile">FOTO</label>
+                                    <input type="file" class="form-control" id="foto" />
+                                    <div id="fotoPreview" style="margin-top: 10px;"></div>
+                                    <button type="button" class="btn btn-info" id="btnFoto" style="margin-top: 5px; display:none;">Visualizar</button>
+                                </div>
+                            </div>
+                            
+
+                            <!-- CPF -->
+                            <div class="col-md-6 col-lg-3">
+                                <div class="form-group">
+                                    <label class="form-label" for="customFile">CPF</label>
+                                    <input type="file" class="form-control" id="cpfFile" />
+                                    <div id="cpfPreview" style="margin-top: 10px;"></div>
+                                    <button type="button" class="btn btn-info" id="btnCpf" style="margin-top: 5px; display:none;">Visualizar</button>
+                                </div>
+                            </div>
+
+                            <!-- TITULO -->
+                            <div class="col-md-6 col-lg-3">
+                                <div class="form-group">
+                                    <label class="form-label" for="customFile">TITULO</label>
+                                    <input type="file" class="form-control" id="tituloFile" />
+                                    <div id="tituloPreview" style="margin-top: 10px;"></div>
+                                    <button type="button" class="btn btn-info" id="btnTitulo" style="margin-top: 5px; display:none;">Visualizar</button>
+                                </div>
+                            </div>
+
+                            <!-- FICHA DE FILIAÇÃO -->
+                            <div class="col-md-6 col-lg-3">
+                                <div class="form-group">
+                                    <label class="form-label" for="customFile">FICHA DE FILIAÇÃO</label>
+                                    <input type="file" class="form-control" id="fichaFile" />
+                                    <div id="fichaPreview" style="margin-top: 10px;"></div>
+                                    <button type="button" class="btn btn-info" id="btnFicha" style="margin-top: 5px; display:none;">Visualizar</button>
+                                </div>
+                            </div>
+                            <!-- FICHA DE DESFILIAÇÃO -->
+                            <div class="col-md-6 col-lg-3">
+                                <div class="form-group">
+                                    <label class="form-label" for="customFile">FICHA DE DESFILIAÇÃO</label>
+                                    <input type="file" class="form-control" id="desfichaFile" />
+                                    <div id="desfichaPreview" style="margin-top: 10px;"></div>
+                                    <button type="button" class="btn btn-info" id="btndesFicha" style="margin-top: 5px; display:none;">Visualizar</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Botão para enviar os documentos -->
+                        <button id="submitDocuments" class="btn btn-success" style="margin-top: 15px;">Salvar Documentos</button>
+                        <!-- Modal de Confirmação -->
+                        <div id="confirmModal" class="modal" style="display: none;">
+                            <div class="modal-content">
+                                <span class="close" style="cursor: pointer;">&times;</span> 
+                                <h3>Você tem certeza que deseja enviar os documentos?</h3>
+                                <button id="confirmSubmit" class="btn btn-success">Confirmar</button>
+                                <button id="cancelSubmit" class="btn btn-danger">Cancelar</button>
+                            </div>
+                        </div>
+
+                        
+                         <br>
+                       <!-- Exibir arquivos já enviados -->
+                        <h3 style="font-size:30px;  color: black; text-align: center;">Arquivos Já Enviados</h3> <br> <br>
+                        <ul id="fileList" class="file-list"></ul>
+                            <!-- Aqui serão exibidos os arquivos como imagens -->
+                    </div>
+                    <footer class="footer">
+                        <div class="container d-flex">
+                          <nav class="pull-left">
+                            <ul class="nav">
+                              <li class="nav-item">
+                                <a class="nav-link" href="https://uniaobrasil.org.br/filie-se/">
+                                  Filiar 
+                                </a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" href="https://wa.me/61994180629?text=Olá%2C%20gostaria%20de%20mais%20informações"> Ajuda </a>
+                              </li>
+                              <li class="nav-item">
+                              <a class="nav-link" href="https://uniaobrasil.org.br/">2024, União Brasil <i class="fa fa-heart heart text-danger"></i> bySite</a>
+                            </li>
+                            </ul>
+                          </nav>
+                        </div>
+                      </footer>
+
+                      <style>
+                        /* Modal - oculto por padrão */
+                        .modal {
+                            display: none; /* Modal escondida por padrão */
+                            position: fixed; /* Fixa a modal na tela */
+                            z-index: 1; /* Coloca a modal sobre os outros elementos */
+                            left: 0;
+                            top: 0;
+                            width: 100%;
+                            height: 100%;
+                            overflow: auto;
+                            background-color: rgba(0, 0, 0, 0.4); /* Fundo semitransparente */
+                        }
+                    
+                        /* Conteúdo da modal */
+                        .modal-content {
+                            background-color: white;
+                            margin: 15% auto;
+                            padding: 20px;
+                            border: 1px solid #888;
+                            width: 300px;
+                            text-align: center;
+                            border-radius: 8px;
+                        }
+                    
+                        /* Botões */
+                        .confirmSubmit {
+                            background-color: #4CAF50;
+                            color: white;
+                            padding: 10px 20px;
+                            margin: 10px;
+                            border: none;
+                            cursor: pointer;
+                            border-radius: 5px;
+                        }
+                    
+                    
+                        .btn:hover {
+                            background-color: #45a049;
+                        }
+                    
+                        /* Botão de fechar */
+                        .close {
+                            color: #aaa;
+                            font-size: 28px;
+                            font-weight: bold;
+                            position: absolute;
+                            top: 5px;
+                            right: 10px;
+                        }
+                    
+                        .close:hover,
+                        .close:focus {
+                            color: black;
+                            text-decoration: none;
+                            cursor: pointer;
+                        }
+                    </style>
+     </body>
+     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Função para validar os tipos de arquivo
+            function isValidFileType(file) {
+                const allowedTypes = ['image/jpeg', 'image/png', 'application/pdf','image/png','image/jfif',]; // Tipos permitidos
+                return allowedTypes.includes(file.type);
+            }
+        
+            // Função para exibir um preview do arquivo
+            function previewFile(inputElement, previewId, buttonId) {
+                const file = inputElement.files[0];
+                const preview = document.getElementById(previewId);
+                const button = document.getElementById(buttonId);
+        
+                if (file) {
+                    // Verifica o tipo de arquivo
+                    if (!isValidFileType(file)) {
+                        preview.innerHTML = `<p>Tipo de arquivo não permitido: ${file.name}</p>`;
+                        button.style.display = "none";  // Oculta o botão se o arquivo for inválido
+                        return;
+                    }
+        
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        if (file.type.startsWith("image/")) {
+                            preview.innerHTML = `<img src="${e.target.result}" alt="Preview" style="max-width: 100%; max-height: 200px;">`;
+                        } else {
+                            preview.innerHTML = `<p>Arquivo carregado: ${file.name}</p>`;
+                        }
+                        button.style.display = "inline-block";  // Exibe o botão de visualização
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    preview.innerHTML = "";
+                    button.style.display = "none";  // Oculta o botão se não houver arquivo
+                }
+            }
+        
+            // Função para visualizar o arquivo
+            function visualizarArquivo(inputElement) {
+                const file = inputElement.files[0];
+                const fileURL = URL.createObjectURL(file);
+                window.open(fileURL, '_blank');
+            }
+        
+            // Ouvintes de evento para os campos de upload
+            const camposUpload = [
+                { id: "foto", previewId: "fotoPreview", buttonId: "btnFoto" },
+                { id: "cpfFile", previewId: "cpfPreview", buttonId: "btnCpf" },
+                { id: "tituloFile", previewId: "tituloPreview", buttonId: "btnTitulo" },
+                { id: "fichaFile", previewId: "fichaPreview", buttonId: "btnFicha" },
+                { id: "desfichaFile", previewId: "desfichaPreview", buttonId: "btndesFicha" }
+            ];
+        
+            // Adiciona ouvintes para os campos de upload
+            camposUpload.forEach(function (campo) {
+                const inputElement = document.getElementById(campo.id);
+                if (inputElement) {
+                    inputElement.addEventListener("change", function () {
+                        previewFile(this, campo.previewId, campo.buttonId);
+                    });
+                } else {
+                    console.warn(`Elemento com ID "${campo.id}" não encontrado.`);
+                }
+            });
+        
+            // Adiciona ouvintes para os botões de visualização
+            camposUpload.forEach(function (campo) {
+                const buttonElement = document.getElementById(campo.buttonId);
+                if (buttonElement) {
+                    buttonElement.addEventListener("click", function () {
+                        visualizarArquivo(document.getElementById(campo.id));
+                    });
+                } else {
+                    console.warn(`Botão com ID "${campo.buttonId}" não encontrado.`);
+                }
+            });
+        
+            // Abrir a modal ao clicar no botão "submitDocuments"
+            const submitButton = document.getElementById("submitDocuments");
+            if (submitButton) {
+                submitButton.addEventListener("click", function () {
+                    console.log("Botão 'Salvar Documentos' foi clicado!");
+                    const modal = document.getElementById("confirmModal");
+                    if (modal) {
+                        modal.style.display = "block"; // Exibe o modal
+                    } else {
+                        console.error("Modal não encontrado.");
+                    }
+                });
+            } else {
+                console.error("Botão 'submitDocuments' não encontrado.");
+            }
+        
+            // Fechar a modal ao clicar no "X"
+            const closeButton = document.querySelector(".close");
+            if (closeButton) {
+                closeButton.addEventListener("click", function () {
+                    console.log("Fechando o modal...");
+                    const modal = document.getElementById("confirmModal");
+                    if (modal) {
+                        modal.style.display = "none"; // Oculta o modal
+                    }
+                });
+            } else {
+                console.error("Botão de fechar modal não encontrado.");
+            }
+        
+            // Ação de cancelar envio
+            const cancelButton = document.getElementById("cancelSubmit");
+            if (cancelButton) {
+                cancelButton.addEventListener("click", function () {
+                    const modal = document.getElementById("confirmModal");
+                    if (modal) {
+                        modal.style.display = "none"; // Oculta o modal
+                    }
+                });
+            } else {
+                console.error("Botão de cancelar não encontrado.");
+            }
+        
+            // Ação de confirmar envio
+            const confirmButton = document.getElementById("confirmSubmit");
+            if (confirmButton) {
+                confirmButton.addEventListener("click", function () {
+                    const modal = document.getElementById("confirmModal");
+                    if (modal) {
+                        modal.style.display = "none"; // Fecha o modal ao confirmar
+                    }
+
+                    // Realizar o envio dos documentos
+                    const formData = new FormData();
+                    formData.append("foto", document.getElementById("foto").files[0]);
+                    formData.append("cpf", document.getElementById("cpfFile").files[0]);
+                    formData.append("tituloDoc", document.getElementById("tituloFile").files[0]);
+                    formData.append("ficha", document.getElementById("fichaFile").files[0]);
+                    formData.append("ficha_deslifiacao", document.getElementById("desfichaFile").files[0]);
+        
+                    // Pegar o ID do filiado a partir da URL
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const filiadoId = window.location.pathname.split('/')[2];
+                    formData.append("idFiliado", filiadoId);
+        
+                    // Enviar os documentos via fetch
+                    fetch(`/upload/${filiadoId}`, {
+                        method: "POST",
+                        body: formData
+                    })
+                    .then(response => {
+                        console.log("Resposta do servidor:", response);
+                        if (response.ok) {
+                          return response.json();  // Tenta parsear como JSON
+                        } else {
+                          throw new Error("Resposta do servidor não é válida");
+                        }
+                      })
+                    .then(data => {
+                        console.log("Resposta do servidor:", data);
+                        alert(data.message);  // Exibe a mensagem do servidor
+                        if (data.status === "success") {
+                            window.location.reload(true);  // Recarrega a página em caso de sucesso
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Erro ao enviar documentos:", error);
+                        alert("Erro ao enviar os documentos. Tente novamente.");
+                    });
+                });
+            } else {
+                console.error("Botão de confirmar envio não encontrado.");
+            }
+        });
+        
+        
+        
+      // Função para carregar os arquivos enviados
+      function loadFiles() {
+        const filiadoId = window.location.pathname.split('/')[2]; // Obtém o 'filiadoId' da URL
+        // Fazendo a requisição para listar os arquivos
+        fetch(`/documentos/${filiadoId}/arquivos`)
+            .then(response => response.json())
+            .then(files => {
+                const fileListElement = document.getElementById('fileList');
+                fileListElement.innerHTML = ''; // Limpa a lista antes de preencher novamente
+                
+                // Para cada arquivo, cria um item na lista
+                files.forEach(file => {
+                    const fileItem = document.createElement('li');
+                    fileItem.classList.add('file-item');
+                    
+                    // Obter o caminho do arquivo
+                    const filePath = `/documentos/${filiadoId}/imagem/${file}`;
+                    const fileDownloadPath = `/documentos/${filiadoId}/download/${file}`;
+                    
+                    // Criar link de download para o arquivo
+                    const downloadLink = document.createElement('a');
+                    downloadLink.href = fileDownloadPath;
+                    downloadLink.download = file; // Defina o nome do arquivo para download
+    
+                    // Verifica a extensão do arquivo
+                    const fileExtension = file.split('.').pop().toLowerCase();
+                    
+                    if (['jpg', 'jpeg', 'png', 'gif','jfif'].includes(fileExtension)) {
+                        // Para imagens, cria uma tag <img>
+                        const img = document.createElement('img');
+                        img.src = filePath;
+                        img.alt = file;
+                        img.style.maxWidth = '350px'; // Tamanho da imagem
+                        img.style.maxHeight = '350px';
+                        
+                        // Adiciona a imagem dentro do link de download
+                        downloadLink.appendChild(img);
+
+                    } else if (fileExtension === 'pdf') {
+                         // Cria o ícone ou imagem de pré-visualização do PDF
+                            const pdfPreviewImage = document.createElement('img');
+                            pdfPreviewImage.src= '/img/pdf.png';
+                            pdfPreviewImage.alt = 'PDF Preview';
+                            pdfPreviewImage.width = 50;  // Tamanho do ícone
+                            pdfPreviewImage.height = 50; // Tamanho do ícone
+                            
+                            // Cria o link para abrir o PDF em uma nova página
+                            const pdfLink = document.createElement('a');
+                            pdfLink.href = filePath;
+                            pdfLink.target = '_blank'; // Abre o PDF em uma nova aba
+                            pdfLink.title = 'Visualizar PDF';
+
+                            // Adiciona a imagem do PDF dentro do link de visualização
+                            pdfLink.appendChild(pdfPreviewImage);
+
+                            // Adiciona o link de visualização dentro do contêiner de download
+                            downloadLink.appendChild(pdfLink);
+                    } else {
+                        // Caso seja outro tipo de arquivo, apenas exibe o nome do arquivo
+                        const fileName = document.createElement('span');
+                        fileName.textContent = file;
+                        downloadLink.appendChild(fileName);
+                    }
+                    
+                    // Adiciona o link de download à lista
+                    fileItem.appendChild(downloadLink);
+                    fileListElement.appendChild(fileItem);
+                });
+            })
+            .catch(error => console.error('Erro ao carregar arquivos:', error));
+    }
+    
+    // Chama a função para carregar os arquivos quando a página é carregada
+    window.onload = loadFiles;
+
+
+      
+
+</script>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    h3 {
+        color: #428BCA;
+    }
+    .file-list {
+        display: flex;               /* Torna o contêiner flexível */
+        flex-wrap: wrap;             /* Permite que as imagens quebrem para a linha seguinte, se necessário */
+        gap: 10px;                  /* Espaçamento entre as imagens */
+        list-style-type: none;      /* Remove os marcadores da lista */
+        padding: 0;
+    }
+    .file-item {
+        width: 350px;               /* Define a largura máxima de cada imagem */
+        height: 350px;              /* Define a altura máxima de cada imagem */
+        display: flex;              /* Torna cada item flexível */
+        justify-content: center;    /* Alinha as imagens horizontalmente */
+        align-items: center;        /* Alinha as imagens verticalmente */
+    }
+    .file-item img {
+        max-width: 100%;            /* Limita a largura da imagem ao tamanho do contêiner */
+        max-height: 100%;           /* Limita a altura da imagem ao tamanho do contêiner */
+        object-fit: contain;        /* Garante que a imagem seja redimensionada proporcionalmente */
+    }
+</style>
+    
+   </html>
+        

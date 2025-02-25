@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>União Brasil</title>
+    <meta
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+      name="viewport"
+    />
+    <link rel="icon" th:href="@{/img/ub.jfif}" />
+    <!-- Incluindo o Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Carregando jQuery -->
+
+    <!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <!-- Carregando jQuery Notify -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-notify/1.0.2/jquery.notify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+
+
+
+
+    
+    <!-- Fonts and icons -->
+      <script th:src="@{/js/plugin/webfont/webfont.min.js}"></script>
+
+    <script>
+      WebFont.load({
+        google: { families: ["Public Sans:300,400,500,600,700"] },
+        custom: {
+          families: [
+            "Font Awesome 5 Solid",
+            "Font Awesome 5 Regular",
+            "Font Awesome 5 Brands",
+            "simple-line-icons",
+          ],
+          urls: ["/css/fonts.min.css"], // Corrigido aqui
+        },
+        active: function () {
+          sessionStorage.fonts = true;
+        },
+      });
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+
+    <!-- CSS Files -->
+    <!--<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />-->
+    <link rel="stylesheet" th:href="@{/css/plugins.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/kaiadmin.min.css}" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" th:href="@{/css/demo.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Sidebar -->
+      <div class="sidebar" data-background-color="white">
+        
+        <div class="sidebar-logo">
+          <!-- Logo Header -->
+          <div class="logo-header" data-background-color="white">
+            <a th:href="@{/index}" class="logo">
+              <img
+                th:src="@{/img/logo.ico}"
+                alt="navbar brand"
+                class="navbar-brand"
+               
+              />
+            </a>
+            <div class="nav-toggle">
+              <button class="btn btn-toggle toggle-sidebar">
+                <i class="gg-menu-right"></i>
+              </button>
+              <button class="btn btn-toggle sidenav-toggler">
+                <i class="gg-menu-left"></i>
+              </button>
+            </div>
+            <button class="topbar-toggler more">
+              <i class="gg-more-vertical-alt"></i>
+            </button>
+          </div>
+          <!-- Fim do Cabeçalho do Logo -->
+        </div>
+  
+        <div class="sidebar-wrapper scrollbar scrollbar-inner">
+          <div class="sidebar-content">
+            <ul class="nav nav-secondary">
+              <li class="nav-item active">
+               
+                  
+                  <a th:href="@{/index}"class="fas fa-home"><i class="fas fa-home"></i>inicio</a>
+                 
+                </a>
+      
+              </li>
+              <li class="nav-section">
+                <span class="sidebar-mini-icon">
+                  <i class="fa fa-ellipsis-h"></i>
+                </span>
+                <h4 class="text-section">Menu</h4>
+              </li>
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#tables">
+                  <i class="bi bi-person-plus"></i>
+                  <p>Cadastros</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="tables">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a th:href="@{/novo-filiado}">
+                        <span class="sub-item"> Cadastrar Filiado Interno</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a th:href="@{/cadastrar}">
+                        <span class="sub-item">Novo Usuário</span>
+                      </a>
+                    </li>
+                  
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#tables">
+                  <i class="fas fa-table"></i>
+                  <p>Consulta</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="tables">
+                  <ul class="nav nav-collapse">
+
+                  
+                   
+                    <li>
+                      <a th:href="@{/filiados}">
+                        <span class="sub-item">Filiados</span>
+                      </a>
+                    </li>
+                    
+                    <li>
+                      <a th:href="@{/candidatos}">
+                        <span class="sub-item">Candidatos</span>
+                      </a>
+                    </li>
+                  
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link d-flex align-items-center" aria-label="Ir para documentos">
+                  <i class="fas fa-file mr-2"></i>
+                  <span class="sub-item mr-2">Documentos</span>
+                  <span class="badge badge-secondary" aria-hidden="true">1</span>
+                </a>
+              </li>
+              
+             
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- final menu vertical -->
+
+      <div class="main-panel">
+        <div class="main-header">
+          <div class="main-header-logo">
+            <!-- Logo Header -->
+            <div class="logo-header" data-background-color="white">
+              <a th:href="@{../index.html}" class="logo">
+                <img
+                  th:src="@{/img/logo.ico}"
+                  alt="navbar brand"
+                  class="navbar-brand"
+                
+                />
+              </a>
+              <div class="nav-toggle">
+                <button class="btn btn-toggle toggle-sidebar">
+                  <i class="gg-menu-right"></i>
+                </button>
+                <button class="btn btn-toggle sidenav-toggler">
+                  <i class="gg-menu-left"></i>
+                </button>
+              </div>
+              <button class="topbar-toggler more">
+                <i class="gg-more-vertical-alt"></i>
+              </button>
+            </div>
+            <!-- End Logo Header -->
+          </div>
+          <!-- Navbar Header -->
+          <nav
+            class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom"
+          >
+            <div class="container-fluid">
+              <nav
+                class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex"
+              >
+                <div class="input-group-prepend">
+                  </div>
+                  
+
+
+                    <span class="profile-username">
+                      <span class="op-7"  style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;"></span>
+                      <span  style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Sua Função Definida é:
+                     <span th:text="${userFuncao}"  style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold; color:blue;"></span>!</span>
+                  </span>
+             
+              </nav>
+
+              <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
+                <li
+                  class="nav-item topbar-icon dropdown hidden-caret d-flex d-lg-none"
+                >
+                  <a
+                    class="nav-link dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    role="button"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                  >
+                    <i class="fa fa-search"></i>
+                  </a>
+                  <ul class="dropdown-menu dropdown-search animated fadeIn">
+                    <form class="navbar-left navbar-form nav-search">
+                      <div class="input-group">
+                        <input
+                          type="text"
+                          placeholder="Search ..."
+                          class="form-control"
+                        />
+                      </div>
+                    </form>
+                  </ul>
+                </li>
+                <li class="nav-item topbar-user dropdown hidden-caret">
+                  <a
+                    class="dropdown-toggle profile-pic"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    aria-expanded="false"
+                  >
+
+                  <span class="profile-username">
+                    <span class="op-7"></span>
+                    <button type="button" class="btn btn-danger">Menu Configurações!</button>
+                   
+                </span>
+                
+                  </a>
+                  <ul class="dropdown-menu dropdown-user animated fadeIn">
+                    <div class="dropdown-user-scroll scrollbar-outer">
+                      <li>
+                        <div class="user-box" style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;" >
+                          <div class="u-text">
+                             <p class="text-muted"><i class="bi bi-person"></i> Email: <span th:text="${email}"></span></p>
+                             <p class="text-muted"> Nome: <span th:text="${userLogado}"></span> <span th:text="${sobrenome}"></span></p>
+                             <p class="text-muted"> Função: <span th:text="${userFuncao}" ></span> <span th:text="${userUF}"></span></p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item"  th:href="@{/cadastrar}"> <i class="bi bi-person-plus"></i> Cadastrar usuários</a>
+                        <a class="dropdown-item" th:href="@{/novo-filiado}"> <i class="bi bi-person-plus"></i> Cadastrar Filiado Interno</a>
+                        <!-- <a class="dropdown-item" href="#">Atividades</a>-->
+                        <div class="dropdown-divider"></div>
+                         <a class="dropdown-item" th:href="@{/permissoes}"><i class="bi bi-shield-lock"></i> Permissões</a>
+                        <div class="dropdown-divider"></div>
+                         <!-- <a class="dropdown-item" th:href="@{/login}"><i class="bi bi-box-arrow-right"></i> Sair</a>-->
+                        <form th:action="@{/logout}" method="post">
+                          <button type="submit" class="dropdown-item">
+                              <i class="bi bi-box-arrow-right"></i> Sair
+                          </button>
+                      </form>
+                      
+                      </li>
+                    </div>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <!-- End Navbar -->
+        </div>
+       
+          <div class="page-inner">
+            <form action="/index" method="get" id="filterForm">
+             
+            </div>
+          
+          </form>
+          <br>
+          <script> 
+            function submitForm() {
+                document.getElementById("filterForm").submit();}
+           </script>
+              
+          
+           <div class="d-flex justify-content-between flex-wrap pt-2 pb-4">
+            <!-- Card Azul -->
+            <div class="card card-stats card-round flex-fill m-2" style="max-width: 23%;">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col-icon">
+                    <div class="icon-big text-center icon-primary bubble-shadow-small" style="background-color: #ffad46;">
+                      <i class="far fa-address-book"></i>
+                    </div>
+                  </div>
+                  <div class="col col-stats ms-3 ms-sm-0">
+                    <div class="numbers">
+                      <p class="card-category">Aniversários do dia</p>
+                      <h4 class="card-title"th:text="${aniverssariantes}">0</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+            <!-- Card Amarelo -->
+            <div class="card card-stats card-round flex-fill m-2" style="background-color: white; color: black; max-width: 23%;">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col-icon">
+                    <div class="icon-big text-center icon-primary bubble-shadow-small" style="background-color: #ffad46;">
+                      <i class="fas fa-users"></i>
+                    </div>
+                  </div>
+                  <div class="col col-stats ms-3 ms-sm-0">
+                    <div class="numbers">
+                      <p class="card-category">Aniversários do Mês</p>
+                      <h4 class="card-title"th:text="${aniverssariantesMes}">0</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+            <!-- Card Amarelo -->
+            <div class="card card-stats card-round flex-fill m-2" style="background-color: white; color: black; max-width: 23%;">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col-icon">
+                    <div class="icon-big text-center icon-primary bubble-shadow-small" style="background-color: #ffad46;">
+                      <i class="fas fa-users"></i>
+                    </div>
+                  </div>
+                  <div class="col col-stats ms-3 ms-sm-0">
+                    <div class="numbers">
+                      <p class="card-category">Ultima Atualização Candidatos</p>
+                      <h4 class="card-title"th:text="${candidato}">0</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+            <!-- Card Branco -->
+            <div class="card card-stats card-round flex-fill m-2" style="max-width: 23%;">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col-icon">
+                    <div class="icon-big text-center icon-primary bubble-shadow-small" style="background-color: #ffad46;">
+                      <i class="fas fa-users"></i>
+                    </div>
+                  </div>
+                  <div class="col col-stats ms-3 ms-sm-0">
+                    <div class="numbers">
+                      <p class="card-category">Ultima Atualização Filiados</p>
+                      <h4 class="card-title" th:text="${filiado}">0</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<br><br>
+<div class="col-md-6">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title-center">Aniverssariantes do Dia</h4>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+          <table id="multi-filter-select" class="display table table-striped table-hover">
+              <thead>
+                  <tr>
+                      <th>Nome</th>
+                      <th>Título Eleitor</th>
+                      <th>Completando</th>
+                      <th>UF</th>
+                      <th>Município</th>
+                      <th>Cargo</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr th:each="aniverssario : ${aniverssarios}">
+                      <td th:text="${aniverssario.nome}"></td>
+                      <td th:text="${aniverssario.titulo}"></td>
+                      <td th:text="${aniverssario.completando} + ' Anos'"></td>
+                      <td th:text="${aniverssario.uf}"></td>
+                      <td th:text="${aniverssario.municipio}"></td>
+                      <td th:text="${aniverssario.cargo}"></td>
+                  </tr>
+                  <tr th:if="${#lists.isEmpty(aniverssarios)}">
+                      <td colspan="6">Nenhum resultado encontrado</td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+  <div>
+      <span>Página <span th:text="${currentPage}"></span> de <span th:text="${totalPages}"></span></span>
+      <nav>
+          <ul class="pagination">
+              <!-- Botão "Anterior" -->
+              <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled'">
+                  <a class="page-link text-primary" th:href="@{/Aniverssario(page=${currentPage - 1}, size=${pageSize})}">
+                      Anterior
+                  </a>
+              </li>
+  
+              <!-- Botões de páginas -->
+              <li th:each="i : ${#numbers.sequence(1, totalPages)}" class="page-item" th:classappend="${i == currentPage} ? 'active'">
+                  <a class="page-link" th:href="@{/Aniverssario(page=${i}, size=${pageSize})}" th:text="${i}"></a>
+              </li>
+  
+              <!-- Botão "Próximo" -->
+              <li class="page-item" th:classappend="${currentPage == totalPages} ? 'disabled'">
+                  <a class="page-link text-primary" th:href="@{/Aniverssario(page=${currentPage + 1}, size=${pageSize})}">
+                      Próximo
+                  </a>
+              </li>
+          </ul>
+      </nav>
+  </div>
+</div>
+</div>
+<br><br>
+          <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
+    <!-- Card Branco -->
+    <div class="card card-stats card-round flex-fill m-2" style="max-width: 100%;">
+      <h4 class=" text-center">DIRETÓRIOS DO PARTIDO</h4>
+        <div class="card-body">
+            <div class="row">
+                <!-- Linha 1 -->
+                <div class="col-1 text-center">
+                    <a href="https://uniaobrasil.org.br/diretorios/acre/" target="_blank">
+                        <img th:src="@{/img/bandeiras/AC.png}" alt="Bandeira do Acre" style="width: 120px; height: auto;">
+                    </a>
+                    <h4 class="card-title mt-2">ACRE</h4>
+                </div>
+                <div class="col-1 text-center">
+                    <a href="https://uniaobrasil.org.br/diretorios/1349/" target="_blank">
+                        <img th:src="@{/img/bandeiras/AL.png}" alt="Bandeira de Alagoas" style="width: 120px; height: auto;">
+                    </a>
+                    <h4 class="card-title mt-2">ALAGOAS</h4>
+                </div>
+                <div class="col-1 text-center">
+                    <a href="https://uniaobrasil.org.br/diretorios/amapa/" target="_blank">
+                        <img th:src="@{/img/bandeiras/AP.png}" alt="Bandeira do Amapá" style="width: 120px; height: auto;">
+                    </a>
+                    <h4 class="card-title mt-2">AMAPÁ</h4>
+                </div>
+                <div class="col-1 text-center">
+                    <a href="https://uniaobrasil.org.br/diretorios/amazonas/" target="_blank">
+                        <img th:src="@{/img/bandeiras/AM.png}" alt="Bandeira do Amazonas" style="width: 120px; height: auto;">
+                    </a>
+                    <h4 class="card-title mt-2">AMAZONAS</h4>
+                </div>
+                <div class="col-1 text-center">
+                    <a href="https://uniaobrasil.org.br/diretorios/bahia/" target="_blank">
+                        <img th:src="@{/img/bandeiras/BA.png}" alt="Bandeira da Bahia" style="width: 120px; height: auto;">
+                    </a>
+                    <h4 class="card-title mt-2">BAHIA</h4>
+                </div>
+                <div class="col-1 text-center">
+                    <a href="https://uniaobrasil.org.br/diretorios/ceara/" target="_blank">
+                        <img th:src="@{/img/bandeiras/CE.png}" alt="Bandeira do Ceará" style="width: 120px; height: auto;">
+                    </a>
+                    <h4 class="card-title mt-2">CEARÁ</h4>
+                </div>
+                <div class="col-1 text-center">
+                    <a href="https://uniaobrasil.org.br/diretorios/distrito-federal/" target="_blank">
+                        <img th:src="@{/img/bandeiras/DF.png}" alt="Bandeira do Espírito Santo" style="width: 120px; height: auto;">
+                    </a>
+                    <h4 class="card-title mt-2">DISTRITO FEDERAL</h4>
+                </div>
+
+                <div class="col-1 text-center">
+                  <a href="https://uniaobrasil.org.br/diretorios/espirito-santo/" target="_blank">
+                      <img th:src="@{/img/bandeiras/ES.png}" alt="Bandeira do Espírito Santo" style="width: 120px; height: auto;">
+                  </a>
+                  <h4 class="card-title mt-2">ESPÍRITO SANTO</h4>
+              </div>
+                <div class="col-1 text-center">
+                    <a href="https://uniaobrasil.org.br/diretorios/goias/" target="_blank">
+                        <img th:src="@{/img/bandeiras/GO.png}" alt="Bandeira de Goiás" style="width: 120px; height: auto;">
+                    </a>
+                    <h4 class="card-title mt-2">GOIÁS</h4>
+                </div>
+                <div class="col-1 text-center">
+                    <a href="https://uniaobrasil.org.br/diretorios/maranhao/" target="_blank">
+                        <img th:src="@{/img/bandeiras/MA.png}" alt="Bandeira do Maranhão" style="width: 120px; height: auto;">
+                    </a>
+                    <h4 class="card-title mt-2">MARANHÃO</h4>
+                </div>
+                <div class="col-1 text-center">
+                    <a href="https://uniaobrasil.org.br/diretorios/mato-grosso/" target="_blank">
+                        <img th:src="@{/img/bandeiras/MT.png}" alt="Bandeira de Mato Grosso" style="width: 120px; height: auto;">
+                    </a>
+                    <h4 class="card-title mt-2">MATO GROSSO</h4>
+                </div>
+                <div class="col-1 text-center">
+                    <a href="https://uniaobrasil.org.br/diretorios/mato-grosso-do-sul/" target="_blank">
+                        <img th:src="@{/img/bandeiras/MS.png}" alt="Bandeira de Mato Grosso do Sul" style="width: 120px; height: auto;">
+                    </a>
+                    <h4 class="card-title mt-2">MATO GROSSO DO SUL</h4>
+                </div>
+              
+               
+            </div>
+
+            <div class="row">
+                <!-- Linha 2 -->
+                <div class="col-1 text-center">
+                    <a href="https://uniaobrasil.org.br/diretorios/minas-gerais/" target="_blank">
+                        <img th:src="@{/img/bandeiras/MG.png}" alt="Bandeira de Minas Gerais" style="width: 120px; height: auto;">
+                    </a>
+                    <h4 class="card-title mt-2">MINAS GERAIS</h4>
+                </div>
+                <div class="col-1 text-center">
+                  <a href="https://uniaobrasil.org.br/diretorios/parana/" target="_blank">
+                      <img th:src="@{/img/bandeiras/PR.png}" alt="Bandeira da Paraíba" style="width: 120px; height: auto;">
+                  </a>
+                  <h4 class="card-title mt-2">PARANÁ</h4>
+              </div>
+                <div class="col-1 text-center">
+                    <a href="https://uniaobrasil.org.br/diretorios/para/" target="_blank">
+                        <img th:src="@{/img/bandeiras/PA.png}" alt="Bandeira do Pará" style="width: 120px; height: auto;">
+                    </a>
+                    <h4 class="card-title mt-2">PARÁ</h4>
+                </div>
+                <div class="col-1 text-center">
+                  <a href="https://uniaobrasil.org.br/diretorios/paraiba/" target="_blank">
+                      <img th:src="@{/img/bandeiras/PB.png}" alt="Bandeira da Paraíba" style="width: 120px; height: auto;">
+                  </a>
+                  <h4 class="card-title mt-2">PARAÍBA</h4>
+              </div>
+                <div class="col-1 text-center">
+                    <a href="https://uniaobrasil.org.br/diretorios/pernambuco/" target="_blank">
+                      <img th:src="@{/img/bandeiras/PE.png}" alt="Bandeira de Pernambuco" style="width: 120px; height: auto;">
+                    </a>
+                    <h4 class="card-title mt-2">PERNAMBUCO</h4>
+                </div>
+                <div class="col-1 text-center">
+                    <a href="https://uniaobrasil.org.br/diretorios/piaui/" target="_blank">
+                        <img th:src="@{/img/bandeiras/PI.png}" alt="Bandeira do Piauí" style="width: 120px; height: auto;">
+                    </a>
+                    <h4 class="card-title mt-2">PIAUÍ</h4>
+                </div>
+                <div class="col-1 text-center">
+                  <a href="https://uniaobrasil.org.br/diretorios/rio-de-janeiro/" target="_blank">
+                      <img th:src="@{/img/bandeiras/RJ.png}" alt="Bandeira do Rio Grande do Norte" style="width: 120px; height: auto;">
+                  </a>
+                  <h4 class="card-title mt-2">RIO DE JANEIRO</h4>
+              </div>
+                <div class="col-1 text-center">
+                    <a href="https://uniaobrasil.org.br/diretorios/rio-grande-do-norte/" target="_blank">
+                        <img th:src="@{/img/bandeiras/RN.png}" alt="Bandeira do Rio Grande do Norte" style="width: 120px; height: auto;">
+                    </a>
+                    <h4 class="card-title mt-2">RIO GRANDE DO NORTE</h4>
+                </div>
+                <div class="col-1 text-center">
+                    <a href="https://uniaobrasil.org.br/diretorios/rio-grande-do-sul/" target="_blank">
+                        <img th:src="@{/img/bandeiras/RS.png}" alt="Bandeira do Rio Grande do Sul" style="width: 120px; height: auto;">
+                    </a>
+                    <h4 class="card-title mt-2">RIO GRANDE DO SUL</h4>
+                </div>
+                <div class="col-1 text-center">
+                    <a href="https://uniaobrasil.org.br/diretorios/rondonia/" target="_blank">
+                        <img th:src="@{/img/bandeiras/RO.png}" alt="Bandeira de Rondônia" style="width: 120px; height: auto;">
+                    </a>
+                    <h4 class="card-title mt-2">RONDÔNIA</h4>
+                </div>
+                <div class="col-1 text-center">
+                  <a href="https://uniaobrasil.org.br/diretorios/roraima/" target="_blank">
+                      <img th:src="@{/img/bandeiras/RR.png}" alt="Bandeira de Rondônia" style="width: 120px; height: auto;">
+                  </a>
+                  <h4 class="card-title mt-2">RORAIMA</h4>
+              </div>
+                <div class="col-1 text-center">
+                    <a href="https://uniaobrasil.org.br/diretorios/santa-catarina/" target="_blank">
+                        <img th:src="@{/img/bandeiras/SC.png}" alt="Bandeira de Santa Catarina" style="width: 120px; height: auto;">
+                    </a>
+                    <h4 class="card-title mt-2">SANTA CATARINA</h4>
+                </div>
+                <div class="col-1 text-center">
+                  <a href="https://uniaobrasil.org.br/diretorios/sao-paulo/" target="_blank">
+                      <img th:src="@{/img/bandeiras/SP.png}" alt="Bandeira de São Paulo" style="width: 120px; height: auto;">
+                  </a>
+                  <h4 class="card-title mt-2">SÃO PAULO</h4>
+              </div>
+                <div class="col-1 text-center">
+                    <a href="https://uniaobrasil.org.br/diretorios/sergipe/" target="_blank">
+                        <img th:src="@{/img/bandeiras/SE.png}" alt="Bandeira de Sergipe" style="width: 120px; height: auto;">
+                    </a>
+                    <h4 class="card-title mt-2">SERGIPE</h4>
+                </div>
+                <div class="col-1 text-center">
+                    <a href="https://uniaobrasil.org.br/diretorios/tocantins/" target="_blank">
+                        <img th:src="@{/img/bandeiras/TO.png}" alt="Bandeira de Tocantins" style="width: 120px; height: auto;">
+                    </a>
+                    <h4 class="card-title mt-2">TOCANTINS</h4>
+                </div>
+               
+            </div>
+
+          </div>
+      
+           
+        </div>
+    </div>
+</div>
+
+        
+
+      
+
+      
+
+
+
+        <footer class="footer">
+          <div class="container-fluid d-flex justify-content-between">
+            <nav class="pull-left">
+              <ul class="nav">
+                <li class="nav-item">
+                  <a class="nav-link" th:href="@{https://uniaobrasil.org.br/filie-se/}">
+                    Filiar 
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="https://wa.me/61994180629?text=Olá%2C%20gostaria%20de%20mais%20informações">  Ajuda </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#"> União Brasil </a>
+                </li>
+              </ul>
+            </nav>
+            <div class="copyright">
+              2024, União Brasil <i class="fa fa-heart heart text-danger"></i> by
+              <a th:href="@{https://uniaobrasil.org.br/}">Site</a>
+            </div>
+
+          </div>
+        </footer>
+      </div>
+
+      <!-- Custom template | don't include it in your project! -->
+      <div class="custom-template">
+        <div class="title">Configurar</div>
+        <div class="custom-content">
+          <div class="switcher">
+            <div class="switch-block">
+              <h4>Logo Header</h4>
+              <div class="btnSwitch">
+                <button
+                  type="button"
+                  class="selected changeLogoHeaderColor"
+                  data-color="white"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="blue"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="purple"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="light-blue"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="green"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="orange"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="red"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="white"
+                ></button>
+                <br />
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="dark2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="blue2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="purple2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="light-blue2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="green2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="orange2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeLogoHeaderColor"
+                  data-color="red2"
+                ></button>
+              </div>
+            </div>
+            <div class="switch-block">
+              <h4>Menu vertical</h4>
+              <div class="btnSwitch">
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="dark"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="blue"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="purple"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="light-blue"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="green"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="orange"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="red"
+                ></button>
+                <button
+                  type="button"
+                  class="selected changeTopBarColor"
+                  data-color="white"
+                ></button>
+                <br />
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="dark2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="blue2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="purple2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="light-blue2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="green2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="orange2"
+                ></button>
+                <button
+                  type="button"
+                  class="changeTopBarColor"
+                  data-color="red2"
+                ></button>
+              </div>
+            </div>
+            <div class="switch-block">
+              <h4>Menu Horizontal</h4>
+              <div class="btnSwitch">
+                <button
+                  type="button"
+                  class="changeSideBarColor"
+                  data-color="white"
+                ></button>
+                <button
+                  type="button"
+                  class="changeSideBarColor"
+                  data-color="dark"
+                ></button>
+              
+                <button
+                  type="button"
+                  class="changeSideBarColor"
+                  data-color="dark2"
+                ></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="custom-toggle">
+          <i class="icon-settings"></i>
+        </div>
+      </div>
+      <!-- End Custom template -->
+    </div>
+  <!-- Core JS Files -->
+<script th:src="@{/js/core/jquery-3.7.1.min.js}"></script>
+<script th:src="@{/js/core/popper.min.js}"></script>
+<script th:src="@{/js/core/bootstrap.min.js}"></script>
+
+<!-- jQuery Scrollbar -->
+<script th:src="@{/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js}"></script>
+
+<!-- Chart JS -->
+<script th:src="@{/js/plugin/chart.js/chart.min.js}"></script>
+
+<!-- jQuery Sparkline -->
+<script th:src="@{/js/plugin/jquery.sparkline/jquery.sparkline.min.js}"></script>
+
+<!-- Chart Circle -->
+<script th:src="@{/js/plugin/chart-circle/circles.min.js}"></script>
+
+<!-- Datatables -->
+<script th:src="@{/js/plugin/datatables/datatables.min.js}"></script>
+
+
+<!-- jQuery Vector Maps -->
+<script th:src="@{/js/plugin/jsvectormap/jsvectormap.min.js}"></script>
+<script th:src="@{/js/plugin/jsvectormap/world.js}"></script>
+
+<!-- Sweet Alert -->
+<script th:src="@{/js/plugin/sweetalert/sweetalert.min.js}"></script>
+
+<!-- Kaiadmin JS -->
+<script th:src="@{/js/kaiadmin.min.js}"></script>
+
+<!-- Kaiadmin DEMO methods, don't include it in your project! -->
+<script th:src="@{/js/setting-demo.js}"></script>
+<script th:src="@{/js/demo.js}"></script>
+   
+  </body>
+</html>

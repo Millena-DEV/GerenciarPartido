@@ -1,0 +1,255 @@
+
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" bootstrap="width=device-width, initial-scale=1">
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<link th:href="@{/css/reset.css}">
+<link th:href="@{/css/bootstrap.min.css}">
+<link th:href="@{css/bootstrap-select.min.css}">
+<link th:href="@{css/open-iconic-bootstrap.min.css}">
+<link th:href="@{css/simplePagination.css}">
+<link th:href="@{css/custom.css">
+<link th:href="@{css/c3.min.css}">
+<script th:href="@{js/jquery.js}"></script>
+<script th:href="@{js/bootstrap.bundle.min.js}"></script>
+<script th:href="@{js/bootstrap-select.min.js}"></script>
+<script th:href="@{js/jquery.mask.min.js}"></script>
+<script th:href="@{js/jquery.simplePagination.js}"></script>
+<script th:href="@{js/custom.js}"></script>
+<script th:href="@{js/plugins/c3/d3.min.js}"></script>
+<script th:href="@{js/plugins/c3/c3.min.js}"></script>
+
+<title>União Brasil</title>
+<link rel="icon" th:href="@{img/ub.jfif}" >
+<style>
+.custom-file-input ~ .custom-file-label::after {
+    display: none;
+}
+
+.btn-upload {
+    background-color: #428BCA;
+    border-color: #428BCA;;
+    color: white;
+}
+
+.btn-upload:hover {
+    background-color: #31b0d5;
+    border-color: #269abc;
+}
+
+.section-divider {
+    margin: 20px 0; /* Espaçamento acima e abaixo da linha */
+    border-top: 1px solid #dee2e6; /* Cor e espessura da linha */
+}
+
+.modal.fade .modal-dialog {
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.modal.fade.show .modal-dialog {
+    transform: translateY(0);
+    opacity: 1;
+}
+</style>
+ </head>
+<header>
+    <div class="main-header">
+        <div class="container">
+            
+        </div>
+    </div>
+</header>
+        <body>  
+            <div class="container mt-5">
+                <button type="button" id="btnVoltar" class="btn btn-primary " style="margin-top: 5px;">Voltar</button>
+                <div class="card">
+                    <div class="home card-header">
+                        <h1 style="font-size:20px; text-align: center;">Ficha de Filiação</h1>
+                        <h6 style="margin-top: 20px">
+                            Acesse nosso Site para ficar por dentro de todas as informações <a href="https://uniaobrasil.org.br/">clicando aqui </a>
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                            <h1 style="color: #428BCA;"> Dados Pessoais</h1>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="nome">Nome Completo:</label> 
+                                    <input maxlength="250" ttype="text" class="form-control" id="nome" name="nome" th:value="${filiado.nome}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="cpf">CPF:</label> 
+                                    <input type="text" class="form-control" id="cpf" name="cpf" th:value="${filiado.cpf}"> 
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="Titulo">Titulo de Eleitor:</label> 
+                                     <input type="text" class="form-control" id="Titulo" name="Titulo"th:value="${filiado.titulo}" >
+                                       
+                                </div>
+        
+                                <div class="form-group col-md-6">
+                                    <label for="nome">Nome do Pai:</label> <input maxlength="250" ttype="text"
+                                        class="form-control" id="nome" name="nome" th:value="${filiado.nomePai}">
+                                </div>
+                        
+                                <div class="form-group col-md-6">
+                                    <label for="nome">Nome da Mãe:</label> <input maxlength="250" ttype="text"
+                                        class="form-control" id="nome" name="nome" required>
+                                </div>
+                            
+                                <div class="col-md-6">
+                                    <label for="datanascimento" class="form_label">Data de Nascimento</label>
+                                    <input type="date" name="datanascimento" class="form_input form-control" id="datanascimento" required>
+                                </div>
+                                    
+                            </div>
+                            
+                         <div class="form-group">
+                                <label for="inputState">Estado</label>
+                                <input type="text" class="form-control" id="uf" name="uf" required>
+                              <div class="form-group col-md-6">
+                                <label for="celular">Celular 1:</label>
+                                     <input type="text" class="form-control" id="celular" name="celular" required>
+                                 <label for="celular">Celular 2:</label>
+                                     <input type="text" class="form-control" id="celular" name="celular" required>
+                              </div>
+                    
+                            </div>
+                            <hr>
+                            <div class="form-row">
+                                <div class="form-group col-md-5">
+                                    <label for="foto">Foto:</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="foto"
+                                                name="foto" required> <input type="hidden"
+                                                id="fileBase64" name="fileBase64"> <label
+                                                class="custom-file-label" id="customFileLabel" for="foto">Escolha
+                                                o arquivo...</label>
+                                        </div>
+                                        <div class="input-group-append">
+                                            <button type="button"
+                                                class="btn btn-outline-secondary btn-upload"
+                                                id="customFileButton">
+                                                <i class="oi oi-cloud-upload"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <div class="form-group col-md-5">
+                                    <label for="foto">Ficha Filiação:</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="foto"
+                                                name="foto" required> <input type="hidden"
+                                                id="fileBase64" name="fileBase64"> <label
+                                                class="custom-file-label" id="customFileLabel" for="foto">Escolha
+                                                o arquivo...</label>
+                                        </div>
+                                        <div class="input-group-append">
+                                            <button type="button"
+                                                class="btn btn-outline-secondary btn-upload"
+                                                id="customFileButton">
+                                                <i class="oi oi-cloud-upload"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr >
+                            <h4 style="color: #428BCA; font-size: 18px;">Endereço</h4>
+                            <br>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="cep">CEP:</label> 
+                                 <input type="text" class="form-control" id="cep" name="cep" required pattern=".{9,}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="uf">UF:</label> 
+                                    <input type="text" class="form-control" id="uf" name="uf">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="cidade">Cidade:</label> <input type="text" class="form-control" id="cidade" name="cidade" >
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="bairro">Bairro:</label> <input type="text" class="form-control" id="bairro" name="bairro">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="numero">Logradouro:</label> <input type="text" class="form-control" id="logradouro" name="logradouro">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="numero">Número:</label> <input maxlength="8"  type="text" class="form-control" id="numero" name="numero">
+                                </div>
+        
+                                <div class="form-group col-md-6">
+                                    <label for="complemento">Complemento:</label> 
+                                    <input maxlength="100" type="text"class="form-control" id="complemento" name="complemento" >
+                                </div> 
+        
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        
+        <footer style="border: none;">
+            <p class="rodape">União Brasil | v1.7.0-W</p>
+        </footer>
+    
+     </body>
+<script>
+    
+    $('#customFileButton').on('click', function() {
+        $('#foto').click();
+    });
+
+    $('#foto').on('change', function() {
+        var fileName = $(this).val().split('\\').pop();
+        $('#customFileLabel').html(fileName);
+    });
+    
+    
+        const input = document.getElementById("foto");
+
+    
+        const convertBase64 = (file) => {
+            return new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+
+            fileReader.onload = () => {
+                resolve(fileReader.result);
+            };
+
+            fileReader.onerror = (error) => {
+                reject(error);
+            };
+            });
+        };
+
+        const uploadImage = async (event) => {
+            const file = event.target.files[0];
+            const base64 = await convertBase64(file);
+            $('#fileBase64').val(base64.split(',')[1]);	
+        };
+
+        input.addEventListener("change", (e) => {
+            uploadImage(e);
+        });
+    
+</script>
+        </html>
+        

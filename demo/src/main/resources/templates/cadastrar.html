@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Registrar</title>
+        <link rel="icon" th:href="@{/img/ub.jfif}" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    </head>
+<body >
+    <body style="background: linear-gradient(to right, #00a4e8, #053383, #00a4e8);  height: 100vh; margin: 0; display: flex; justify-content: center; align-items: flex-start; padding-top: 50px;">
+        <div class="row d-flex justify-content-center" style="width: 100%;">
+            <div class="col col-xl-6">
+                <div class="card" style="border-radius: 1rem; padding: 40px; min-height: 500px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);">
+                    <a th:href="@{/index}" class="btn btn-info" style="width: 10%;">Voltar</a>
+                    <h2 class="text-center" style="margin-bottom: 20px; color: #00a4e8;">Cadastrar novo usuário</h2>
+                    <form id= "registerForm" th:action="@{/cadastrar}" method="post" th:object="${usuario}">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="nome">Nome:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    <input type="text" id="nome" th:field="*{nome}"name="nome" class="form-control form-control-sm" required />
+                                </div>
+                                
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="Sobrenome">Sobrenome:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
+                                    <input type="text" id="Sobrenome" th:field="*{sobrenome}" name="Sobrenome" class="form-control form-control-sm" required />
+                                </div>
+                               
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="cpf">CPF:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
+                                    <input type="text" id="cpf" th:field="*{cpf}" name="cpf" oninput="formatCPF(this)" class="form-control form-control-sm" required />
+                                </div>
+                               
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="cpf">Cadastro Sendo Feito por:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
+                                    <input type="text" id="cpf" th:value="${userLogado}" name="cpf" class="form-control form-control-sm" required disabled />
+                                    
+
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="cargo">Cargo:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-briefcase"></i></span>
+                                    <input type="text" id="cargo" th:field="*{cargo}"  name="cargo" class="form-control form-control-sm" required />
+                                </div>
+                              
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="funcao">Função:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-tasks"></i></span>
+                                    <select th:field="*{funcao}" class="form-control" required>
+                                        <option value="ADMINISTRADOR_NACIONAL">Administrador Nacional</option>
+                                        <option value="ADM_ESTADUAL">Administrado Estadual</option>
+                                        <option value="CONSULTOR_NACIONAL">Consultor Nacional</option>
+                                        <option value="CONSULTOR_ESTADUAL">Consultor Estadual</option>
+                                        <option value="CONSULTOR_MUNICIPAL">Consultor Municipal</option>
+                                        <option value="OPERADOR_NACIONAL">Operador Nacional</option>
+                                        <option value="OPERADOR_ESTADUAL">Operador Estadual</option>
+                                        <option value="OPERADOR_MUNICIPAL">Operador Municipal</option> 
+                                        
+
+                                    </select>
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="uf" class="form-label">UF</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-city"></i></span>
+                                    <select id="uf" th:field="*{uf}" name="uf" class="form-control form-control-sm" required>
+                                        <option value="">Selecione a UF</option>
+                                        <label for="uf" class="form-label">UF</label>     
+                                        <option value="AC" th:selected="${uf == 'AC'}">AC</option>
+                                        <option value="AL" th:selected="${uf == 'AL'}">AL</option>
+                                        <option value="AM" th:selected="${uf == 'AM'}">AM</option>
+                                        <option value="AP" th:selected="${uf == 'AP'}">AP</option>
+                                        <option value="BA" th:selected="${uf == 'BA'}">BA</option>
+                                        <option value="CE" th:selected="${uf == 'CE'}">CE</option>
+                                        <option value="DF" th:selected="${uf == 'DF'}">DF</option>
+                                        <option value="ES" th:selected="${uf == 'ES'}">ES</option>
+                                        <option value="GO" th:selected="${uf == 'GO'}">GO</option>
+                                        <option value="MA" th:selected="${uf == 'MA'}">MA</option>
+                                        <option value="MG" th:selected="${uf == 'MG'}">MG</option>
+                                        <option value="MS" th:selected="${uf == 'MS'}">MS</option>
+                                        <option value="MT" th:selected="${uf == 'MT'}">MT</option>
+                                        <option value="PA" th:selected="${uf == 'PA'}">PA</option>
+                                        <option value="PB" th:selected="${uf == 'PB'}">PB</option>
+                                        <option value="PE" th:selected="${uf == 'PE'}">PE</option>
+                                        <option value="PI" th:selected="${uf == 'PI'}">PI</option>
+                                        <option value="PR" th:selected="${uf == 'PR'}">PR</option>
+                                        <option value="RJ" th:selected="${uf == 'RJ'}">RJ</option>
+                                        <option value="RN" th:selected="${uf == 'RN'}">RN</option>
+                                        <option value="RO" th:selected="${uf == 'RO'}">RO</option>
+                                        <option value="RR" th:selected="${uf == 'RR'}">RR</option>
+                                        <option value="RS" th:selected="${uf == 'RS'}">RS</option>
+                                        <option value="SC" th:selected="${uf == 'SC'}">SC</option>
+                                        <option value="SE" th:selected="${uf == 'SE'}">SE</option>
+                                        <option value="SP" th:selected="${uf == 'SP'}">SP</option>
+                                        <option value="TO" th:selected="${uf == 'TO'}">TO</option>
+                                
+                                    </select>
+                                </div>
+                                
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="municipio" class="form-label">Município</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-city"></i></span>
+                                    <select id="municipio" th:field="*{municipio}" name="municipio" class="form-control form-control-sm" disabled required>
+                                        <option value="">Selecione o Município</option>
+                                    </select>
+                                </div>
+                            
+                             
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="email">Email:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    <input type="email" id="email" th:field="*{email}" name="email" class="form-control form-control-sm" required />
+                                </div>
+                                <div th:if="${#fields.hasErrors('email')}" style="color:red;">
+                                    <span th:errors="*{email}"></span>
+                                </div>
+                               
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="password">Senha:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                    <input type="password" id="password" th:field="*{senha}" name="password" class="form-control form-control-sm" required />
+                                </div>
+                        
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-3 d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary" style="width: 100%;">Cadastrar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+    <script>
+       
+        document.getElementById('uf').addEventListener('change', function() {
+            const ufSelecionada = this.value;
+            const municipioSelect = document.getElementById('municipio');
+
+            // Limpa as opções anteriores
+            municipioSelect.innerHTML = '<option value="">Selecione o município</option>';
+
+            if (ufSelecionada) {
+                municipioSelect.disabled = false; // Habilita o campo de município
+
+                // Faz a requisição para a API para buscar os municípios da UF selecionada
+                fetch(`/api/municipios/${ufSelecionada}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Erro na resposta da rede');
+                        }
+                        return response.json(); // Espera um JSON como resposta
+                    })
+                    .then(municipios => {
+                        municipios.forEach(function(municipio) {
+                            const option = document.createElement('option');
+                            option.value = municipio.municipio; // ou o ID do município, se necessário
+                            option.textContent = municipio.municipio;
+                            municipioSelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Erro ao buscar municípios:', error);
+                    });
+            } else {
+                municipioSelect.disabled = true; // Desabilita o campo se não houver UF selecionada
+            }
+        });
+
+        // Habilita o campo de município ao carregar a página se a UF já estiver selecionada
+        document.addEventListener("DOMContentLoaded", function() {
+            const ufSelecionada = document.getElementById('uf').value;
+            if (ufSelecionada) {
+                document.getElementById('uf').dispatchEvent(new Event('change'));
+            }
+        });
+    
+    </script>
+    
+    <script>
+        WebFont.load({
+          google: { families: ["Public Sans:300,400,500,600,700"] },
+          custom: {
+            families: [
+              "Font Awesome 5 Solid",
+              "Font Awesome 5 Regular",
+              "Font Awesome 5 Brands",
+              "simple-line-icons",
+            ],
+            urls: ["/css/fonts.min.css"], // Corrigido aqui
+          },
+          active: function () {
+            sessionStorage.fonts = true;
+          },
+        });
+      </script>
+
+
+      <script>
+            // Função para aplicar a máscara no CPF
+            function maskCPF(cpf) {
+                cpf = cpf.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+                cpf = cpf.substring(0, 11); // Limita o CPF a 11 caracteres
+
+                // Aplica a máscara
+                cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2'); // Adiciona o ponto após os 3 primeiros números
+                cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2'); // Adiciona o ponto após os 3 próximos números
+                cpf = cpf.replace(/(\d{3})(\d{1,2})$/, '$1-$2'); // Adiciona o traço antes dos dois últimos números
+                return cpf;
+            }
+
+            // Função chamada no evento 'input' para aplicar a máscara
+            function formatCPF(input) {
+                input.value = maskCPF(input.value);
+            }
+
+            // Função para validar o CPF
+            function validateCPF(cpf) {
+                cpf = cpf.replace(/\D/g, ''); // Remove caracteres não numéricos
+
+                // Verifica se o CPF tem 11 dígitos
+                if (cpf.length !== 11) {
+                    return false;
+                }
+
+                // Verifica se todos os números são iguais (ex: 111.111.111-11)
+                if (/^(\d)\1{10}$/.test(cpf)) {
+                    return false;
+                }
+
+                // Valida o primeiro dígito verificador
+                let sum = 0;
+                for (let i = 0; i < 9; i++) {
+                    sum += parseInt(cpf.charAt(i)) * (10 - i);
+                }
+                let firstDigit = (sum * 10) % 11;
+                if (firstDigit === 10 || firstDigit === 11) {
+                    firstDigit = 0;
+                }
+                if (firstDigit !== parseInt(cpf.charAt(9))) {
+                    return false;
+                }
+
+                // Valida o segundo dígito verificador
+                sum = 0;
+                for (let i = 0; i < 10; i++) {
+                    sum += parseInt(cpf.charAt(i)) * (11 - i);
+                }
+                let secondDigit = (sum * 10) % 11;
+                if (secondDigit === 10 || secondDigit === 11) {
+                    secondDigit = 0;
+                }
+                if (secondDigit !== parseInt(cpf.charAt(10))) {
+                    return false;
+                }
+
+                return true;
+            }
+
+            // Função para validar CPF no campo
+            function checkCPF(input) {
+                let cpf = input.value;
+
+                if (!validateCPF(cpf)) {
+                    document.getElementById("cpf-error").style.display = "inline";
+                    input.setCustomValidity("CPF inválido");
+                } else {
+                    document.getElementById("cpf-error").style.display = "none";
+                    input.setCustomValidity(""); // Validação bem-sucedida
+                }
+            }
+
+
+         
+        
+        
+      </script>
+
+
+
+
+      
+    
+    
+</body>
+</html>

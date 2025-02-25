@@ -1,0 +1,13 @@
+
+1-subir o banco em nuvem toda vez que atualizar o branco interno
+
+docker cp C:\Ambiete\teste\bkp_teste.sql meu-postgres:/tmp/bkp_teste.sql
+pg_restore -U admin -d uniao_brasil /bkp_teste.sql 
+
+2- docker-compose up -d //Execute o comando para subir os serviços
+
+3-Acesse os serviços
+
+PostgreSQL: localhost:5432 (usuário: admin, senha: admin)
+PgAdmin: http://localhost:5050 (email: admin@admin.com, senha: admin)
+Redis: localhost:6379
