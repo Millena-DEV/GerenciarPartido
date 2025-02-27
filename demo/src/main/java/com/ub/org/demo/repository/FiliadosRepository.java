@@ -17,6 +17,7 @@ public interface FiliadosRepository extends JpaRepository<Filiados,String>, JpaS
     List<Filiados> findByUf(String uf);
     List<Filiados> findByMunicipio(String municipio);
     List<Filiados> findByDataFiliacao(String dataFiliacao);
+    boolean existsByTitulo(String titulo);
     
    
     

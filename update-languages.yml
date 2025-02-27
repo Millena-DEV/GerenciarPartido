@@ -1,0 +1,46 @@
+name: Atualizar Linguagens da Aplicação
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'  # Atualiza toda segunda-feira à meia-noite UTC
+  workflow_dispatch:  # Permite rodar manualmente
+
+jobs:
+  update-languages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v3
+
+      - name: Buscar Linguagens da Aplicação
+        run: |
+          curl -s https://api.github.com/repos/Millena-DEV/GerenciarPartido/languages > languages.json
+          cat languages.json
+
+      - name: Calcular e Atualizar Percentual de Linguagens no README
+        run: |
+          # Calculando o total de bytes
+          total=$(jq 'to_entries | map(.value) | add' languages.json)
+          
+          # Calculando os percentuais
+          javascript_percent=$(jq '(.JavaScript / $total) * 100' --arg total "$total" languages.json)
+          java_percent=$(jq '(.Java / $total) * 100' --arg total "$total" languages.json)
+          sql_percent=$(jq '(.SQL / $total) * 100' --arg total "$total" languages.json)
+          html_percent=$(jq '(.HTML / $total) * 100' --arg total "$total" languages.json)
+          css_percent=$(jq '(.CSS / $total) * 100' --arg total "$total" languages.json)
+          bootstrap_percent=$(jq '(.Bootstrap / $total) * 100' --arg total "$total" languages.json)
+
+          # Atualizando o README.md com a distribuição de linguagens
+          echo "## 💬 Linguagens Utilizadas" > temp.md
+          echo "### Distribuição das Linguagens na Aplicação" >> temp.md
+          echo "" >> temp.md
+          echo "```plaintext" >> temp.md
+          echo "JavaScript     $javascript_percent%" >> temp.md
+          echo "Java           $java_percent%" >> temp.md
+          echo "SQL            $sql_percent%" >> temp.md
+          echo "HTML/CSS       $html_percent%" >> temp.md
+          echo "Bootstrap      $bootstrap_percent%" >> temp.md
+          echo "```" >> temp.md
+          cat temp.md > README.md
+
+   

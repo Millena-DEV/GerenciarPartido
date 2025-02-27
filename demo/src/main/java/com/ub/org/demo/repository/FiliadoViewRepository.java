@@ -13,10 +13,13 @@ public interface FiliadoViewRepository extends JpaRepository<FiliadoView,String>
     List<FiliadoView> findByCpf(String cpf);
     Optional<FiliadoView> findByTitulo(String titulo);
     List<FiliadoView> findByUf(String uf);
+    List<FiliadoView> findByUfAndMunicipio(String uf,String municipio);
+    List<FiliadoView> findByMunicipio(String municipio);
 
 
     long countByUf(String uf);
     long countByUfAndMunicipio(String uf, String municipio);
+    boolean existsByTitulo(String titulo);
 
 
   

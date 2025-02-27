@@ -40,7 +40,7 @@ public class candidatoController {
     @GetMapping("/candidatos") // Mapeia para a URL /candidatos
     public String getcandidatos(Model model, 
                            @RequestParam(defaultValue = "1") int page, 
-                           @RequestParam(defaultValue = "10") int size, 
+                           @RequestParam(defaultValue = "25") int size, 
                            @RequestParam(required = false) String nome,
                            @RequestParam(required = false) String cpf,
                            @RequestParam(required = false) String titulo,
@@ -82,6 +82,7 @@ public class candidatoController {
                 model.addAttribute("cpf", cpf);
                 model.addAttribute("uf", uf);
                 model.addAttribute("situ_filiacao", situ_filiacao);
+                model.addAttribute("pageSize", size);
             } else if ("ROLE_CONSULTOR_ESTADUAL".equals(role) || "ROLE_OPERADOR_ESTADUAL".equals(role) || 
                     "ADM_ESTADUAL".equals(role)) {
                         pagedResult = candidatoService.filtrarCandidatos(ano_filtro, partido, nome, cpf, titulo, ufUsuario, municipio, cargo,situ_filiacao, pageable);
@@ -93,6 +94,7 @@ public class candidatoController {
                         model.addAttribute("cpf", cpf);
                         model.addAttribute("uf", uf);
                         model.addAttribute("situ_filiacao", situ_filiacao);
+                        model.addAttribute("pageSize", size);
             } else if ("ROLE_CONSULTOR_MUNICIPAL".equals(role) || "ROLE_OPERADOR_MUNICIPAL".equals(role)) {
                 // Usuário Municipal: Filtra pelo município do usuário
                         pagedResult = candidatoService.filtrarCandidatos(ano_filtro, partido, nome, cpf, titulo, ufUsuario, municipioUsuario, cargo,situ_filiacao, pageable);
@@ -104,6 +106,7 @@ public class candidatoController {
                         model.addAttribute("cpf", cpf);
                         model.addAttribute("uf", uf);
                         model.addAttribute("situ_filiacao", situ_filiacao);
+                        model.addAttribute("pageSize", size);
             } else {
                 // Se o papel não for reconhecido, retorna um resultado vazio ou outro comportamento
                 pagedResult = Page.empty(pageable);

@@ -3,16 +3,24 @@ package com.ub.org.demo.Specifications;
 import com.ub.org.demo.view.Filiados;
 
 import org.springframework.data.jpa.domain.Specification;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 public class FiliadoSpecifications {
-    
-    public static Specification<Filiados> hasNome(String nome) {
-        return (root, query, criteriaBuilder) -> {
-            if (nome == null || nome.isEmpty()) {
-                return criteriaBuilder.conjunction();
-            }
-            return criteriaBuilder.like(root.get("nome"), "%" + nome + "%");
-        };
-    }
+   
+
+public static Specification<Filiados> hasNome(String nome) {
+    return (Root<Filiados> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) -> {
+        if (query.getResultType() != Long.class) { // Garante que não aplicamos ordenação em queries de contagem
+            query.orderBy(criteriaBuilder.asc(root.get("nome"))); // Ordenação crescente
+        }
+
+        if (nome == null || nome.isEmpty()) {
+            return criteriaBuilder.conjunction();
+        }
+        return criteriaBuilder.like(criteriaBuilder.lower(root.get("nome")), "%" + nome.toLowerCase() + "%");
+    };
+}
 
     public static Specification<Filiados> hasCpf(String cpf) {
         return (root, query, criteriaBuilder) -> {
