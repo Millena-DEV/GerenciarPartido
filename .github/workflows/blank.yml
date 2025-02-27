@@ -1,7 +1,9 @@
 name: Atualizar Linguagens da Aplicação
 
 on:
-  workflow_dispatch:  # Gatilho para executar manualmente
+  schedule:
+    - cron: '0 0 * * 1'  # Atualiza toda segunda-feira à meia-noite UTC
+  workflow_dispatch:  # Permite rodar manualmente
 
 jobs:
   update-languages:
@@ -47,10 +49,13 @@ jobs:
           echo "```" >> temp.md
           cat temp.md > README.md
 
-      - name: Commit e Push
+      - name: Commit e Push com Token
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://$GH_TOKEN@github.com/Millena-DEV/Sistema-Politico.git
           git add README.md
           git commit -m "Atualizando linguagens da aplicação"
           git push
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
