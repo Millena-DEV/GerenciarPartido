@@ -1,0 +1,84 @@
+# Workflow para CI (integração contínua)
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:  # Permite rodar manualmente
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run a one-line script
+        run: echo Hello, world!
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+
+---
+
+# Workflow para Atualizar Linguagens da Aplicação
+name: Atualizar Linguagens da Aplicação
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'  # Atualiza toda segunda-feira à meia-noite UTC
+  workflow_dispatch:  # Permite rodar manualmente
+
+jobs:
+  update-languages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v3
+
+      - name: Buscar Linguagens da Aplicação
+        run: |
+          curl -s https://api.github.com/repos/Millena-DEV/Sistema-Politico/languages > languages.json
+          cat languages.json
+
+      - name: Calcular e Atualizar Percentual de Linguagens no README
+        run: |
+          # Calculando o total de bytes
+          total=$(jq 'to_entries | map(.value) | add' languages.json)
+          
+          # Verificando se o total foi calculado corretamente
+          if [[ -z "$total" ]]; then
+            echo "Erro ao calcular o total das linguagens, saindo."
+            exit 1
+          fi
+          
+          # Calculando os percentuais de cada linguagem, caso existam
+          javascript_percent=$(jq -r 'if has("JavaScript") then (.JavaScript / $total) * 100 else 0 end' --arg total "$total" languages.json)
+          java_percent=$(jq -r 'if has("Java") then (.Java / $total) * 100 else 0 end' --arg total "$total" languages.json)
+          sql_percent=$(jq -r 'if has("SQL") then (.SQL / $total) * 100 else 0 end' --arg total "$total" languages.json)
+          html_percent=$(jq -r 'if has("HTML") then (.HTML / $total) * 100 else 0 end' --arg total "$total" languages.json)
+          css_percent=$(jq -r 'if has("CSS") then (.CSS / $total) * 100 else 0 end' --arg total "$total" languages.json)
+          bootstrap_percent=$(jq -r 'if has("Bootstrap") then (.Bootstrap / $total) * 100 else 0 end' --arg total "$total" languages.json)
+
+          # Atualizando o README.md com a distribuição de linguagens
+          echo "## 💬 Linguagens Utilizadas" > temp.md
+          echo "### Distribuição das Linguagens na Aplicação" >> temp.md
+          echo "" >> temp.md
+          echo "```plaintext" >> temp.md
+          echo "JavaScript     $javascript_percent%" >> temp.md
+          echo "Java           $java_percent%" >> temp.md
+          echo "SQL            $sql_percent%" >> temp.md
+          echo "HTML/CSS       $html_percent%" >> temp.md
+          echo "Bootstrap      $bootstrap_percent%" >> temp.md
+          echo "```" >> temp.md
+          cat temp.md > README.md
+
+      - name: Commit e Push
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "Atualizando linguagens da aplicação"
+          git push
