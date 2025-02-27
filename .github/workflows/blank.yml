@@ -1,9 +1,7 @@
 name: Atualizar Linguagens da Aplicação
 
 on:
-  schedule:
-    - cron: '0 0 * * 1'  # Atualiza toda segunda-feira à meia-noite UTC
-  workflow_dispatch:  # Permite rodar manualmente
+  workflow_dispatch:  # Gatilho para executar manualmente
 
 jobs:
   update-languages:
