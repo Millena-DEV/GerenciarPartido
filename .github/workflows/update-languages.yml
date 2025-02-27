@@ -15,7 +15,7 @@ jobs:
 
       - name: Buscar Linguagens da Aplicação
         run: |
-          curl -s https://api.github.com/repos/Millena-DEV/Sistema-Políticoo/languages > languages.json
+          curl -s https://api.github.com/repos/Millena-DEV/Sistema-Politico/languages > languages.json
           cat languages.json
 
       - name: Calcular e Atualizar Percentual de Linguagens no README
@@ -50,12 +50,12 @@ jobs:
           cat temp.md > README.md
 
       - name: Commit e Push com Token
-      run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git remote set-url origin https://$GH_TOKEN@github.com/Millena-DEV/Sistema-Politico.git
-        git add README.md
-        git commit -m "Atualizando linguagens da aplicação"
-        git push
-      env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://$GH_TOKEN@github.com/Millena-DEV/Sistema-Politico.git
+          git add README.md
+          git commit -m "Atualizando linguagens da aplicação"
+          git push
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
