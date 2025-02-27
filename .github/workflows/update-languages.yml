@@ -15,7 +15,7 @@ jobs:
 
       - name: Buscar Linguagens da Aplicação
         run: |
-          curl -s https://api.github.com/repos/Millena-DEV/GerenciarPartido/languages > languages.json
+          curl -s https://api.github.com/repos/Millena-DEV/Sistema-Políticoo/languages > languages.json
           cat languages.json
 
       - name: Calcular e Atualizar Percentual de Linguagens no README
