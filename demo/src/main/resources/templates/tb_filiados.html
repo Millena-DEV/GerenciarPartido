@@ -419,6 +419,30 @@
             </div>
             <button class="btn btn-success" onclick="window.location.href='/filiado-Interno'">Filiados Interno</button>
             <button class="btn btn-danger" onclick="window.location.href='/historicofiliados'">Desfiliados</button>
+            <button class="btn btn-secondary" id="downloadCsv" > Baixar CSV</button>
+
+            <script>
+              document.getElementById("downloadCsv").addEventListener("click", function() {
+                fetch("/api/export/filiados")
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Erro ao baixar o CSV: " + response.statusText);
+                        }
+                        return response.blob();
+                    })
+                    .then(blob => {
+                        let url = window.URL.createObjectURL(blob);
+                        let a = document.createElement("a");
+                        a.href = url;
+                        a.download = "filiados.csv";
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                    })
+                    .catch(error => console.error("Erro ao baixar CSV:", error));
+            });            
+              </script>
+           
 
             <div class="col-md-12">
               <div class="card">
@@ -426,6 +450,22 @@
                   <h4 class="card-title">
                     Filiados Regulares: <span th:text="${totalFiliados}"></span>
                   </h4>
+                  <form action="/filiados" method="get">
+                    <div class="mb-2 d-flex align-items-center">
+                    <label for="pageSize">Registros por página: </label>
+                    
+                    <select id="pageSize" name="size" class="form-control form-control-sm mr-2" style="width: 80px">
+                      <!-- Atribui o valor selecionado corretamente -->
+                      <option value="5" th:selected="${pageSize == 5}">5</option>
+                      <option value="10" th:selected="${pageSize == 10}">10</option>
+                      <option value="25" th:selected="${pageSize == 25}">25</option>
+                      <option value="50" th:selected="${pageSize == 50}">50</option>
+                  </select>
+                    <input type="hidden" name="page" th:value="${currentPage}">
+                    <button type="submit" class="btn btn-outline-info btn-sm">Aplicar</button>
+                  </div>
+                </form>
+            
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">

@@ -37,7 +37,7 @@ public class FiliadoInternoController {
      @GetMapping("/filiado-Interno") // Mapeia para a URL /filiados
     public String getFiliados(Model model, 
                            @RequestParam(defaultValue = "1") int page, 
-                           @RequestParam(defaultValue = "10") int size, 
+                           @RequestParam(defaultValue = "25") int size, 
                            @RequestParam(required = false) String nome,
                            @RequestParam(required = false) String cpf,
                            @RequestParam(required = false) String titulo,

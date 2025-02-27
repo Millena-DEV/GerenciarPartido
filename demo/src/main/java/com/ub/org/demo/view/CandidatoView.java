@@ -15,6 +15,8 @@ public class CandidatoView {
     private String cd_cand; 
     @Column(name = "ano")
     private Integer ano;
+    @Column(insertable=false, updatable=false,name = "ano")
+    private String ano_csv;
 	@Column(name = "turno")
     private String turno;
 	@Column(name = "uf")
@@ -66,6 +68,12 @@ public class CandidatoView {
     }
     public String getSitu_filiacao() {
         return situ_filiacao;
+    }
+    public String getAno_csv() {
+        return ano_csv;
+    }
+    public void setAno_csv(String ano_csv) {
+        this.ano_csv = ano_csv;
     }
     public void setSitu_filiacao(String situ_filiacao) {
         this.situ_filiacao = situ_filiacao;

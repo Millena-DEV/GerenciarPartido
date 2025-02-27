@@ -28,6 +28,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/**").permitAll() // Permite todas as rotas /api/
                 .requestMatchers("/api/salvarSenha").permitAll() // Permitir acesso a /api/salvarSenha sem autenticação
                 .requestMatchers("/api/municipios/**").permitAll() // Permitir acesso à rota /cad/municipios
+                .requestMatchers("/api/export/filiados**").permitAll() 
                 .requestMatchers("/error").permitAll()
                 .requestMatchers("/permissoes/**").hasAnyRole("ADMINISTRADOR_NACIONAL","ADMINISTRADOR", "ADM_ESTADUAL")
                 .requestMatchers("/cadastrar/**").hasAnyRole("ADMINISTRADOR_NACIONAL","ADMINISTRADOR", "ADM_ESTADUAL")

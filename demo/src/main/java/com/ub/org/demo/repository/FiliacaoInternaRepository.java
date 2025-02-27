@@ -23,6 +23,7 @@ public interface FiliacaoInternaRepository extends JpaRepository<FiliacaoInterna
     List<FiliacaoInterna> findByUf(String uf);
     List<FiliacaoInterna> findByMunicipio(String municipio);
     List<FiliacaoInterna> findByDataFiliacao(String dataFiliacao);
+    boolean existsByTitulo(String titulo);
 
 
 

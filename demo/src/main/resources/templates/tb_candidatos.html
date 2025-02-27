@@ -203,7 +203,7 @@
             <!--começo da tabela-->  
         <div class="container">
           <div class="page-inner">
-            <form id="filterForm" method="get" action="/pesquisar" onsubmit="submitForm()">
+            <form action="/candidatos" method="get" id="filterForm">
               <div class="col-md-12 mb-4">
                   <div class="card card-stats card-round">
                       <div class="card-body">
@@ -223,11 +223,11 @@
                                           <label for="ano_filtro" class="form-label">Ano</label>
                                           <select id="ano_filtro" name="ano_filtro" class="form-control">
                                               <option value="">Selecione o Ano</option>
-                                              <option value="2024" th:selected="${ano_filtro == '2024'}">2024</option>
-                                              <option value="2022" th:selected="${ano_filtro == '2022'}">2022</option>
-                                              <option value="2020" th:selected="${ano_filtro == '2020'}">2020</option>
-                                              <option value="2018" th:selected="${ano_filtro == '2018'}">2018</option>
-                                              <option value="2016" th:selected="${ano_filtro == '2016'}">2016</option>
+                                              <option value="2024" th:selected="${ano_filtro == 2024}">2024</option>
+                                              <option value="2022" th:selected="${ano_filtro == 2022}">2022</option>
+                                              <option value="2020" th:selected="${ano_filtro == 2020}">2020</option>
+                                              <option value="2018" th:selected="${ano_filtro == 2018}">2018</option>
+                                              <option value="2016" th:selected="${ano_filtro == 2016}">2016</option>
                                           </select>
                                       </div>
                                           <div class="col-md-2 mb-3">
@@ -317,6 +317,7 @@
                 </div>
               </div>           
             </form>
+           
 
                                         
   <script>
@@ -448,11 +449,50 @@
                 </li>
               </ul>
             </div>
+            <button class="btn btn-secondary" id="downloadCsv" > Baixar CSV</button>
+
+            <script>
+              document.getElementById("downloadCsv").addEventListener("click", function() {
+                fetch("/api/export/candidatos")
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Erro ao baixar o CSV: " + response.statusText);
+                        }
+                        return response.blob();
+                    })
+                    .then(blob => {
+                        let url = window.URL.createObjectURL(blob);
+                        let a = document.createElement("a");
+                        a.href = url;
+                        a.download = "candidatos.csv";
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                    })
+                    .catch(error => console.error("Erro ao baixar CSV:", error));
+            });            
+              </script>
 
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header">
                   <h4 class="card-title">Candidatos</h4>
+                  <form action="/candidatos" method="get">
+                    <div class="mb-2 d-flex align-items-center">
+                    <label for="pageSize">Registros por página: </label>
+                    
+                    <select id="pageSize" name="size" class="form-control form-control-sm mr-2" style="width: 80px">
+                      <!-- Atribui o valor selecionado corretamente -->
+                      <option value="5" th:selected="${pageSize == 5}">5</option>
+                      <option value="10" th:selected="${pageSize == 10}">10</option>
+                      <option value="25" th:selected="${pageSize == 25}">25</option>
+                      <option value="50" th:selected="${pageSize == 50}">50</option>
+                  </select>
+                    <input type="hidden" name="page" th:value="${currentPage}">
+                    <button type="submit" class="btn btn-outline-info btn-sm">Aplicar</button>
+                  </div>
+                </form>
+                     
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">

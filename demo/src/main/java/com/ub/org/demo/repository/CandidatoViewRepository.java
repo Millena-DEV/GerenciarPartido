@@ -77,6 +77,7 @@ public interface CandidatoViewRepository extends JpaRepository<CandidatoView,Lon
             List<CandidatoView> findByPartido(String partido);
             List<CandidatoView> findByCargo(String cargo);
             List<CandidatoView> findByAno(Integer ano_filtro);
+            List<CandidatoView> findByUfAndMunicipio(String uf, String municipio);
 
 
           

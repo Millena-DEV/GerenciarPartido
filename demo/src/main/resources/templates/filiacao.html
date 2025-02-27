@@ -184,8 +184,8 @@
                     <div class="row">
                         <!-- tipo_logradouro -->
                          <div class="col-md-2 col-lg-2">
-                            <label for="genero" class="form-label">Tipo Logradouro</label>
-                            <select id="genero" name="genero" class="form-control">
+                            <label for="tipo_logradouro" class="form-label">Tipo Logradouro</label>
+                            <select id="tipo_logradouro" name="tipo_logradouro" class="form-control">
                                 <option value="">Selecione o Logradouro</option>
                                 <option value="Aeroporto" th:selected="${tipo_logradouro == 'Aeroporto'}">Aeroporto</option>
                                 <option value="Alameda" th:selected="${tipo_logradouro == 'Alameda'}">Alameda</option>
@@ -267,10 +267,11 @@
                             <!-- cep -->
                             <div class="col-md-2 col-lg-2">
                                 <div class="form-group">
-                                <label for="cep">CEP:</label>
-                                <input type="text" id="cep" class="form-control" placeholder="Digite o CEP" required>
+                                    <label for="cep">CEP:</label>
+                                    <input type="text" id="cep" name="cep" class="form-control" placeholder="Digite o CEP" required>
                                 </div>
                             </div>
+                            
                             <!-- UF -->
                                 <div class="col-md-2 mb-3">
                                     <label for="uf" class="form-label">UF</label>
