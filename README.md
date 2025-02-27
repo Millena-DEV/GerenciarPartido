@@ -40,9 +40,7 @@ Este sistema tem como objetivo gerenciar informações relacionadas a partidos p
    ```bash
    git clone https://github.com/Millena-DEV/Sistema-Politico.git
    cd Sistema-Politico
-   
-###Configure seu Banco de dados 
-- **Jspring.datasource.url=jdbc:postgresql://localhost:5432/sistema_politico7**
-- **Jspring.datasource.username=seu_usuario7**
-- **Jspring.datasource.password=sua_senha7**
+## 💬 Linguagens Utilizadas
+
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Millena-DEV&layout=compact&hide_title=true)
 
