@@ -40,7 +40,3 @@ Este sistema tem como objetivo gerenciar informações relacionadas a partidos p
    ```bash
    git clone https://github.com/Millena-DEV/Sistema-Politico.git
    cd Sistema-Politico
-## 💬 Linguagens Utilizadas
-
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Millena-DEV&layout=compact&hide_title=true)
-
